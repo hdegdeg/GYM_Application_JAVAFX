@@ -6,6 +6,7 @@
 package gymapplication;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private Label label;
+    Connection con=null;
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -30,6 +32,7 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+          con=DBConnection.EtablirConnection();
     }    
     
 }
