@@ -1,0 +1,84 @@
+.back{
+ 
+ -fx-background-image: url('Image/2503171.jpg'); 
+ -fx-background-size: cover; 
+ 
+    
+}
+
+.accueil{
+    
+    -fx-background-image: url('Image/ImgAccueil.jpg'); 
+ -fx-background-size: cover; 
+ 
+    
+}
+
+.LabelAccueil{
+    
+   -fx-font:bold 28px Arial;
+    -fx-text-fill:  #048900;
+    -fx-font-weight: bolder;
+    -fx-text-alignment: center;
+}
+
+.buttonProgrammes {
+  -fx-background-image: url('Image/ButtonProgrammes.jpg'); 
+ -fx-background-size: contain; 
+    
+}
+
+.buttonExpires {
+  -fx-background-image: url('Image/ButtonExpires.jpg'); 
+ -fx-background-size: contain; 
+    
+}
+
+.buttonAjouter{
+  -fx-background-image: url('Image/AjouterCondidat.jpg'); 
+ -fx-background-size: contain; 
+    
+}
+
+.buttonRenouvellement{
+  -fx-background-image: url('Image/Renouvellement.jpg'); 
+ -fx-background-size: contain; 
+    
+}
+ 
+.buttonListCondidats {
+  -fx-background-image: url('Image/ButtonListesCondidat.jpg'); 
+ -fx-background-size: contain; 
+    
+}
+
+
+.BackAccueil{
+    
+    -fx-background-image: url('Image/ImgBacAccueil.jpg'); 
+ -fx-background-size: cover; 
+ 
+    
+}
+
+.accueil2{
+    
+    -fx-background-image: url('Image/medicinetastes2.gif'); 
+ -fx-background-size: cover;
+ 
+    
+}
+
+.jfx-date-picker .jfx-text-field{
+    -jfx-unfocus-color: BLUE;
+    -fx-text-fill: #FF1493;
+    -fx-prompt-text-fill: #FF1493;
+    -fx-font:bold 28px Arial;
+}
+
+.jfx-time-picker .jfx-text-field{
+    -jfx-unfocus-color: BLUE;
+    -fx-text-fill: #FF1493;
+    -fx-prompt-text-fill: #FF1493;
+    -fx-font:bold 28px Arial;
+}

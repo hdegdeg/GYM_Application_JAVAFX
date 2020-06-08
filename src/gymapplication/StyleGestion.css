@@ -1,0 +1,117 @@
+.button {
+    -fx-width:85px;
+    -fx-height:85px;
+    -fx-font:bold 13px Arial;
+    -fx-background-radius:100;
+    -fx-background-color: #2f2f2fa3;
+    -fx-text-fill:  #FF1493;
+    -fx-font-weight: bolder;
+    
+    
+}
+.button:hover{
+-fx-width:85px;
+    -fx-height:85px;
+    -fx-font:bold 13px Arial;
+    -fx-background-radius:100;
+    -fx-background-color: #2f2f2fa3;
+    -fx-text-fill:  #FF1493;
+    -fx-font-weight: bolder;
+     -fx-cursor: hand;
+     
+
+}
+.button:pressed{
+     -fx-width:85px;
+    -fx-height:85px;
+    -fx-font:bold 13px Arial;
+    -fx-background-radius:100;
+    -fx-background-color: gray;
+    -fx-effect: dropshadow( three-pass-box , rgba(255,215,0,55295) , 5, 0.0 , 0 , 1 );
+    -fx-rotate: 5;
+}
+.TextField{
+    -fx-text-fill: blue;
+    -fx-prompt-text-fill: black;
+}
+.gestion{
+    
+    -fx-background-image: url('Image/backrowndGestion.jpg'); 
+ -fx-background-size: cover;
+ 
+    
+}
+
+
+
+.gestionAttente{
+    
+    -fx-background-image: url('Image/Attente.jpg'); 
+ -fx-background-size: cover;
+ 
+    
+}
+
+
+.gestionStatistic{
+    
+    -fx-background-image: url('Image/st2.jpg'); 
+ -fx-background-size: cover;
+ 
+    
+}
+
+.gestionConsultation{
+    
+    -fx-background-image: url('Image/Consultation2.jpg'); 
+ -fx-background-size: cover;
+ 
+    
+}
+
+.gestionMedicaments{
+    
+    -fx-background-image: url('Image/med.jpg'); 
+ -fx-background-size: cover;
+ 
+    
+}
+
+.gestionMaladies{
+    
+    -fx-background-image: url('Image/Maladie3.jpg'); 
+ -fx-background-size: cover;
+ 
+    
+}
+
+
+.gestionMalades{
+    
+    -fx-background-image: url('Image/tomber-malade.jpg'); 
+ -fx-background-size: cover;
+ 
+    
+}
+
+.rendez_vous{
+    
+    -fx-background-image: url('Image/calendrier-permanences1.jpg'); 
+ -fx-background-size: cover;
+ 
+    
+}
+
+.jfx-date-picker .jfx-text-field{
+    -jfx-unfocus-color: BLUE;
+    -fx-text-fill: #FF1493;
+    -fx-prompt-text-fill: #FF1493;
+    -fx-font:bold 28px Arial;
+}
+
+.jfx-time-picker .jfx-text-field{
+    -jfx-unfocus-color: BLUE;
+    -fx-text-fill: #FF1493;
+    -fx-prompt-text-fill: #FF1493;
+    -fx-font:bold 28px Arial;
+}
