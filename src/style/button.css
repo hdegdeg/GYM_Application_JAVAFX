@@ -1,0 +1,68 @@
+#btnClose{
+    -fx-background-image: url("../icon/close_new.png");
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-cursor: hand;
+}
+#addButton{
+  -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-size: 15px; 
+    -fx-padding: 0px;
+    -fx-background-image: url("../icon/add_black32.png");
+   
+}
+#addButton:hover{
+  -fx-background-color: none;
+    -fx-background-image: url("../icon/add_red32.png");
+   
+}
+
+#closebutton{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-size: 15px; 
+    -fx-padding: 0px;
+    -fx-background-image: url("../Image/close_red.png");
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+  
+    
+}
+
+#closebutton:hover{
+     -fx-background-color: none;
+    -fx-background-image: url("../Image/close.png");
+   -fx-font-size: 15px; 
+    -fx-padding: 0px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+#closebutton:focused{
+    -fx-background-color: none;
+}
+#btnChoose{
+      -fx-border-width: 0.5px;
+    -fx-border-color: #ACACAC;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    
+    -fx-background-color: rgba(238, 238, 0, .1);
+    -fx-font-size: 12px; 
+    -fx-padding: 8px 25px;
+    -fx-font-weight:700;
+    -fx-font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+}
+#btnChoose:hover{
+-fx-background-color: rgba(100, 200, 199, .1);
+    -fx-border-color: black;
+    -fx-text-fill: #ffffff;
+}
+#chooseAnchor{
+    -fx-background-image: url('../Image/accueil.jpg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: stretch;
+}

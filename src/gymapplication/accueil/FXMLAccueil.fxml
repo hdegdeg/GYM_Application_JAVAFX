@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: transparent;" styleClass="BackAccueil" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.accueil.FXMLAccueilController">
+<AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: transparent;" styleClass="BackAccueil" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.accueil.FXMLAccueilController">
    <children>
       <MenuBar prefHeight="0.0" prefWidth="1200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -39,19 +39,19 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="160.0" prefWidth="1140.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                <children>
-                  <JFXButton buttonType="RAISED" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" style="-fx-background-color: black;" styleClass="buttonAjouter" text=" " textFill="#ffffff00">
+                  <JFXButton buttonType="RAISED" onAction="#ajouteCondidat" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" style="-fx-background-color: black;" styleClass="buttonAjouter" text=" " textFill="#ffffff00">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" styleClass="buttonListCondidats" text=" " textFill="#00000016">
+                  <JFXButton onAction="#listCondidats" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" styleClass="buttonListCondidats" text=" " textFill="#00000016">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" styleClass="buttonExpires" text=" " textFill="#ffffff00">
+                  <JFXButton onAction="#abonnementExpire" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" styleClass="buttonExpires" text=" " textFill="#ffffff00">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" style="-fx-background-color: black;" styleClass="buttonRenouvellement" text=" " textFill="#ffffff00">
+                  <JFXButton onAction="#renouvellement" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" style="-fx-background-color: black;" styleClass="buttonRenouvellement" text=" " textFill="#ffffff00">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
