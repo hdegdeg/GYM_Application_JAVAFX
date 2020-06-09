@@ -1,3 +1,14 @@
+
+.button {
+
+    -fx-font:bold 13px Arial;
+    -fx-background-radius:10;
+    -fx-background-color: #2f2f2fa3;
+    -fx-text-fill:  white;
+    -fx-font-weight: bolder;
+    
+    
+}
 .back{
  
  -fx-background-image: url('Image/2503171.jpg'); 
@@ -10,6 +21,18 @@
     
     -fx-background-image: url('Image/ImgAccueil.jpg'); 
  -fx-background-size: cover; 
+ 
+    
+}
+
+.CoverProgrammes{
+   
+ 
+    -fx-background-image: url('Image/CoverProgrammes.jpg'); 
+ -fx-background-size: cover; 
+ -fx-border-style: solid;
+ -fx-border-width: 5px ;
+ -fx-border-color: #41af3a;
  
     
 }

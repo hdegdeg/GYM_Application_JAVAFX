@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gymapplication.accueil;
+package gymapplication.program;
 
+import gymapplication.accueil.*;
 import gymapplication.FXMLDocumentController;
 import java.io.IOException;
 import java.net.URL;
@@ -24,7 +25,7 @@ import javafx.stage.Stage;
  *
  * @author hdegd
  */
-public class FXMLAccueilController implements Initializable {
+public class FXMLProgrammesController implements Initializable {
 
     
     
