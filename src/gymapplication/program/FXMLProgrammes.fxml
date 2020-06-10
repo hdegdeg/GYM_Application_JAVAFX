@@ -7,6 +7,8 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -26,27 +28,55 @@
                            </font></Label>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                            <children>
-                              <JFXButton buttonType="RAISED" prefHeight="38.0" prefWidth="176.0" ripplerFill="BLACK" text="Ajouter">
+                              <JFXButton buttonType="RAISED" prefHeight="38.0" prefWidth="176.0" ripplerFill="BLACK" text="Ajouter Programme">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
-                                 </cursor></JFXButton>
+                                 </cursor>
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Image/icons8_Plus_50px_2.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></JFXButton>
                               <JFXButton prefHeight="38.0" prefWidth="176.0" text="Modifier Selection">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
-                                 </cursor></JFXButton>
+                                 </cursor>
+                                 <graphic>
+                                    <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Image/icons8_Edit_50px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></JFXButton>
                               <JFXButton prefHeight="38.0" prefWidth="176.0" text="Supprimer Selection">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
-                                 </cursor></JFXButton>
+                                 </cursor>
+                                 <graphic>
+                                    <ImageView fitHeight="21.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Image/icons8_Delete_Bin_50px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></JFXButton>
                            </children>
                         </HBox>
                         <JFXButton prefHeight="38.0" text="Afficher programme selectionner">
                            <cursor>
                               <Cursor fx:constant="HAND" />
-                           </cursor></JFXButton>
+                           </cursor>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Image/icons8_Eye_50px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></JFXButton>
                      </children>
                      <padding>
                         <Insets bottom="5.0" />

@@ -28,13 +28,31 @@
 .CoverProgrammes{
    
  
-    -fx-background-image: url('Image/CoverProgrammes.jpg'); 
+ -fx-background-image: url('Image/CoverProgrammes.jpg'); 
  -fx-background-size: cover; 
  -fx-border-style: solid;
  -fx-border-width: 5px ;
  -fx-border-color: #41af3a;
  
     
+}
+.CoverExpiration{
+   
+ 
+ -fx-background-image: url('Image/CoverExpiration.jpg'); 
+ -fx-background-size: cover; 
+ -fx-border-style: solid;
+ -fx-border-width: 5px ;
+ -fx-border-color: #41af3a;
+ 
+    
+}
+
+
+.CoverAbonnement{
+    
+    -fx-background-image: url('Image/CoverAbonnement.jpg');
+    -fx-background-size:cover;
 }
 
 .LabelAccueil{

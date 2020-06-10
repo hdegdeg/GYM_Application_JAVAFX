@@ -39,7 +39,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="160.0" prefWidth="1140.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                <children>
-                  <JFXButton buttonType="RAISED" onAction="#ajouteCondidat" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" style="-fx-background-color: black;" styleClass="buttonAjouter" text=" " textFill="#ffffff00">
+                  <JFXButton onAction="#ajouteCondidat" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" style="-fx-background-color: black;" styleClass="buttonAjouter" text=" " textFill="#ffffff00">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
@@ -51,11 +51,11 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton onAction="#renouvellement" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" style="-fx-background-color: black;" styleClass="buttonRenouvellement" text=" " textFill="#ffffff00">
+                  <JFXButton onMouseClicked="#Abonnement" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" style="-fx-background-color: black;" styleClass="buttonRenouvellement" text=" " textFill="#ffffff00">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton buttonType="RAISED" onMouseClicked="#Programme" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" styleClass="buttonProgrammes" text=" " textFill="WHITE">
+                  <JFXButton onMouseClicked="#Programme" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" styleClass="buttonProgrammes" text=" " textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

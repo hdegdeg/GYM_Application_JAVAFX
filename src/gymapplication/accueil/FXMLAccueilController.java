@@ -62,6 +62,24 @@ public class FXMLAccueilController implements Initializable {
 
     }
 
+    
+      @FXML
+    void Abonnement(MouseEvent event) {
+
+        try {
+
+            Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLAbonnement.fxml"));
+            Scene scene1 = new Scene(root2);
+
+            // GYMApplication.mainStage.hide();
+            s2.setScene(scene1);
+            s2.show();
+
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
     @FXML
     private void ajouteCondidat(ActionEvent event) throws IOException {
         AnchorPane.setOpacity(0.4);
@@ -86,6 +104,20 @@ public class FXMLAccueilController implements Initializable {
 
     @FXML
     private void abonnementExpire(ActionEvent event) {
+        
+        
+        try {
+
+            Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Expiration/FXMLExpiration.fxml"));
+            Scene scene1 = new Scene(root2);
+
+            // GYMApplication.mainStage.hide();
+            s2.setScene(scene1);
+            s2.show();
+
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
