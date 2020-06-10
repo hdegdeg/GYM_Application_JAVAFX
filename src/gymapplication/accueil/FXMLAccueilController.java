@@ -36,6 +36,7 @@ public class FXMLAccueilController implements Initializable {
     @FXML
     private AnchorPane AnchorPane;
     private Stage stage = new Stage();
+    private Stage stage2 = new Stage();
     
 
     /**
@@ -73,7 +74,14 @@ public class FXMLAccueilController implements Initializable {
     }
 
     @FXML
-    private void listCondidats(ActionEvent event) {
+    private void listCondidats(ActionEvent event) throws IOException {
+        AnchorPane.setOpacity(0.4);
+       Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/listeCondidat/listCondidat.fxml"));
+       Scene scene = new Scene(root);
+       scene.setFill(new Color(0,0,0,0));
+       stage2.setScene(scene);
+       stage2.showAndWait();
+       AnchorPane.setOpacity(1);
     }
 
     @FXML

@@ -51,6 +51,8 @@ public class AjouteCondidatController implements Initializable {
     private TextField tfNbrMois;
     @FXML
     private Button btnClose;
+    @FXML
+    private TextField tfCIN;
 
     /**
      * Initializes the controller class.
