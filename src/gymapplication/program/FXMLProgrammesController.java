@@ -60,4 +60,25 @@ public class FXMLProgrammesController implements Initializable {
              
 
     }
+    
+        @FXML
+    void AjouterProgramme(MouseEvent event) {
+           
+       
+        try {
+    
+            
+         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/ajouteProgramme.fxml"));
+         Scene scene1 = new Scene(root2);
+          
+         // GYMApplication.mainStage.hide();
+        s2.setScene(scene1);
+        s2.show();
+        
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             
+
+    }
 }

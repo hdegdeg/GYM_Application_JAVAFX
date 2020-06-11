@@ -6,8 +6,10 @@
 package gymapplication.listeCondidat;
 
 import gymapplication.DBConnection;
+import gymapplication.FXMLDocumentController;
 import gymapplication.accueil.ajouteCondidat.AjouteCondidatController;
 import gymapplication.listeCondidat.list.ListCondidat;
+import static gymapplication.program.FXMLProgrammesController.s2;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -28,6 +30,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
@@ -128,8 +131,25 @@ public class ListCondidatController implements Initializable {
 
     @FXML
     private void supprimerCondidat(ActionEvent event) {
+        
+          
+        try {
+    
+            
+         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLConfermationSuppression.fxml"));
+         Scene scene1 = new Scene(root2);
+          
+         // GYMApplication.mainStage.hide();
+        s2.setScene(scene1);
+        s2.show();
+        
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
+    
+      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

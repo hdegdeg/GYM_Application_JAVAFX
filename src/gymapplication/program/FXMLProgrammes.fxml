@@ -28,7 +28,7 @@
                            </font></Label>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                            <children>
-                              <JFXButton buttonType="RAISED" prefHeight="38.0" prefWidth="176.0" ripplerFill="BLACK" text="Ajouter Programme">
+                              <JFXButton buttonType="RAISED" onMouseClicked="#AjouterProgramme" prefHeight="38.0" prefWidth="176.0" ripplerFill="BLACK" text="Ajouter Programme">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
