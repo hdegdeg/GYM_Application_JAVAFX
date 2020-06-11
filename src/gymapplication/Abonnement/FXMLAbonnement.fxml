@@ -53,7 +53,7 @@
                                     </ImageView>
                                  </graphic>
                               </JFXButton>
-                              <JFXButton buttonType="RAISED" prefHeight="38.0" prefWidth="185.0" ripplerFill="BLACK" text="Supprimer la selection">
+                              <JFXButton buttonType="RAISED" onMouseClicked="#supprimer" prefHeight="38.0" prefWidth="185.0" ripplerFill="BLACK" text="Supprimer la selection">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>

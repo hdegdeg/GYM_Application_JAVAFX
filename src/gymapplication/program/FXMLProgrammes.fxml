@@ -53,7 +53,7 @@
                                        </image>
                                     </ImageView>
                                  </graphic></JFXButton>
-                              <JFXButton prefHeight="38.0" prefWidth="176.0" text="Supprimer Selection">
+                              <JFXButton onMouseClicked="#supprimer" prefHeight="38.0" prefWidth="176.0" text="Supprimer Selection">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>

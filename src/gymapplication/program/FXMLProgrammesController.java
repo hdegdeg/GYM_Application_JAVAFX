@@ -41,13 +41,13 @@ public class FXMLProgrammesController implements Initializable {
     
     
     @FXML
-    void Programme(MouseEvent event) {
+    void supprimer(MouseEvent event) {
            
        
         try {
     
             
-         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
+         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLConfermationSuppression.fxml"));
          Scene scene1 = new Scene(root2);
           
          // GYMApplication.mainStage.hide();
