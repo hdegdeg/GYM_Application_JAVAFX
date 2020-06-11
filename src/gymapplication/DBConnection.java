@@ -23,7 +23,7 @@ public class DBConnection {
         try {
             Class.forName("org.sqlite.JDBC");
             Connection con=null;
-            con=DriverManager.getConnection("jdbc:sqlite:GYM_BDD.db");
+            con=DriverManager.getConnection("jdbc:sqlite:GYM_BDD.sqlite");
             
             System.out.println("gymapplication.DBConnection.Success");
             return con;

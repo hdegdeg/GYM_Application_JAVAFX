@@ -69,8 +69,8 @@
                         <TableColumn fx:id="columnAge" prefWidth="75.0" text="Age" />
                         <TableColumn fx:id="columnTel" prefWidth="75.0" text="Telephone" />
                         <TableColumn fx:id="columnAbonnement" prefWidth="75.0" text="Abonnement" />
-                        <TableColumn fx:id="column" prefWidth="75.0" text="Debut" />
-                        <TableColumn prefWidth="75.0" text="Fin" />
+                        <TableColumn fx:id="columnDebut" prefWidth="75.0" text="Debut" />
+                        <TableColumn fx:id="columnFin" prefWidth="75.0" text="Fin" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
