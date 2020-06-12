@@ -87,6 +87,7 @@ public class ListCondidatController implements Initializable {
 
     private void uploadTableCondidat() throws SQLException {
         String sql = "select Condidat.idCondidat,Nom_Prenom,Age,Tele,Type,Date_Debut,Date_Fin from Condidat INNER JOIN Abonnement ON Condidat.idCondidat = Abonnement.idCondidat order by Nom_Prenom asc";
+      
         tableCondidat.getItems().clear();
         pst = conn.prepareStatement(sql);
         rs = pst.executeQuery();

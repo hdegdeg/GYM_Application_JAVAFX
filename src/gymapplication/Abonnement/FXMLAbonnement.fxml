@@ -76,14 +76,14 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <TableView layoutX="132.0" layoutY="126.0" prefHeight="500.0" prefWidth="598.0" style="-fx-background-color: #2f2f2fa3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="fxTbAbonnement" layoutX="132.0" layoutY="126.0" prefHeight="500.0" prefWidth="598.0" style="-fx-background-color: #2f2f2fa3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="id_Abonnement" />
-                      <TableColumn prefWidth="75.0" text="date_debut" />
-                        <TableColumn prefWidth="75.0" text="date_fin" />
-                        <TableColumn prefWidth="75.0" text="Nombre_Mois" />
-                        <TableColumn prefWidth="75.0" text="Type" />
-                        <TableColumn prefWidth="75.0" text="Condidat" />
+                      <TableColumn fx:id="fxIdAbon" prefWidth="75.0" text="id_Abonnement" />
+                      <TableColumn fx:id="fxDebut" prefWidth="75.0" text="date_debut" />
+                        <TableColumn fx:id="fxFin" prefWidth="75.0" text="date_fin" />
+                        <TableColumn fx:id="fxNombre" prefWidth="75.0" text="Nombre_Mois" />
+                        <TableColumn fx:id="fxType" prefWidth="75.0" text="Type" />
+                        <TableColumn fx:id="fxCondidat" prefWidth="75.0" text="Condidat" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
