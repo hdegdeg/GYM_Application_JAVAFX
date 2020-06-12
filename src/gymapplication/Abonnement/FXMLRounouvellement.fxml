@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Group xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.Abonnement.FXMLRounouvellementController">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="28.0" prefHeight="529.0" prefWidth="538.0">
+         <children>
+            <VBox alignment="TOP_CENTER" layoutX="6.0" layoutY="6.0" prefHeight="519.0" prefWidth="532.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0">
+               <children>
+                  <Label fx:id="lblCaption" alignment="CENTER" prefHeight="36.0" prefWidth="265.0" text="Ajoute un Condidat">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="fxSelectionner" mnemonicParsing="false" onMouseClicked="#ListCondidat" text="Selectionner Condidat">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <GridPane prefHeight="424.0" prefWidth="522.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="129.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="129.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="140.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="149.0" text="Carte Identité Nationale :" GridPane.columnSpan="2" />
+                        <TextField fx:id="tfCIN" editable="false" prefHeight="33.0" prefWidth="311.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <TextField fx:id="tfNom" editable="false" prefHeight="33.0" prefWidth="311.0" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <Label prefHeight="17.0" prefWidth="111.0" text="Nom  Prenom :" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="tfAge" editable="false" GridPane.columnSpan="2" GridPane.rowIndex="5">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <Label text="Age :" GridPane.rowIndex="4" />
+                        <TextField fx:id="tfNumTel" editable="false" GridPane.columnSpan="2" GridPane.rowIndex="7">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <Label text="Num Tel :" GridPane.rowIndex="6" />
+                        <Label text="Abonnement :" GridPane.rowIndex="8" />
+                        <ComboBox fx:id="comboAbonnement" onAction="#testAbonnement" prefHeight="33.0" prefWidth="199.0" GridPane.columnSpan="2" GridPane.rowIndex="9" />
+                        <Label fx:id="lblDateDebut" prefWidth="90.0" text="Date de debut :" GridPane.rowIndex="10" />
+                        <Label fx:id="lblFinAbonnement" text="fin d'abannement :" GridPane.columnSpan="2" GridPane.rowIndex="12" />
+                        <DatePicker fx:id="dateDebut" GridPane.columnSpan="2" GridPane.rowIndex="11" />
+                        <TextField fx:id="tfNbrMois" onKeyReleased="#calculeFinDate" GridPane.columnIndex="2" GridPane.rowIndex="11">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label fx:id="lblNbrMois" alignment="CENTER" prefWidth="113.0" text="combien de  mois? :" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="lblFinDate" textFill="#0c7904" GridPane.rowIndex="13" />
+                        <VBox alignment="TOP_CENTER" prefHeight="80.0" prefWidth="507.0" spacing="10.0" GridPane.columnSpan="4" GridPane.rowIndex="15">
+                           <children>
+                              <Button fx:id="fxValider" mnemonicParsing="false" onMouseClicked="#Valider" text="Valider ">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <Label fx:id="isEmpty" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblType" layoutX="10.0" layoutY="213.0" text="Type Abonnement :" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                        <ComboBox fx:id="comboType" prefWidth="150.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="9" />
+                        
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </GridPane>
+               </children>
+            </VBox>
+         </children>
+         <stylesheets>
+            <URL value="@../../style/mainStyle.css" />
+            <URL value="@../../style/popUP.css" />
+         </stylesheets>
+      </AnchorPane>
+      <Button id="btnClose" fx:id="btnClose" layoutX="524.0" layoutY="7.0" mnemonicParsing="false" onAction="#quit" prefHeight="37.0" prefWidth="32.0" stylesheets="@../../style/button.css" />
+   </children>
+</Group>

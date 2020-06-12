@@ -29,7 +29,7 @@
                         </Label>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <JFXButton buttonType="RAISED" prefHeight="38.0" prefWidth="176.0" ripplerFill="#110101" text="Renouvellement">
+                              <JFXButton buttonType="RAISED" onMouseClicked="#Rounouvellement" prefHeight="38.0" prefWidth="176.0" ripplerFill="#110101" text="Renouvellement">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -88,6 +88,9 @@
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </TableView>
                </children>
             </AnchorPane>

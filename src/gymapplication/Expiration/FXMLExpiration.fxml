@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="600.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.Abonnement.FXMLAbonnementController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="600.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.Expiration.FXMLExpirationController">
    <children>
       <SplitPane dividerPositions="0.22376543209876543" orientation="VERTICAL" prefHeight="650.0" prefWidth="600.0" styleClass="CoverExpiration" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>

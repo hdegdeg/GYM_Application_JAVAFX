@@ -9,7 +9,7 @@ import gymapplication.Abonnement.list.ListAbonnement;
 import gymapplication.DBConnection;
 import gymapplication.FXMLDocumentController;
 import gymapplication.listeCondidat.list.ListCondidat;
-import static gymapplication.program.FXMLProgrammesController.s2;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -30,6 +30,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -45,6 +46,7 @@ public class FXMLAbonnementController implements Initializable {
     
     public ObservableList <ListAbonnement> Abonnement;
   
+    public static Stage s2 = new Stage();
     
     @FXML
     private TableView<ListAbonnement> fxTbAbonnement;
@@ -130,7 +132,26 @@ public class FXMLAbonnementController implements Initializable {
     }
     
     
+     @FXML
+    void Rounouvellement(MouseEvent event) {
+           
+       
+        try {
     
+            
+         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLRounouvellement.fxml"));
+         Scene scene1 = new Scene(root2);
+          
+         // GYMApplication.mainStage.hide();
+        s2.setScene(scene1);
+        s2.show();
+        
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             
+
+    }
      public void recupererAbonnement() throws SQLException
     {
         Abonnement.clear();

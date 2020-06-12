@@ -33,6 +33,7 @@ public class FXMLAccueilController implements Initializable {
 
     // Parent root;
     public static Stage s2 = new Stage();
+   public static Stage stageAbonnement = new Stage();
     @FXML
     private AnchorPane AnchorPane;
     private Stage stage = new Stage();
@@ -61,10 +62,10 @@ public class FXMLAccueilController implements Initializable {
         }
 
     }
-
+ 
     
-      @FXML
-    void Abonnement(MouseEvent event) {
+     @FXML
+  public  void Abonnement(MouseEvent event) {
 
         try {
 
@@ -72,8 +73,8 @@ public class FXMLAccueilController implements Initializable {
             Scene scene1 = new Scene(root2);
 
             // GYMApplication.mainStage.hide();
-            s2.setScene(scene1);
-            s2.show();
+            stageAbonnement.setScene(scene1);
+            stageAbonnement.show();
 
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
