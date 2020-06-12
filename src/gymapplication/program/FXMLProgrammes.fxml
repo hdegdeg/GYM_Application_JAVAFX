@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="600.0" styleClass="CoverProgrammes" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.program.FXMLProgrammesController">
+<AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="650.0" prefWidth="600.0" styleClass="CoverProgrammes" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.program.FXMLProgrammesController">
    <children>
       <SplitPane dividerPositions="0.3056426332288401" orientation="VERTICAL" prefHeight="650.0" prefWidth="600.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>

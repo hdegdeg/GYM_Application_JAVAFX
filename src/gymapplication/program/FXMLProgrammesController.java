@@ -18,7 +18,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -31,13 +35,13 @@ public class FXMLProgrammesController implements Initializable {
     
     // Parent root;
      public static Stage s2=new Stage();
+     private Stage stage = new Stage ();
+    @FXML
+    private AnchorPane AnchorPane;
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+      
     
     
     @FXML
@@ -62,10 +66,17 @@ public class FXMLProgrammesController implements Initializable {
     }
     
         @FXML
-    void AjouterProgramme(MouseEvent event) {
+    void AjouterProgramme(MouseEvent event) throws IOException {
            
+           AnchorPane.setOpacity(0.4);
+       Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/program/ajouteProgramme.fxml"));
+       Scene scene = new Scene(root);
+       scene.setFill(new Color(0,0,0,0));
+       stage.setScene(scene);
+       stage.showAndWait();
+       AnchorPane.setOpacity(1);
        
-        try {
+        /*try {
     
             
          Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/ajouteProgramme.fxml"));
@@ -77,8 +88,13 @@ public class FXMLProgrammesController implements Initializable {
         
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
              
 
     }
+     @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        stage.initModality(Modality.APPLICATION_MODAL);
+       stage.initStyle(StageStyle.TRANSPARENT);
+    } 
 }
