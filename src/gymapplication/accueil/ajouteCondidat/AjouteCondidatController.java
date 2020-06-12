@@ -297,5 +297,7 @@ public class AjouteCondidatController implements Initializable {
         }
         conn = DBConnection.EtablirConnection();
     }
+    
+    
 
 }

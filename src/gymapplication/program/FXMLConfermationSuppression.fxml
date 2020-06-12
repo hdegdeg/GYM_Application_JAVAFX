@@ -29,26 +29,40 @@
                   <JFXPasswordField fx:id="mot_passe" focusColor="#3d81ee" labelFloat="true" prefHeight="25.0" prefWidth="190.0" promptText="Mot de Passe" style="-fx-background-color: transparent; -fx-prompt-text-fill: #41af3a;" unFocusColor="DEEPPINK" />
                </children>
                <VBox.margin>
-                  <Insets bottom="10.0" top="50.0" />
+                  <Insets bottom="20.0" top="50.0" />
                </VBox.margin>
             </HBox>
-            <JFXButton fx:id="connecter" prefHeight="23.0" prefWidth="250.0" ripplerFill="#3d81ee" text="Confirmer">
-               <VBox.margin>
-                  <Insets bottom="20.0" top="20.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <graphic>
-                  <ImageView fitHeight="33.0" fitWidth="50.0" nodeOrientation="INHERIT" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/icons8_Ok_50px.png" />
-                     </image></ImageView>
-               </graphic>
-            </JFXButton>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <JFXButton fx:id="connecter2" prefHeight="23.0" prefWidth="250.0" ripplerFill="#3d81ee" text="Confirmer">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="33.0" fitWidth="50.0" nodeOrientation="INHERIT" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/icons8_Ok_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="connecter1" prefHeight="23.0" prefWidth="250.0" ripplerFill="#3d81ee" text="Annuler">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <ImageView fitHeight="33.0" fitWidth="50.0" nodeOrientation="INHERIT" preserveRatio="true">
+                           <image>
+                              <Image url="@../Image/icons8_Ok_50px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children>
+            </HBox>
          </children>
          <padding>
-            <Insets top="30.0" />
+            <Insets bottom="10.0" top="30.0" />
          </padding>
       </VBox>
    </children>
