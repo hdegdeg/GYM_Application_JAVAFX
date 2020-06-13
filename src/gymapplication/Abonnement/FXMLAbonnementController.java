@@ -80,8 +80,8 @@ public class FXMLAbonnementController implements Initializable {
         fxFin.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("Date_Fin"));
         fxNombre.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("Nombre_Mois"));
         fxType.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("Type"));
-        
-        fxCondidat.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("idAbonnement"));
+                                                                            
+        fxCondidat.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("idCondidat"));
 
     }
     
@@ -164,16 +164,16 @@ public class FXMLAbonnementController implements Initializable {
             while(rs.next())
             { 
                 ListAbonnement M=new ListAbonnement();
-                M.setidAbonnement(rs.getString(1));
+                M.setIdAbonnement2(rs.getString(1));
                 M.setDate_Debut(rs.getString(2));
                 M.setDate_Fin(rs.getString(3));
                 M.setNombre_Mois(rs.getString(4));
                 M.setType(rs.getString(5));
-                M.setidCondidat(rs.getString(6));
+                M.setIdCondidat(rs.getString(6));
                 
                 Abonnement.add(M);
                 fxTbAbonnement.setItems(Abonnement);
-                System.out.println("gymapplication...recupererAbonnement()"+M.getidAbonnement()+M.getidCondidat());
+                System.out.println("gymapplication...recupererAbonnement()"+M.getIdAbonnement2()+M.getIdCondidat());
                 
                 
             }

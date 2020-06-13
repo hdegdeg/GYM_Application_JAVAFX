@@ -5,9 +5,10 @@
  */
 package gymapplication.Abonnement.list;
 
-import gymapplication.listeCondidat.list.*;
-import java.sql.PreparedStatement;
 import javafx.beans.property.SimpleStringProperty;
+
+
+
 
 /**
  *
@@ -21,15 +22,14 @@ public class ListAbonnement {
     private SimpleStringProperty Type = new SimpleStringProperty();
     private SimpleStringProperty idCondidat = new SimpleStringProperty();
 
-  
- public String getidAbonnement() {
+    public String getIdAbonnement2() {
         return idAbonnement2.get();
     }
 
-    public void setidAbonnement(String idAbonnement2) {
+    public void setIdAbonnement2(String idAbonnement2) {
         this.idAbonnement2.set(idAbonnement2);
     }
-    
+
     public String getDate_Debut() {
         return Date_Debut.get();
     }
@@ -50,8 +50,6 @@ public class ListAbonnement {
         return Nombre_Mois.get();
     }
 
-    
-    
     public void setNombre_Mois(String Nombre_Mois) {
         this.Nombre_Mois.set(Nombre_Mois);
     }
@@ -64,14 +62,15 @@ public class ListAbonnement {
         this.Type.set(Type);
     }
 
-    public String getidCondidat() {
+    public String getIdCondidat() {
         return idCondidat.get();
     }
 
-    public void setidCondidat(String idCondidat) {
+    public void setIdCondidat(String idCondidat) {
         this.idCondidat.set(idCondidat);
     }
 
+  
    
    
 }

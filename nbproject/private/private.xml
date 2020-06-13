@@ -4,13 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/gharbi%20abdelillah/Documents/NetBeansProjects/GYM_Application_JAVAFX/GYM_Application_JAVAFX/src/style/button.css</file>
+            <file>file:/C:/Users/gharbi%20abdelillah/Documents/NetBeansProjects/GYM_Application_JAVAFX/GYM_Application_JAVAFX/src/gymapplication/Abonnement/FXMLAbonnementController.java</file>
             <file>file:/C:/Users/gharbi%20abdelillah/Documents/NetBeansProjects/GYM_Application_JAVAFX/GYM_Application_JAVAFX/src/gymapplication/accueil/ajouteCondidat/AjouteCondidatController.java</file>
-            <file>file:/C:/Users/gharbi%20abdelillah/Documents/NetBeansProjects/GYM_Application_JAVAFX/GYM_Application_JAVAFX/src/gymapplication/program/FXMLProgrammesController.java</file>
             <file>file:/C:/Users/gharbi%20abdelillah/Documents/NetBeansProjects/GYM_Application_JAVAFX/GYM_Application_JAVAFX/src/gymapplication/GYMApplication.java</file>
             <file>file:/C:/Users/gharbi%20abdelillah/Documents/NetBeansProjects/GYM_Application_JAVAFX/GYM_Application_JAVAFX/src/gymapplication/listeCondidat/list/ListCondidat.java</file>
             <file>file:/C:/Users/gharbi%20abdelillah/Documents/NetBeansProjects/GYM_Application_JAVAFX/GYM_Application_JAVAFX/src/gymapplication/accueil/FXMLAccueilController.java</file>
+            <file>file:/C:/Users/gharbi%20abdelillah/Documents/NetBeansProjects/GYM_Application_JAVAFX/GYM_Application_JAVAFX/src/gymapplication/Abonnement/list/ListAbonnement.java</file>
             <file>file:/C:/Users/gharbi%20abdelillah/Documents/NetBeansProjects/GYM_Application_JAVAFX/GYM_Application_JAVAFX/src/gymapplication/DBConnection.java</file>
-            <file>file:/C:/Users/gharbi%20abdelillah/Documents/NetBeansProjects/GYM_Application_JAVAFX/GYM_Application_JAVAFX/src/gymapplication/program/FXMLConfermationSuppressionController.java</file>
         </group>
     </open-files>
 </project-private>
