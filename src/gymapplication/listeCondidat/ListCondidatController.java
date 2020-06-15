@@ -117,7 +117,7 @@ public class ListCondidatController implements Initializable {
         Parent root = fxmlLoader.load();
         condidat = fxmlLoader.getController();
         condidat.lblCaption.setText("Modifier un Condidat");
-        condidat.btnModifier.setVisible(true);
+      //  condidat.btnModifier.setVisible(true);
         Scene scene = new Scene(root);
         scene.setFill(new Color(0, 0, 0, 0));
         stage.setScene(scene);

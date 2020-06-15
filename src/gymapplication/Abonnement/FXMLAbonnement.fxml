@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="600.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.Abonnement.FXMLAbonnementController">
+<AnchorPane id="AnchorPane" fx:id="AnchorPaneAbonnement" prefHeight="650.0" prefWidth="600.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.Abonnement.FXMLAbonnementController">
    <children>
       <SplitPane dividerPositions="0.22376543209876543" orientation="VERTICAL" prefHeight="650.0" prefWidth="600.0" styleClass="CoverAbonnement" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -41,7 +41,7 @@
                                     </ImageView>
                                  </graphic>
                               </JFXButton>
-                              <JFXButton buttonType="RAISED" prefHeight="38.0" prefWidth="176.0" text="Modifier la selection">
+                              <JFXButton buttonType="RAISED" onMouseClicked="#modifierCondidat" prefHeight="38.0" prefWidth="176.0" text="Modifier la selection">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -79,6 +79,7 @@
                   <TableView fx:id="fxTbAbonnement" layoutX="132.0" layoutY="126.0" prefHeight="500.0" prefWidth="598.0" style="-fx-background-color: #2f2f2fa3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="fxIdAbon" prefWidth="75.0" text="id_Abonnement" />
+                        <TableColumn fx:id="fxAbonnee" prefWidth="75.0" text="Abonnée" />
                       <TableColumn fx:id="fxDebut" prefWidth="75.0" text="date_debut" />
                         <TableColumn fx:id="fxFin" prefWidth="75.0" text="date_fin" />
                         <TableColumn fx:id="fxNombre" prefWidth="75.0" text="Nombre_Mois" />

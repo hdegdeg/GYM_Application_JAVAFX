@@ -78,8 +78,8 @@ public class AjouteCondidatController implements Initializable {
     private Label lblType;
     @FXML
     private Label lblDateDebut;
-    @FXML
-    public Button btnModifier;
+   // @FXML
+   // public Button btnModifier;
 
     /**
      * Initializes the controller class.

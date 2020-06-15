@@ -67,12 +67,12 @@ public class FXMLlistCondidatController implements Initializable {
     private TableColumn<ListCondidat, String> columnAge;
     @FXML
     private TableColumn<ListCondidat, String> columnTel;
-    @FXML
-    private TableColumn<ListCondidat, String> columnAbonnement;
-    @FXML
-    private TableColumn<ListCondidat, String> columnDebut;
-    @FXML
-    private TableColumn<ListCondidat, String> columnFin;
+   // @FXML
+   // private TableColumn<ListCondidat, String> columnAbonnement;
+   // @FXML
+   // private TableColumn<ListCondidat, String> columnDebut;
+ //   @FXML
+   // private TableColumn<ListCondidat, String> columnFin;
     @FXML
     private AnchorPane AnchorPane;
 
@@ -86,15 +86,16 @@ public class FXMLlistCondidatController implements Initializable {
         columnNom.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("nom"));
         columnAge.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("age"));
         columnTel.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("tel"));
-        columnAbonnement.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("abonnement"));
-        columnDebut.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("debut"));
-        columnFin.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("fin"));
+      //  columnAbonnement.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("abonnement"));
+      //  columnDebut.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("debut"));
+      //  columnFin.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("fin"));
 
     }
 
     private void uploadTableCondidat() throws SQLException {
-        String sql = "select Condidat.idCondidat,Nom_Prenom,Age,Tele,Type,Date_Debut,Date_Fin from Condidat INNER JOIN Abonnement ON Condidat.idCondidat = Abonnement.idCondidat order by Nom_Prenom asc";
-      
+        //String sql = "select Condidat.idCondidat,Nom_Prenom,Age,Tele,Type,Date_Debut,Date_Fin from Condidat INNER JOIN Abonnement ON Condidat.idCondidat = Abonnement.idCondidat order by Nom_Prenom asc";
+          String sql = "select Condidat.idCondidat,Nom_Prenom,Age,Tele from Condidat ";
+
         tableCondidat.getItems().clear();
         pst = conn.prepareStatement(sql);
         rs = pst.executeQuery();
@@ -104,9 +105,9 @@ public class FXMLlistCondidatController implements Initializable {
             condidat.setNom(rs.getString(2));
             condidat.setAge(rs.getString(3));
             condidat.setTel(rs.getString(4));
-            condidat.setAbonnement(rs.getString(5));
-            condidat.setDebut(rs.getString(6));
-            condidat.setFin(rs.getString(7));
+          //  condidat.setAbonnement(rs.getString(5));
+           // condidat.setDebut(rs.getString(6));
+           // condidat.setFin(rs.getString(7));
             listC.add(condidat);
             tableCondidat.setItems(listC);
         }
@@ -125,13 +126,18 @@ public class FXMLlistCondidatController implements Initializable {
            
            FXMLRounouvellementController.s3.close();
           
-           StaticLcondidat.setCin(Lcondidat.getCin());
+          StaticLcondidat.setCin(Lcondidat.getCin());
          StaticLcondidat.setNom(Lcondidat.getNom());
          StaticLcondidat.setAge(Lcondidat.getAge());
          StaticLcondidat.setTel(Lcondidat.getTel());
          
+       //  Abonnement.AnchorPane.setDisable(false);
+       //InterfaceAbonnement.AnchorPane.setDisable(false);
+        // Abonnement.AnchorPaneAbonnement.setDisable(false);
          Abonnement.s2.close();
-          Abonnement.Rounouvellement(event);
+         Abonnement.Rounouvellement(event);
+       //  Abonnement.AnchorPaneAbonnement.setDisable(false);
+         //Abonnement.AnchorPane.setDisable(false);
     }
 
 

@@ -14,22 +14,13 @@ import javafx.beans.property.SimpleStringProperty;
  *
  * @author gharbi abdelillah
  */
-public class ListAbonnement {
-    private SimpleStringProperty idAbonnement2 = new SimpleStringProperty();
-    private SimpleStringProperty Date_Debut = new SimpleStringProperty();
-    private SimpleStringProperty Date_Fin = new SimpleStringProperty();
-    private SimpleStringProperty Nombre_Mois = new SimpleStringProperty();
-    private SimpleStringProperty Type = new SimpleStringProperty();
-    private SimpleStringProperty idCondidat = new SimpleStringProperty();
-    private SimpleStringProperty Namebonnée = new SimpleStringProperty();
-
-    public String getNamebonnée() {
-        return Namebonnée.get();
-    }
-
-    public void setNamebonnée(String Namebonnée) {
-        this.Namebonnée.set(Namebonnée);
-    }
+public class StaticListAbonnement {
+    private static SimpleStringProperty idAbonnement2 = new SimpleStringProperty();
+    private static SimpleStringProperty Date_Debut = new SimpleStringProperty();
+    private static SimpleStringProperty Date_Fin = new SimpleStringProperty();
+    private static SimpleStringProperty Nombre_Mois = new SimpleStringProperty();
+    private static SimpleStringProperty Type = new SimpleStringProperty();
+    private static SimpleStringProperty idCondidat = new SimpleStringProperty();
 
     public String getIdAbonnement2() {
         return idAbonnement2.get();

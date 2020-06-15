@@ -81,6 +81,8 @@ public class FXMLConfermationSuppressionController implements Initializable {
       @FXML
     void Confermer(MouseEvent event) {
       
+        
+      
         /*
         
         FXMLGestionDesMaladesController SuppModif=new FXMLGestionDesMaladesController();

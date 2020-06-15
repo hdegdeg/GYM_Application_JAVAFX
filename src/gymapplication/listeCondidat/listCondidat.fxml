@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="543.0" prefWidth="715.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.listeCondidat.ListCondidatController">
+<AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="650.0" prefWidth="600.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.listeCondidat.ListCondidatController">
    <children>
       <SplitPane dividerPositions="0.24670433145009416" orientation="VERTICAL" prefHeight="543.0" prefWidth="715.0" styleClass="CoverCondidats" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>

@@ -35,7 +35,7 @@ public class FXMLAccueilController implements Initializable {
     public static Stage s2 = new Stage();
    public static Stage stageAbonnement = new Stage();
     @FXML
-    private AnchorPane AnchorPane;
+    public AnchorPane AnchorPane;
     private Stage stage = new Stage();
     private Stage stage2 = new Stage();
     
@@ -49,14 +49,21 @@ public class FXMLAccueilController implements Initializable {
     void Programme(MouseEvent event) {
 
         try {
-
+            AnchorPane.setOpacity(0.4);
+            AnchorPane.setDisable(true);
+            
             Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
             Scene scene1 = new Scene(root2);
+          ///  scene1.setFill(new Color(0,0,0,0));
 
             // GYMApplication.mainStage.hide();
             s2.setScene(scene1);
-            s2.show();
-
+            s2.showAndWait();
+            
+             
+            
+            AnchorPane.setOpacity(1);
+            AnchorPane.setDisable(false);
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,13 +75,17 @@ public class FXMLAccueilController implements Initializable {
   public  void Abonnement(MouseEvent event) {
 
         try {
-
+            AnchorPane.setOpacity(0.4);
+            AnchorPane.setDisable(true);
+            
             Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLAbonnement.fxml"));
             Scene scene1 = new Scene(root2);
-
+            //scene1.setFill(new Color(0,0,0,0));
             // GYMApplication.mainStage.hide();
             stageAbonnement.setScene(scene1);
-            stageAbonnement.show();
+            stageAbonnement.showAndWait();
+            AnchorPane.setOpacity(1);
+            AnchorPane.setDisable(false);
 
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
@@ -83,23 +94,34 @@ public class FXMLAccueilController implements Initializable {
     }
     @FXML
     private void ajouteCondidat(ActionEvent event) throws IOException {
+        
         AnchorPane.setOpacity(0.4);
+        AnchorPane.setDisable(true);
+        
        Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/accueil/ajouteCondidat/ajouteCondidat.fxml"));
        Scene scene = new Scene(root);
-       scene.setFill(new Color(0,0,0,0));
+       
+      // scene.setFill(new Color(0,0,0,0));
        stage.setScene(scene);
        stage.showAndWait();
+       
+       AnchorPane.setDisable(false);
        AnchorPane.setOpacity(1);
     }
 
     @FXML
     private void listCondidats(ActionEvent event) throws IOException {
         AnchorPane.setOpacity(0.4);
+        AnchorPane.setDisable(true);
+        
        Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/listeCondidat/listCondidat.fxml"));
        Scene scene = new Scene(root);
-       scene.setFill(new Color(0,0,0,0));
+       
+       //scene.setFill(new Color(0,0,0,0));
        stage2.setScene(scene);
        stage2.showAndWait();
+       
+       AnchorPane.setDisable(false);
        AnchorPane.setOpacity(1);
     }
 
@@ -108,13 +130,19 @@ public class FXMLAccueilController implements Initializable {
         
         
         try {
-
+            AnchorPane.setOpacity(0.4);
+            AnchorPane.setDisable(true);
+            
             Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Expiration/FXMLExpiration.fxml"));
             Scene scene1 = new Scene(root2);
-
+            
+           // scene1.setFill(new Color(0,0,0,0));
             // GYMApplication.mainStage.hide();
             s2.setScene(scene1);
-            s2.show();
+            s2.showAndWait();
+            
+            AnchorPane.setDisable(false);
+           AnchorPane.setOpacity(1);
 
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);

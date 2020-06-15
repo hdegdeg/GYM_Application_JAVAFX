@@ -6,9 +6,12 @@
 package gymapplication.Abonnement;
 
 import gymapplication.Abonnement.list.ListAbonnement;
+import gymapplication.Abonnement.list.StaticListAbonnement;
 import gymapplication.DBConnection;
 import gymapplication.FXMLDocumentController;
+import static gymapplication.accueil.FXMLAccueilController.s2;
 import gymapplication.listeCondidat.list.ListCondidat;
+import gymapplication.listeCondidat.list.ListCondidatStatic;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +33,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -55,6 +60,9 @@ public class FXMLAbonnementController implements Initializable {
     private TableColumn<ListAbonnement, String> fxIdAbon;
 
     @FXML
+    private TableColumn<ListAbonnement, String> fxAbonnee;
+    
+    @FXML
     private TableColumn<ListAbonnement, String> fxDebut;
 
     @FXML
@@ -69,19 +77,23 @@ public class FXMLAbonnementController implements Initializable {
     @FXML
     private TableColumn<ListAbonnement, String> fxCondidat;
 
-
+   //  @FXML
+    // public AnchorPane AnchorPaneAbonnement;
+     ListAbonnement Labonnement= new  ListAbonnement();
+    
+    StaticListAbonnement StaticLabonnement = new StaticListAbonnement();
     
   
     private void initTable() {
       
         fxIdAbon.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("idAbonnement2"));
-        
+        fxAbonnee.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("Namebonnée"));
         fxDebut.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("Date_Debut"));
         fxFin.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("Date_Fin"));
         fxNombre.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("Nombre_Mois"));
         fxType.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("Type"));
-        
-        fxCondidat.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("idAbonnement"));
+                                                                            
+        fxCondidat.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("idCondidat"));
 
     }
     
@@ -113,16 +125,33 @@ public class FXMLAbonnementController implements Initializable {
     @FXML
     void supprimer(MouseEvent event) {
            
-       
+        Labonnement=(ListAbonnement)fxTbAbonnement.getSelectionModel().getSelectedItem();
+           
+           //FXMLRounouvellementController.s3.close();
+          
+           StaticLabonnement.setIdAbonnement2(Labonnement.getIdAbonnement2());
+           StaticLabonnement.setDate_Debut(Labonnement.getDate_Debut());
+           StaticLabonnement.setDate_Fin(Labonnement.getDate_Fin());
+           StaticLabonnement.setNombre_Mois(Labonnement.getNombre_Mois());
+           StaticLabonnement.setType(Labonnement.getType());
+           StaticLabonnement.setIdCondidat(Labonnement.getIdCondidat());
+           
+           
         try {
     
+         //   AnchorPane.setOpacity(0.4);
+          //  AnchorPane.setDisable(true);
             
-         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLConfermationSuppression.fxml"));
-         Scene scene1 = new Scene(root2);
-          
-         // GYMApplication.mainStage.hide();
-        s2.setScene(scene1);
-        s2.show();
+            Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLSupprimerAbonnement.fxml"));
+             Scene scene1 = new Scene(root2);
+          //  scene1.setFill(new Color(0,0,0,0));
+
+            s2.setScene(scene1);
+            s2.show();
+        
+        
+          //  AnchorPane.setOpacity(1);
+          //  AnchorPane.setDisable(false);
         
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
@@ -139,12 +168,19 @@ public class FXMLAbonnementController implements Initializable {
         try {
     
             
-         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLRounouvellement.fxml"));
-         Scene scene1 = new Scene(root2);
-          
-         // GYMApplication.mainStage.hide();
-        s2.setScene(scene1);
-        s2.show();
+       //      AnchorPaneAbonnement.setOpacity(0.4);
+            // AnchorPane.setDisable(true);
+            
+             Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLRounouvellement.fxml"));
+             Scene scene1 = new Scene(root2);
+            // scene1.setFill(new Color(0,0,0,0));
+
+             s2.setScene(scene1);
+             s2.show();
+        
+        
+           //  AnchorPaneAbonnement.setOpacity(1);
+             //AnchorPane.setDisable(false);
         
         } catch (IOException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
@@ -155,7 +191,7 @@ public class FXMLAbonnementController implements Initializable {
      public void recupererAbonnement() throws SQLException
     {
         Abonnement.clear();
-        String sql1 ="select Abonnement.idAbonnement,Abonnement.Date_Debut,Date_Fin,Nombre_Mois,Type ,Abonnement.idCondidat  From Abonnement INNER JOIN Condidat ON Abonnement.idCondidat = Condidat.idCondidat ";
+        String sql1 ="select Abonnement.idAbonnement,Abonnement.Date_Debut,Date_Fin,Nombre_Mois,Type ,Abonnement.idCondidat , Condidat.Nom_Prenom  From Abonnement INNER JOIN Condidat ON Abonnement.idCondidat = Condidat.idCondidat ";
 
             pst = con.prepareStatement(sql1);
             rs = pst.executeQuery();
@@ -164,16 +200,19 @@ public class FXMLAbonnementController implements Initializable {
             while(rs.next())
             { 
                 ListAbonnement M=new ListAbonnement();
-                M.setidAbonnement(rs.getString(1));
+                M.setIdAbonnement2(rs.getString(1));
                 M.setDate_Debut(rs.getString(2));
                 M.setDate_Fin(rs.getString(3));
                 M.setNombre_Mois(rs.getString(4));
                 M.setType(rs.getString(5));
-                M.setidCondidat(rs.getString(6));
+                M.setIdCondidat(rs.getString(6));
+                M.setNamebonnée(rs.getString(7));
                 
                 Abonnement.add(M);
                 fxTbAbonnement.setItems(Abonnement);
-                System.out.println("gymapplication...recupererAbonnement()"+M.getidAbonnement()+M.getidCondidat());
+               
+                
+                System.out.println("gymapplication...recupererAbonnement()"+M.getIdAbonnement2()+M.getIdCondidat());
                 
                 
             }
@@ -181,6 +220,46 @@ public class FXMLAbonnementController implements Initializable {
            rs.close();
             
 
+    }
+     
+     
+     
+      @FXML
+    private void modifierCondidat(MouseEvent event) {
+        
+           
+           Labonnement=(ListAbonnement)fxTbAbonnement.getSelectionModel().getSelectedItem();
+           
+           //FXMLRounouvellementController.s3.close();
+          
+           StaticLabonnement.setIdAbonnement2(Labonnement.getIdAbonnement2());
+           StaticLabonnement.setDate_Debut(Labonnement.getDate_Debut());
+           StaticLabonnement.setDate_Fin(Labonnement.getDate_Fin());
+           StaticLabonnement.setNombre_Mois(Labonnement.getNombre_Mois());
+           StaticLabonnement.setType(Labonnement.getType());
+           StaticLabonnement.setIdCondidat(Labonnement.getIdCondidat());
+         
+         try {
+    
+            
+            // AnchorPane.setOpacity(0.4);
+            // AnchorPane.setDisable(true);
+            
+             Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLModifierAbonnement.fxml"));
+             Scene scene1 = new Scene(root2);
+             //scene1.setFill(new Color(0,0,0,0));
+
+             s2.setScene(scene1);
+             s2.show();
+        
+        
+          //   AnchorPane.setOpacity(1);
+             
+        
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
     }
     
 }

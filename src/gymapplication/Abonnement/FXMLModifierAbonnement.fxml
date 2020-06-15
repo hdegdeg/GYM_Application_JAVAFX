@@ -16,15 +16,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Group xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.accueil.ajouteCondidat.AjouteCondidatController">
+<Group xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.Abonnement.FXMLModifierAbonnementController">
    <children>
       <AnchorPane layoutX="14.0" layoutY="28.0" prefHeight="529.0" prefWidth="538.0">
-         <stylesheets>
-            <URL value="@../../../style/mainStyle.css" />
-            <URL value="@../../../style/popUP.css" />
-         </stylesheets>
          <children>
-            <VBox alignment="TOP_CENTER" layoutX="6.0" layoutY="6.0" prefHeight="519.0" prefWidth="532.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0">
+            <VBox alignment="TOP_CENTER" layoutX="6.0" layoutY="6.0" prefHeight="519.0" prefWidth="532.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0">
                <children>
                   <Label fx:id="lblCaption" alignment="CENTER" prefHeight="36.0" prefWidth="265.0" text="Ajoute un Condidat">
                      <font>
@@ -59,24 +55,24 @@
                     </rowConstraints>
                      <children>
                         <Label prefHeight="17.0" prefWidth="149.0" text="Carte Identité Nationale :" GridPane.columnSpan="2" />
-                        <TextField fx:id="tfCIN" prefHeight="33.0" prefWidth="311.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                        <TextField fx:id="tfCIN" editable="false" prefHeight="33.0" prefWidth="311.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor>
                         </TextField>
-                        <TextField fx:id="tfNom" prefHeight="33.0" prefWidth="311.0" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                        <TextField fx:id="tfNom" editable="false" prefHeight="33.0" prefWidth="311.0" GridPane.columnSpan="3" GridPane.rowIndex="3">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor>
                         </TextField>
                         <Label prefHeight="17.0" prefWidth="111.0" text="Nom  Prenom :" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-                        <TextField fx:id="tfAge" GridPane.columnSpan="2" GridPane.rowIndex="5">
+                        <TextField fx:id="tfAge" editable="false" GridPane.columnSpan="2" GridPane.rowIndex="5">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor>
                         </TextField>
                         <Label text="Age :" GridPane.rowIndex="4" />
-                        <TextField fx:id="tfNumTel" GridPane.columnSpan="2" GridPane.rowIndex="7">
+                        <TextField fx:id="tfNumTel" editable="false" GridPane.columnSpan="2" GridPane.rowIndex="7">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor>
@@ -100,20 +96,11 @@
                         <Label fx:id="lblFinDate" textFill="#0c7904" GridPane.rowIndex="13" />
                         <VBox alignment="TOP_CENTER" prefHeight="80.0" prefWidth="507.0" spacing="10.0" GridPane.columnSpan="4" GridPane.rowIndex="15">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#AjouteProgramme" text="programme entrainement">
+                              <Button fx:id="fxValider" mnemonicParsing="false" onMouseClicked="#Valider" text="Valider ">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Group>
-                                 <children>
-                                    <Button mnemonicParsing="false" onAction="#AjouteCondidat" text="Valider ">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                 </children>
-                              </Group>
                            </children>
                         </VBox>
                         <Label fx:id="isEmpty" GridPane.columnIndex="2" GridPane.rowIndex="5">
@@ -132,7 +119,11 @@
                </children>
             </VBox>
          </children>
+         <stylesheets>
+            <URL value="@../../style/mainStyle.css" />
+            <URL value="@../../style/popUP.css" />
+         </stylesheets>
       </AnchorPane>
-      <Button id="btnClose" fx:id="btnClose" layoutX="524.0" layoutY="7.0" mnemonicParsing="false" onAction="#quit" prefHeight="37.0" prefWidth="32.0" stylesheets="@../../../style/button.css" />
+      <Button id="btnClose" fx:id="btnClose" layoutX="524.0" layoutY="7.0" mnemonicParsing="false" onAction="#quit" prefHeight="37.0" prefWidth="32.0" stylesheets="@../../style/button.css" />
    </children>
 </Group>
