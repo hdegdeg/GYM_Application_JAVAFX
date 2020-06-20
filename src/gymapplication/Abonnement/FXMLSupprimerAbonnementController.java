@@ -8,7 +8,7 @@ package gymapplication.Abonnement;
 import gymapplication.Abonnement.list.StaticListAbonnement;
 import gymapplication.accueil.ajouteCondidat.*;
 import gymapplication.DBConnection;
-import gymapplication.FXMLDocumentController;
+//import gymapplication.FXMLDocumentController;
 import gymapplication.accueil.FXMLAccueilController;
 import gymapplication.listeCondidat.list.ListCondidatStatic;
 import static gymapplication.program.FXMLProgrammesController.s2;
@@ -363,7 +363,7 @@ public class FXMLSupprimerAbonnementController implements Initializable {
         s3.show();
         
         } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLSupprimerAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
         }
              
 

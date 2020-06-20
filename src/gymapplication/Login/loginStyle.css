@@ -1,0 +1,138 @@
+.background{
+    -fx-background-image: url('../Image/CoverAbonnement.jpg');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-radius:10;
+    -fx-border-style:solid;
+    -fx-border-width: 2px;
+    -fx-border-radius:10;
+    -fx-effect:  dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+
+    
+}
+.text-field{
+    -fx-border-width: 0.7px;
+    -fx-border-color: #D7D7D7;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-text-fill: black;
+    -fx-font-size: 15px; 
+    -fx-padding: 5px 35px 5px 15px;
+    -fx-background-color: white;
+}
+.text-field:focused{
+    -fx-border-color: #EA5444;
+
+}
+.text-field:hover{
+
+}
+/*******************************************************************************
+ *                                                                             *
+ * ButtonView                                                                   *
+ *                                                                             *
+ ******************************************************************************/
+#close{
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-font-size: 20px;
+    -fx-font-weight:700;
+     -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+   
+}
+#close:hover{
+    -fx-border-color: transparent;
+    -fx-background-color: rgba(300,0,0,.2);
+    -fx-font-size: 20px;
+    -fx-font-weight:700;
+    -fx-text-fill: red;
+    
+    
+}
+
+
+
+.button{
+    -fx-border-width: 0.5px;
+    -fx-border-color: #ACACAC;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-background-color: white;
+    -fx-font-size: 12px; 
+    -fx-padding: 8px 25px;
+    -fx-font-weight:700;
+    -fx-font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+    -fx-cursor: hand;
+}
+.button:hover{
+    -fx-background-color: #EA5444;
+    -fx-text-fill: white;
+
+}
+.button:focused{
+   -fx-border-width: 0.5px;
+    -fx-border-color: #ACACAC;
+   -fx-border-radius: 50px;
+
+}
+.button:pressed{
+    -fx-background-color: #EA5444;
+    -fx-text-fill: white;
+}
+
+#hl-database{
+    -fx-text-fill: white;
+}
+
+.hyperlink{
+    -fx-text-fill: blue;
+}
+AnchorPane{
+    /*    -fx-background-color:white;*/
+
+}
+
+#apDesignPane{
+    -fx-background-color: rgba(255, 0, 0, .1);
+    
+    -fx-background-radius: 40px;
+    
+}
+
+
+
+#closebutton{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-size: 15px; 
+    -fx-padding: 0px;
+    -fx-background-image: url("../Image/close_red.png");
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+  
+    
+}
+
+#closebutton:hover{
+     -fx-background-color: none;
+    -fx-background-image: url("../Image/close.png");
+   -fx-font-size: 15px; 
+    -fx-padding: 0px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+#closebutton:focused{
+    -fx-background-color: none;
+}
+#btnClose{
+    -fx-background-image: url("../Image/close_new.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-cursor: hand;
+}
+#signAnchor{
+    -fx-background-color: rgba(255 ,48, 48,.4);
+    -fx-background-radius: 20px;    
+}

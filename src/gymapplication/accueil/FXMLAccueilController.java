@@ -5,7 +5,9 @@
  */
 package gymapplication.accueil;
 
-import gymapplication.FXMLDocumentController;
+//import gymapplication.FXMLDocumentController;
+import gymapplication.GYMApplication;
+import gymapplication.Login.loginController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -65,7 +67,7 @@ public class FXMLAccueilController implements Initializable {
             AnchorPane.setOpacity(1);
             AnchorPane.setDisable(false);
         } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -88,7 +90,7 @@ public class FXMLAccueilController implements Initializable {
             AnchorPane.setDisable(false);
 
         } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -145,7 +147,7 @@ public class FXMLAccueilController implements Initializable {
            AnchorPane.setOpacity(1);
 
         } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -153,6 +155,11 @@ public class FXMLAccueilController implements Initializable {
     private void renouvellement(ActionEvent event) {
     }
 
+    @FXML
+    private void deconnection(){
+        loginController.accueilStage.close();
+        GYMApplication.logStage.show();
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        stage.initModality(Modality.APPLICATION_MODAL);

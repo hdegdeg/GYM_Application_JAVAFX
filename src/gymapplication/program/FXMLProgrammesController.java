@@ -6,7 +6,7 @@
 package gymapplication.program;
 
 import gymapplication.accueil.*;
-import gymapplication.FXMLDocumentController;
+//import gymapplication.FXMLDocumentController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -59,7 +59,7 @@ public class FXMLProgrammesController implements Initializable {
         s2.show();
         
         } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLProgrammesController.class.getName()).log(Level.SEVERE, null, ex);
         }
              
 

@@ -1,3 +1,20 @@
+#logOut{
+    -fx-background-image: url("../gymapplication/Image/loginOut.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: stretch;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+}
+
+#logOut:hover{
+    -fx-background-image: url("../gymapplication/Image/loginOut2.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: stretch;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    
+}
 
 .button {
 

@@ -6,7 +6,7 @@
 package gymapplication.listeCondidat;
 
 import gymapplication.DBConnection;
-import gymapplication.FXMLDocumentController;
+//import gymapplication.FXMLDocumentController;
 import gymapplication.accueil.ajouteCondidat.AjouteCondidatController;
 import gymapplication.listeCondidat.list.ListCondidat;
 import static gymapplication.program.FXMLProgrammesController.s2;
@@ -145,7 +145,7 @@ public class ListCondidatController implements Initializable {
         s2.show();
         
         } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListCondidatController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
