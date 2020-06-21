@@ -6,10 +6,19 @@
 package gymapplication.accueil;
 
 //import gymapplication.FXMLDocumentController;
+import gymapplication.DBConnection;
 import gymapplication.GYMApplication;
 import gymapplication.Login.loginController;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,6 +42,13 @@ import javafx.stage.StageStyle;
  */
 public class FXMLAccueilController implements Initializable {
 
+    Connection conn;
+    PreparedStatement ps = null;
+    ResultSet rs = null ;
+    
+    
+    
+    
     // Parent root;
     public static Stage s2 = new Stage();
    public static Stage stageAbonnement = new Stage();
@@ -40,6 +56,7 @@ public class FXMLAccueilController implements Initializable {
     public AnchorPane AnchorPane;
     private Stage stage = new Stage();
     private Stage stage2 = new Stage();
+    private Stage stage3 = new Stage();
     
 
     /**
@@ -160,10 +177,48 @@ public class FXMLAccueilController implements Initializable {
         loginController.accueilStage.close();
         GYMApplication.logStage.show();
     }
+    private void alertDate() throws ParseException, SQLException,  IOException{
+             String dt = LocalDate.now().toString();  // Start date
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Calendar c = Calendar.getInstance();
+            c.setTime(sdf.parse(dt));
+            c.add(Calendar.DATE, 1);  // number of days to add
+            dt = sdf.format(c.getTime());
+        String sql = "select Condidat.idCondidat,Nom_Prenom,Type,Date_Fin from Condidat  INNER JOIN Abonnement ON Condidat.idCondidat = Abonnement.idCondidat and Abonnement.Date_Fin <= '" + dt + "' order by Nom_Prenom asc";
+        ps = conn.prepareStatement(sql);
+        rs = ps.executeQuery();
+        while(rs.next()){
+        ps.close();
+        rs.close();
+       
+       Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/AlertDate/alertDate.fxml"));
+       
+       Scene scene = new Scene(root);
+       scene.setFill(new Color(0,0,0,0));
+       stage3.setScene(scene);
+       stage3.show();
+
+   }
+        ps.close();
+        rs.close();
+       
+        }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        stage3.initModality(Modality.APPLICATION_MODAL);
+        stage3.initStyle(StageStyle.TRANSPARENT);
        stage.initModality(Modality.APPLICATION_MODAL);
        stage.initStyle(StageStyle.TRANSPARENT);
+       conn = DBConnection.EtablirConnection();
+        try {
+            alertDate();
+        } catch (ParseException ex) {
+            Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
