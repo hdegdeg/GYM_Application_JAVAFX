@@ -59,11 +59,8 @@ public class FXMLAccueilController implements Initializable {
     public AnchorPane AnchorPane;
     private Stage stage = new Stage();
     private Stage stage2 = new Stage();
-<<<<<<< HEAD
     public Parent rootProgramme;
-=======
     private Stage stage3 = new Stage();
->>>>>>> 2b7cdf90998cd7cba5e6da7bd6770170661adfc4
     
     /**
      * Initializes the controller class.

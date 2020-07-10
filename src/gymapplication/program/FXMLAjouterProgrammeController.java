@@ -7,7 +7,6 @@ package gymapplication.program;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import gymapplication.FXMLDocumentController;
 import gymapplication.accueil.FXMLAccueilController;
 import static gymapplication.accueil.FXMLAccueilController.stageProgramme;
 import java.io.IOException;
@@ -136,8 +135,8 @@ public class FXMLAjouterProgrammeController implements Initializable {
              
             
         } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
+         }
 
     }
     
@@ -158,7 +157,7 @@ public class FXMLAjouterProgrammeController implements Initializable {
              
             
         } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
         } 
         
         }else{

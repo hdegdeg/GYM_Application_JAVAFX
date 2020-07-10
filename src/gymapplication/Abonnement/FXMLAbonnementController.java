@@ -8,13 +8,8 @@ package gymapplication.Abonnement;
 import gymapplication.Abonnement.list.ListAbonnement;
 import gymapplication.Abonnement.list.StaticListAbonnement;
 import gymapplication.DBConnection;
-<<<<<<< HEAD
-import gymapplication.FXMLDocumentController;
 
-=======
 //import gymapplication.FXMLDocumentController;
-import static gymapplication.accueil.FXMLAccueilController.s2;
->>>>>>> 2b7cdf90998cd7cba5e6da7bd6770170661adfc4
 import gymapplication.listeCondidat.list.ListCondidat;
 import gymapplication.listeCondidat.list.ListCondidatStatic;
 
