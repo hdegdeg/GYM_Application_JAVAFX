@@ -5,6 +5,7 @@
  */
 package gymapplication;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,19 +19,31 @@ import javafx.stage.StageStyle;
  */
 public class GYMApplication extends Application {
     
-    public static Stage mainStage;
+    public static Stage logStage;
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-         mainStage = stage;
+       try {
+              //Parent root = FXMLLoader.load(getClass().getResource("/Login/login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/Login/login.fxml"));
+            Scene scene = new Scene(root);
+            logStage = stage;
+           // stage.getIcons().add(new Image(main.class.getResourceAsStream("logoCompany.png")));
+            stage.setMinHeight(500.0);
+            stage.setMinWidth(850.0);
+            stage.setScene(scene);
+            stage.initStyle(StageStyle.UNDECORATED);
+            
+            stage.show();
+            
+//             PauseTransition delay = new PauseTransition(Duration.seconds(5));
+//            delay.setOnFinished( event -> stage.close() );
+//             delay.play();
+//            
          
-       stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setScene(scene);
-        stage.show();
+        } catch (IOException ex) {
+           ex.printStackTrace();
+        }
     }
 
     /**

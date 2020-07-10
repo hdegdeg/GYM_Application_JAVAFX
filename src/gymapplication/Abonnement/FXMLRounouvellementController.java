@@ -7,7 +7,7 @@ package gymapplication.Abonnement;
 
 import gymapplication.accueil.ajouteCondidat.*;
 import gymapplication.DBConnection;
-import gymapplication.FXMLDocumentController;
+//import gymapplication.FXMLDocumentController;
 import gymapplication.accueil.FXMLAccueilController;
 import gymapplication.listeCondidat.list.ListCondidatStatic;
 import static gymapplication.program.FXMLProgrammesController.s2;
@@ -364,7 +364,7 @@ public class FXMLRounouvellementController extends Thread implements Initializab
         s3.show();
         
         } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLRounouvellementController.class.getName()).log(Level.SEVERE, null, ex);
         }
              
 

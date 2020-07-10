@@ -78,6 +78,7 @@
                   <Font name="Monotype Corsiva" size="64.0" />
                </font>
             </Text>
+            <JFXButton id="logOut" layoutX="1024.0" layoutY="546.0" onAction="#deconnection" prefHeight="68.0" prefWidth="72.0" text=" " AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="44.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

@@ -5,9 +5,14 @@
  */
 package gymapplication.program;
 
+<<<<<<< HEAD
 import com.jfoenix.controls.JFXTextField;
 import gymapplication.FXMLDocumentController;
 import gymapplication.accueil.FXMLAccueilController;
+=======
+import gymapplication.accueil.*;
+//import gymapplication.FXMLDocumentController;
+>>>>>>> 2b7cdf90998cd7cba5e6da7bd6770170661adfc4
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -185,7 +190,7 @@ public class FXMLProgrammesController implements Initializable {
         s2.show();
         
         } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLProgrammesController.class.getName()).log(Level.SEVERE, null, ex);
         }
              
 

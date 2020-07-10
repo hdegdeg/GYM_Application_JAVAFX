@@ -8,8 +8,13 @@ package gymapplication.Abonnement;
 import gymapplication.Abonnement.list.ListAbonnement;
 import gymapplication.Abonnement.list.StaticListAbonnement;
 import gymapplication.DBConnection;
+<<<<<<< HEAD
 import gymapplication.FXMLDocumentController;
 
+=======
+//import gymapplication.FXMLDocumentController;
+import static gymapplication.accueil.FXMLAccueilController.s2;
+>>>>>>> 2b7cdf90998cd7cba5e6da7bd6770170661adfc4
 import gymapplication.listeCondidat.list.ListCondidat;
 import gymapplication.listeCondidat.list.ListCondidatStatic;
 
@@ -153,13 +158,13 @@ public class FXMLAbonnementController implements Initializable {
           //  AnchorPane.setOpacity(1);
           //  AnchorPane.setDisable(false);
         
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
              
 
+    }   catch (IOException ex) {
+            Logger.getLogger(FXMLAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
     
      @FXML
     void Rounouvellement(MouseEvent event) {
@@ -183,7 +188,7 @@ public class FXMLAbonnementController implements Initializable {
              //AnchorPane.setDisable(false);
         
         } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
         }
              
 
@@ -257,7 +262,7 @@ public class FXMLAbonnementController implements Initializable {
              
         
         } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
         }
      
     }

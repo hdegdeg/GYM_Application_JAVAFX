@@ -44,7 +44,7 @@
     -fx-background-position: left center;
 }
 #newuser{
-   -fx-background-image: url('../Image/registraction.jpg');
+   -fx-background-image: url('../gymapplication/Image/registraction.jpg');
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
      -fx-background-color: white;
