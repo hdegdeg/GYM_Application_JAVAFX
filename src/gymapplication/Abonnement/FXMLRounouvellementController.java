@@ -47,7 +47,7 @@ import javafx.stage.Stage;
  *
  * @author gharbi abdelillah
  */
-public class FXMLRounouvellementController implements Initializable {
+public class FXMLRounouvellementController extends Thread implements Initializable  {
 
     Connection conn;
     PreparedStatement pst = null;

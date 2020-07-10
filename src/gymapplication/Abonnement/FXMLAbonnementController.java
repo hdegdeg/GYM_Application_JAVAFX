@@ -9,7 +9,7 @@ import gymapplication.Abonnement.list.ListAbonnement;
 import gymapplication.Abonnement.list.StaticListAbonnement;
 import gymapplication.DBConnection;
 import gymapplication.FXMLDocumentController;
-import static gymapplication.accueil.FXMLAccueilController.s2;
+
 import gymapplication.listeCondidat.list.ListCondidat;
 import gymapplication.listeCondidat.list.ListCondidatStatic;
 

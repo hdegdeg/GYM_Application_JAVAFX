@@ -32,14 +32,17 @@ import javafx.stage.StageStyle;
 public class FXMLAccueilController implements Initializable {
 
     // Parent root;
-    public static Stage s2 = new Stage();
+    public static Stage stageProgramme = new Stage();
+    public static Stage stageExpiration = new Stage();
    public static Stage stageAbonnement = new Stage();
+   
+   public Scene sceneProgramme;
     @FXML
     public AnchorPane AnchorPane;
     private Stage stage = new Stage();
     private Stage stage2 = new Stage();
+    public Parent rootProgramme;
     
-
     /**
      * Initializes the controller class.
      */
@@ -52,13 +55,13 @@ public class FXMLAccueilController implements Initializable {
             AnchorPane.setOpacity(0.4);
             AnchorPane.setDisable(true);
             
-            Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
-            Scene scene1 = new Scene(root2);
+            rootProgramme = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
+            Scene scene1 = new Scene(rootProgramme);
           ///  scene1.setFill(new Color(0,0,0,0));
 
             // GYMApplication.mainStage.hide();
-            s2.setScene(scene1);
-            s2.showAndWait();
+            stageProgramme.setScene(scene1);
+            stageProgramme.show();
             
              
             
@@ -134,12 +137,12 @@ public class FXMLAccueilController implements Initializable {
             AnchorPane.setDisable(true);
             
             Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Expiration/FXMLExpiration.fxml"));
-            Scene scene1 = new Scene(root2);
+            sceneProgramme = new Scene(root2);
             
            // scene1.setFill(new Color(0,0,0,0));
             // GYMApplication.mainStage.hide();
-            s2.setScene(scene1);
-            s2.showAndWait();
+            stageExpiration.setScene(sceneProgramme);
+            stageExpiration.showAndWait();
             
             AnchorPane.setDisable(false);
            AnchorPane.setOpacity(1);

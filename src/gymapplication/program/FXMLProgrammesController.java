@@ -5,8 +5,9 @@
  */
 package gymapplication.program;
 
-import gymapplication.accueil.*;
+import com.jfoenix.controls.JFXTextField;
 import gymapplication.FXMLDocumentController;
+import gymapplication.accueil.FXMLAccueilController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -31,7 +33,130 @@ import javafx.stage.StageStyle;
  */
 public class FXMLProgrammesController implements Initializable {
 
+    @FXML
+    private Label fxEX1;
+
+    @FXML
+    private Label fxEX2;
+
+    @FXML
+    private Label fxEX3;
+
+    @FXML
+    private Label fxEX4;
+
+    @FXML
+    private Label fxEX5;
+
+    @FXML
+    private Label fxEX6;
+
+    @FXML
+    private Label fxEX7;
+
+    @FXML
+    private Label fxEX8;
+
+    @FXML
+    private Label fxEX9;
+
+    @FXML
+    private Label fxEX10;
+
+    @FXML
+    private JFXTextField tfSeries1;
+
+    @FXML
+    private JFXTextField tfRepet1;
+
+    @FXML
+    private JFXTextField tfSeries2;
+
+    @FXML
+    private JFXTextField tfRepet2;
+
+    @FXML
+    private JFXTextField tfSeries3;
+
+    @FXML
+    private JFXTextField tfRepet3;
+
+    @FXML
+    private JFXTextField tfSeries4;
+
+    @FXML
+    private JFXTextField tfRepet4;
+
+    @FXML
+    private JFXTextField tfSeries5;
+
+    @FXML
+    private JFXTextField tfRepet5;
+
+    @FXML
+    private JFXTextField tfSeries6;
+
+    @FXML
+    private JFXTextField tfRepet6;
+
+    @FXML
+    private JFXTextField tfSeries7;
+
+    @FXML
+    private JFXTextField tfRepet7;
+
+    @FXML
+    private JFXTextField tfSeries8;
+
+    @FXML
+    private JFXTextField tfRepet8;
+
+    @FXML
+    private JFXTextField tfSeries9;
+
+    @FXML
+    private JFXTextField tfRepet9;
+
+    @FXML
+    private JFXTextField tfSeries10;
+
+    @FXML
+    private JFXTextField tfRepet10;
+
     
+
+    @FXML
+    private JFXTextField tfNom1;
+
+    @FXML
+    private JFXTextField tfNom2;
+
+    @FXML
+    private JFXTextField tfNom3;
+
+    @FXML
+    private JFXTextField tfNom4;
+
+    @FXML
+    private JFXTextField tfNom5;
+
+    @FXML
+    private JFXTextField tfNom6;
+
+    @FXML
+    private JFXTextField tfNom7;
+
+    @FXML
+    private JFXTextField tfNom8;
+
+    @FXML
+    private JFXTextField tfNom9;
+
+    @FXML
+    private JFXTextField tfNom10;
+
+    FXMLAccueilController InterfaceProgramme = new FXMLAccueilController();
+    private int nombreExo;
     
     // Parent root;
      public static Stage s2=new Stage();
@@ -41,6 +166,7 @@ public class FXMLProgrammesController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
       
     
     
@@ -69,27 +195,13 @@ public class FXMLProgrammesController implements Initializable {
     void AjouterProgramme(MouseEvent event) throws IOException {
            
            AnchorPane.setOpacity(0.4);
-       Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/program/ajouteProgramme.fxml"));
-       Scene scene = new Scene(root);
-       scene.setFill(new Color(0,0,0,0));
-       stage.setScene(scene);
-       stage.showAndWait();
-       AnchorPane.setOpacity(1);
+       Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouterProgramme.fxml"));
+       InterfaceProgramme.sceneProgramme = new Scene(root);
+      // scene.setFill(new Color(0,0,0,0));
+       InterfaceProgramme.stageProgramme.setScene(InterfaceProgramme.sceneProgramme);
+       //InterfaceProgramme.stageProgramme.showAndWait();
+      // AnchorPane.setOpacity(1);
        
-        /*try {
-    
-            
-         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/ajouteProgramme.fxml"));
-         Scene scene1 = new Scene(root2);
-          
-         // GYMApplication.mainStage.hide();
-        s2.setScene(scene1);
-        s2.show();
-        
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-             
 
     }
      @Override
