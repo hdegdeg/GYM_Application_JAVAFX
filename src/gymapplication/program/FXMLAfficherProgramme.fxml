@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Group xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.program.FXMLAjouterProgrammeController">
+<Group xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.program.FXMLAfficherProgrammeController">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="650.0" prefWidth="1000.0">
          <children>
@@ -131,6 +131,9 @@
                                  <font>
                                     <Font name="Bell MT Bold" size="12.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="NONE" />
+                                 </cursor>
                               </JFXTextField>
                            </children>
                            <opaqueInsets>
@@ -151,6 +154,9 @@
                                  <font>
                                     <Font name="Bell MT Bold" size="12.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="NONE" />
+                                 </cursor>
                               </JFXTextField>
                            </children>
                            <opaqueInsets>
@@ -171,6 +177,9 @@
                                  <font>
                                     <Font name="Bell MT Bold" size="12.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="NONE" />
+                                 </cursor>
                               </JFXTextField>
                            </children>
                            <opaqueInsets>
@@ -191,6 +200,9 @@
                                  <font>
                                     <Font name="Bell MT Bold" size="12.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="NONE" />
+                                 </cursor>
                               </JFXTextField>
                            </children>
                            <opaqueInsets>
@@ -211,6 +223,9 @@
                                  <font>
                                     <Font name="Bell MT Bold" size="12.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="NONE" />
+                                 </cursor>
                               </JFXTextField>
                            </children>
                            <opaqueInsets>
@@ -231,6 +246,9 @@
                                  <font>
                                     <Font name="Bell MT Bold" size="12.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="NONE" />
+                                 </cursor>
                               </JFXTextField>
                            </children>
                            <opaqueInsets>
@@ -251,6 +269,9 @@
                                  <font>
                                     <Font name="Bell MT Bold" size="12.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="NONE" />
+                                 </cursor>
                               </JFXTextField>
                            </children>
                            <opaqueInsets>
@@ -260,47 +281,68 @@
                               <Insets left="5.0" right="5.0" />
                            </GridPane.margin>
                         </VBox>
-                        <JFXTextArea editable="false" promptText="Rien" style="-fx-text-alignment: Center;" GridPane.columnIndex="2">
+                        <JFXTextArea fx:id="FxListeExo1" editable="false" promptText="Rien" style="-fx-text-alignment: Center;" wrapText="true" GridPane.columnIndex="2">
                            <font>
-                              <Font name="Bell MT Bold" size="14.0" />
+                              <Font name="Arial" size="14.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="V_RESIZE" />
+                           </cursor>
                         </JFXTextArea>
-                        <JFXTextArea editable="false" promptText="Rien" style="-fx-text-alignment: Center;" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                        <JFXTextArea fx:id="FxListeExo7" editable="false" promptText="Rien" style="-fx-text-alignment: Center;" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="6">
                            <font>
-                              <Font name="Bell MT Bold" size="14.0" />
+                              <Font name="Arial" size="13.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="V_RESIZE" />
+                           </cursor>
                         </JFXTextArea>
-                        <JFXTextArea editable="false" promptText="Rien" style="-fx-text-alignment: Center;" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                        <JFXTextArea fx:id="FxListeExo6" editable="false" promptText="Rien" style="-fx-text-alignment: Center;" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="5">
                            <font>
-                              <Font name="Bell MT Bold" size="14.0" />
+                              <Font name="Arial" size="14.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="V_RESIZE" />
+                           </cursor>
                         </JFXTextArea>
-                        <JFXTextArea editable="false" promptText="Rien" style="-fx-text-alignment: Center;" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <JFXTextArea fx:id="FxListeExo5" editable="false" promptText="Rien" style="-fx-text-alignment: Center;" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
                            <font>
-                              <Font name="Bell MT Bold" size="14.0" />
+                              <Font name="Arial" size="14.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="V_RESIZE" />
+                           </cursor>
                         </JFXTextArea>
-                        <JFXTextArea editable="false" promptText="Rien" style="-fx-text-alignment: Center;" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <JFXTextArea fx:id="FxListeExo4" editable="false" promptText="Rien" style="-fx-text-alignment: Center;" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <font>
-                              <Font name="Bell MT Bold" size="14.0" />
+                              <Font name="Arial" size="14.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="V_RESIZE" />
+                           </cursor>
                         </JFXTextArea>
-                        <JFXTextArea editable="false" promptText="Rien" style="-fx-text-alignment: Center;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <JFXTextArea fx:id="FxListeExo3" editable="false" promptText="Rien" style="-fx-text-alignment: Center;" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <font>
-                              <Font name="Bell MT Bold" size="14.0" />
+                              <Font name="Arial" size="14.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="V_RESIZE" />
+                           </cursor>
                         </JFXTextArea>
-                        <JFXTextArea editable="false" promptText="Rien" style="-fx-text-alignment: Center;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <JFXTextArea fx:id="FxListeExo2" editable="false" promptText="Rien" style="-fx-text-alignment: Center;" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <font>
-                              <Font name="Bell MT Bold" size="14.0" />
+                              <Font name="Arial Narrow" size="14.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="V_RESIZE" />
+                           </cursor>
                         </JFXTextArea>
                      </children>
                      <VBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </VBox.margin>
                   </GridPane>
-                  <JFXButton fx:id="buttonValider" disable="true" onMouseClicked="#Valider" prefHeight="53.0" prefWidth="106.0" text="Valider">
+                  <JFXButton fx:id="buttonValider" onMouseClicked="#Valider" prefHeight="53.0" prefWidth="106.0" text="Imprimer" underline="true">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

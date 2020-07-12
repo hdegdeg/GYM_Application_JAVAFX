@@ -42,7 +42,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <JFXTextField fx:id="nomProg" focusColor="RED" labelFloat="true" prefHeight="33.0" prefWidth="185.0" promptText="Nom du Programme" style="-fx-border-color: black; -fx-text-fill: blue;" VBox.vgrow="SOMETIMES">
+                  <JFXTextField fx:id="nomProg" focusColor="RED" labelFloat="true" prefHeight="33.0" prefWidth="279.0" promptText="Nom du Programme" style="-fx-border-color: black; -fx-text-fill: blue;" VBox.vgrow="SOMETIMES">
                      <font>
                         <Font name="Berlin Sans FB Bold" size="13.0" />
                      </font>
@@ -139,37 +139,37 @@
                               <Insets left="5.0" right="5.0" />
                            </GridPane.margin>
                         </VBox>
-                        <Button fx:id="ButtonJrs1" disable="true" mnemonicParsing="false" onMouseClicked="#Exercice" prefHeight="46.0" prefWidth="325.0" style="-fx-background-radius: 30;" text="Exercices" GridPane.columnIndex="2">
+                        <Button fx:id="ButtonJrs1" disable="true" mnemonicParsing="false" onMouseClicked="#Exercice1" prefHeight="46.0" prefWidth="325.0" style="-fx-background-radius: 30;" text="Exercices" GridPane.columnIndex="2">
                            <GridPane.margin>
                               <Insets left="20.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="ButtonJrs7" disable="true" mnemonicParsing="false" onMouseClicked="#Exercice" prefHeight="46.0" prefWidth="325.0" style="-fx-background-radius: 30;" text="Exercices" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                        <Button fx:id="ButtonJrs7" disable="true" mnemonicParsing="false" onMouseClicked="#Exercice7" prefHeight="46.0" prefWidth="325.0" style="-fx-background-radius: 30;" text="Exercices" GridPane.columnIndex="2" GridPane.rowIndex="6">
                            <GridPane.margin>
                               <Insets left="20.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="ButtonJrs6" disable="true" mnemonicParsing="false" onMouseClicked="#Exercice" prefHeight="46.0" prefWidth="325.0" style="-fx-background-radius: 30;" text="Exercices" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                        <Button fx:id="ButtonJrs6" disable="true" mnemonicParsing="false" onMouseClicked="#Exercice6" prefHeight="46.0" prefWidth="325.0" style="-fx-background-radius: 30;" text="Exercices" GridPane.columnIndex="2" GridPane.rowIndex="5">
                            <GridPane.margin>
                               <Insets left="20.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="ButtonJrs5" disable="true" mnemonicParsing="false" onMouseClicked="#Exercice" prefHeight="46.0" prefWidth="325.0" style="-fx-background-radius: 30;" text="Exercices" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <Button fx:id="ButtonJrs5" disable="true" mnemonicParsing="false" onMouseClicked="#Exercice5" prefHeight="46.0" prefWidth="325.0" style="-fx-background-radius: 30;" text="Exercices" GridPane.columnIndex="2" GridPane.rowIndex="4">
                            <GridPane.margin>
                               <Insets left="20.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="ButtonJrs4" disable="true" mnemonicParsing="false" onMouseClicked="#Exercice" prefHeight="46.0" prefWidth="325.0" style="-fx-background-radius: 30;" text="Exercices" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <Button fx:id="ButtonJrs4" disable="true" mnemonicParsing="false" onMouseClicked="#Exercice4" prefHeight="46.0" prefWidth="325.0" style="-fx-background-radius: 30;" text="Exercices" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets left="20.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="ButtonJrs3" disable="true" mnemonicParsing="false" onMouseClicked="#Exercice" prefHeight="46.0" prefWidth="325.0" style="-fx-background-radius: 30;" text="Exercices" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <Button fx:id="ButtonJrs3" disable="true" mnemonicParsing="false" onMouseClicked="#Exercice3" prefHeight="46.0" prefWidth="325.0" style="-fx-background-radius: 30;" text="Exercices" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets left="20.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="ButtonJrs2" disable="true" mnemonicParsing="false" onMouseClicked="#Exercice" prefHeight="46.0" prefWidth="325.0" style="-fx-background-radius: 30;" text="Exercices" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Button fx:id="ButtonJrs2" disable="true" mnemonicParsing="false" onMouseClicked="#Exercice2" prefHeight="46.0" prefWidth="325.0" style="-fx-background-radius: 30;" text="Exercices" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="20.0" />
                            </GridPane.margin>
@@ -315,7 +315,7 @@
             <URL value="@../../style/popUP.css" />
          </stylesheets>
       </AnchorPane>
-      <Button id="btnClose" fx:id="btnClose" layoutX="986.0" layoutY="-5.0" mnemonicParsing="false" onAction="#quit" prefHeight="37.0" prefWidth="32.0" stylesheets="@../../style/button.css">
+      <Button id="btnClose" fx:id="btnClose" layoutX="986.0" layoutY="-5.0" mnemonicParsing="false" onMouseClicked="#quit" prefHeight="37.0" prefWidth="32.0" stylesheets="@../../style/button.css">
          <padding>
             <Insets left="20.0" />
          </padding>

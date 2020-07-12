@@ -76,11 +76,9 @@ public class FXMLAccueilController implements Initializable {
             
             rootProgramme = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
             Scene scene1 = new Scene(rootProgramme);
-          ///  scene1.setFill(new Color(0,0,0,0));
-
-            // GYMApplication.mainStage.hide();
+          
             stageProgramme.setScene(scene1);
-            stageProgramme.show();
+            stageProgramme.showAndWait();
             
              
             

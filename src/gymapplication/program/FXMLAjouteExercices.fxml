@@ -108,24 +108,24 @@
                         </Label>
                         <JFXTextField fx:id="tfSeries1" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <JFXTextField fx:id="tfRepet1" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <JFXTextField fx:id="tfSeries2" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <JFXTextField fx:id="tfRepet2" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <JFXTextField fx:id="tfSeries3" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                        <JFXTextField fx:id="tfRepet3" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                        <JFXTextField fx:id="tfSeries4" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <JFXTextField fx:id="tfRepet4" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                        <JFXTextField fx:id="tfSeries5" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                        <JFXTextField fx:id="tfRepet5" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                        <JFXTextField fx:id="tfSeries6" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                        <JFXTextField fx:id="tfRepet6" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                        <JFXTextField fx:id="tfSeries7" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                        <JFXTextField fx:id="tfRepet7" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-                        <JFXTextField fx:id="tfSeries8" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-                        <JFXTextField fx:id="tfRepet8" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-                        <JFXTextField fx:id="tfSeries9" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
-                        <JFXTextField fx:id="tfRepet9" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="9" />
-                        <JFXTextField fx:id="tfSeries10" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
-                        <JFXTextField fx:id="tfRepet10" editable="false" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+                        <JFXTextField fx:id="tfSeries2" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <JFXTextField fx:id="tfRepet2" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <JFXTextField fx:id="tfSeries3" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <JFXTextField fx:id="tfRepet3" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <JFXTextField fx:id="tfSeries4" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <JFXTextField fx:id="tfRepet4" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <JFXTextField fx:id="tfSeries5" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <JFXTextField fx:id="tfRepet5" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <JFXTextField fx:id="tfSeries6" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                        <JFXTextField fx:id="tfRepet6" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                        <JFXTextField fx:id="tfSeries7" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                        <JFXTextField fx:id="tfRepet7" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                        <JFXTextField fx:id="tfSeries8" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                        <JFXTextField fx:id="tfRepet8" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                        <JFXTextField fx:id="tfSeries9" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                        <JFXTextField fx:id="tfRepet9" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+                        <JFXTextField fx:id="tfSeries10" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+                        <JFXTextField fx:id="tfRepet10" disable="true" prefHeight="33.0" prefWidth="208.0" GridPane.columnIndex="3" GridPane.rowIndex="10" />
                         <Label fx:id="lblType3" text="Nom Exercice" GridPane.columnIndex="1">
                            <font>
                               <Font name="Berlin Sans FB Bold" size="12.0" />
@@ -147,7 +147,7 @@
                         <Insets bottom="30.0" left="10.0" />
                      </VBox.margin>
                   </GridPane>
-                  <Button mnemonicParsing="false" text="Valider ">
+                  <Button mnemonicParsing="false" onMouseClicked="#addExo" text="Valider ">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -163,6 +163,6 @@
             <URL value="@../../style/popUP.css" />
          </stylesheets>
       </AnchorPane>
-      <Button id="btnClose" fx:id="btnClose" layoutX="524.0" layoutY="7.0" mnemonicParsing="false" onAction="#quit" prefHeight="37.0" prefWidth="32.0" stylesheets="@../../style/button.css" />
+      <Button id="btnClose" fx:id="btnClose" layoutX="524.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#quit" prefHeight="37.0" prefWidth="32.0" stylesheets="@../../style/button.css" />
    </children>
 </Group>

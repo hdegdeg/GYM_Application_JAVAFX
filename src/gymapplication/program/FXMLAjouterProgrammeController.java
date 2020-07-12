@@ -7,10 +7,18 @@ package gymapplication.program;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import gymapplication.DBConnection;
+import gymapplication.Programme.list.ListeExercice;
+import gymapplication.Programme.list.ListeJours;
 import gymapplication.accueil.FXMLAccueilController;
 import static gymapplication.accueil.FXMLAccueilController.stageProgramme;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +42,11 @@ import javafx.stage.Stage;
  */
 public class FXMLAjouterProgrammeController implements Initializable {
 
+    
+     Connection conn;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    
     @FXML
     private JFXTextField nomProg;
 
@@ -108,23 +121,140 @@ public class FXMLAjouterProgrammeController implements Initializable {
     
     private Stage stageExercice = new Stage ();
     
+    public static String idJours="";
+    public static String currentMuscle="";
     public static boolean ButtonExoActive=false;
     public  MyThread thread;
-   
-    
     FXMLAccueilController InterfaceProgramme = new FXMLAccueilController();
+   
+    private static ArrayList<ListeJours> listeJours= new ArrayList<>();
+     private   ArrayList<ListeExercice> listeExo  = new ArrayList<ListeExercice>();
+     
+    public void addJourEntrainnement(ListeJours j){
+        
+        listeJours.add(j);    
+    }
     
+    
+    
+       @FXML
+    private void AjouterExo() {
+        try {
+            
+               String sql = "SELECT rowid from Programme order by ROWID DESC limit 1";
+      
+        pst = conn.prepareStatement(sql);
+        rs = pst.executeQuery();
+        String idProg=rs.getString(1);
+        
+           
+            for (ListeJours var:listeJours){
+            listeExo=var.ReturnListe();
+            
+            for(ListeExercice exo:listeExo){
+                
+                 sql = "insert into Exercice (Nom_Exo,Nombre_Repetition,Nombre_Series,idJour,idProgramme) values(?,?,?,?,?)";
+                    pst = conn.prepareStatement(sql);
+                    pst.setString(1,exo.getNom_Exo());
+                    pst.setString(2, exo.getNombre_Repetition());
+                    pst.setString(3, exo.getNombre_Series());
+                    pst.setString(4, exo.getIdJour());
+                    pst.setString(5, idProg);
+                    pst.executeUpdate();
+                    pst.close();
+                    rs.close();
+            }
+            
+            }          
+                    
+                    
+           
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+    }
+     @FXML
+    private void AjouterJour() {
+        try {
+            
+             String sql = "SELECT rowid from Programme order by ROWID DESC limit 1";
+      
+        pst = conn.prepareStatement(sql);
+        rs = pst.executeQuery();
+        String idProg=rs.getString(1);
+            
+            for (ListeJours var:listeJours){
+        
+                
+                sql = "insert into Jour (NomJ,idProgramme,Muscles) values(?,?,?)";
+                    pst = conn.prepareStatement(sql);
+                    pst.setString(1, var.getNomJ());
+                    pst.setString(2, idProg);
+                    pst.setString(3, var.getMuscles());
+                    pst.executeUpdate();
+                    pst.close();
+                    rs.close();
+            
+            listeExo=var.ReturnListe();
+            for(ListeExercice exo:listeExo){
+                
+            System.out.println("Nom_Exo:"+exo.getNom_Exo()+" Nombre_Series:"+exo.getNombre_Series()+" Nombre_Repetition:"+exo.getNombre_Repetition()+" idJour:"+exo.getIdJour());
+            }
+            
+            }          
+                    
+                    
+           
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+    }
+    
+    @FXML
+    private void AjouterProgramme() {
+        try {
+            
+            Object nombreJoursINT=listeJours.size();
+            String nombreJours= nombreJoursINT.toString();
+          
+                    String sql = "insert into Programme (Nom_Programme,Nombre_Jours) values(?,?)";
+                    pst = conn.prepareStatement(sql);
+                    pst.setString(1, nomProg.getText());
+                    pst.setString(2,nombreJours);
+                    pst.executeUpdate();
+                    pst.close();
+                    
+          
+        
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+    }
+    
+   
     @FXML
     void Valider(MouseEvent event) {
         thread.setStoped(true);
+        
+         AjouterProgramme();
+         AjouterJour();
+         AjouterExo();
+         
+          quit();
     }
     
      @FXML
     void Retour(MouseEvent event) {
         
-        try {
+        
+        
+        FXMLAjouterProgrammeController.ButtonExoActive=false;
+     
+         try {
             thread.setStoped(true);
-            
             
             InterfaceProgramme.rootProgramme = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
             Scene scene1 = new Scene(InterfaceProgramme.rootProgramme);
@@ -137,14 +267,15 @@ public class FXMLAjouterProgrammeController implements Initializable {
         } catch (IOException ex) {
             System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
          }
-
     }
     
     @FXML
-    void Exercice(MouseEvent event) throws InterruptedException {
+    void Exercice1(MouseEvent event) throws InterruptedException {
         if(!ButtonExoActive)
         {
             ButtonExoActive=true;
+            idJours="Jour 1";
+            currentMuscle=textFJrs1.getText();
         try {
             
             
@@ -169,13 +300,203 @@ public class FXMLAjouterProgrammeController implements Initializable {
         }
 
     }
-    /**
-     * Initializes the controller class.
-     */
+    
+    @FXML
+    void Exercice2(MouseEvent event) throws InterruptedException {
+        if(!ButtonExoActive)
+        {
+            ButtonExoActive=true;
+            idJours="Jour 2";
+            currentMuscle=textFJrs2.getText();
+        try {
+            
+            
+            Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
+            Scene scene1 = new Scene(root1);
+            //GYMApplication.mainStage.hide();
+            stageExercice.setScene(scene1);
+            stageExercice.show();
+            
+             
+            
+        } catch (IOException ex) {
+            System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
+        } 
+        
+        }else{
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Attention");
+                    alert.setHeaderText("Attention !!!");
+                    alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
+                    alert.showAndWait();
+        }
+
+    }
+
+    @FXML
+    void Exercice3(MouseEvent event) throws InterruptedException {
+        if(!ButtonExoActive)
+        {
+            ButtonExoActive=true;
+            idJours="Jour 3";
+            currentMuscle=textFJrs3.getText();
+        try {
+            
+            
+            Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
+            Scene scene1 = new Scene(root1);
+            //GYMApplication.mainStage.hide();
+            stageExercice.setScene(scene1);
+            stageExercice.show();
+            
+             
+            
+        } catch (IOException ex) {
+            System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
+        } 
+        
+        }else{
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Attention");
+                    alert.setHeaderText("Attention !!!");
+                    alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
+                    alert.showAndWait();
+        }
+
+    }
+    
+    @FXML
+    void Exercice4(MouseEvent event) throws InterruptedException {
+        if(!ButtonExoActive)
+        {
+            ButtonExoActive=true;
+            idJours="Jour 4";
+            currentMuscle=textFJrs4.getText();
+        try {
+            
+            
+            Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
+            Scene scene1 = new Scene(root1);
+            //GYMApplication.mainStage.hide();
+            stageExercice.setScene(scene1);
+            stageExercice.show();
+            
+             
+            
+        } catch (IOException ex) {
+            System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
+        } 
+        
+        }else{
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Attention");
+                    alert.setHeaderText("Attention !!!");
+                    alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
+                    alert.showAndWait();
+        }
+
+    }
+    
+    @FXML
+    void Exercice5(MouseEvent event) throws InterruptedException {
+        if(!ButtonExoActive)
+        {
+            ButtonExoActive=true;
+           idJours="Jour 5";
+           currentMuscle=textFJrs5.getText();
+        try {
+            
+            
+            Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
+            Scene scene1 = new Scene(root1);
+            //GYMApplication.mainStage.hide();
+            stageExercice.setScene(scene1);
+            stageExercice.show();
+            
+             
+            
+        } catch (IOException ex) {
+            System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
+        } 
+        
+        }else{
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Attention");
+                    alert.setHeaderText("Attention !!!");
+                    alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
+                    alert.showAndWait();
+        }
+
+    }
+    
+    @FXML
+    void Exercice6(MouseEvent event) throws InterruptedException {
+        if(!ButtonExoActive)
+        {
+            ButtonExoActive=true;
+            idJours="Jour 6";
+            currentMuscle=textFJrs6.getText();
+        try {
+            
+            
+            Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
+            Scene scene1 = new Scene(root1);
+            //GYMApplication.mainStage.hide();
+            stageExercice.setScene(scene1);
+            stageExercice.show();
+            
+             
+            
+        } catch (IOException ex) {
+            System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
+        } 
+        
+        }else{
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Attention");
+                    alert.setHeaderText("Attention !!!");
+                    alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
+                    alert.showAndWait();
+        }
+
+    }
+    
+    @FXML
+    void Exercice7(MouseEvent event) throws InterruptedException {
+        if(!ButtonExoActive)
+        {
+            ButtonExoActive=true;
+           idJours="Jour 7";
+           currentMuscle=textFJrs7.getText();
+        try {
+            
+            
+            Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
+            Scene scene1 = new Scene(root1);
+            //GYMApplication.mainStage.hide();
+            stageExercice.setScene(scene1);
+            stageExercice.show();
+            
+             
+            
+        } catch (IOException ex) {
+            System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
+        } 
+        
+        }else{
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Attention");
+                    alert.setHeaderText("Attention !!!");
+                    alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
+                    alert.showAndWait();
+        }
+
+    }
+    
     
     
     @FXML
-    void quit(ActionEvent event) {
+    void quit() {
         thread.setStoped(true);
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
@@ -196,6 +517,8 @@ public class FXMLAjouterProgrammeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         initThread();
+        conn = DBConnection.EtablirConnection();
+
          
     }    
     
