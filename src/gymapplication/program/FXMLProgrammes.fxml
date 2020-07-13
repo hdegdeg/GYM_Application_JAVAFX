@@ -42,7 +42,7 @@
                                        </image>
                                     </ImageView>
                                  </graphic></JFXButton>
-                              <JFXButton prefHeight="38.0" prefWidth="176.0" text="Modifier Selection">
+                              <JFXButton onMouseClicked="#ModifierProgramme" prefHeight="38.0" prefWidth="176.0" text="Modifier Selection">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>

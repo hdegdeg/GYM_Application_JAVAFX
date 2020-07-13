@@ -288,22 +288,30 @@ public class FXMLProgrammesController implements Initializable {
            currentIdProgramme=currentProgramme.getIdprog();
     
          try {
-    
-            
-            // AnchorPane.setOpacity(0.4);
-            // AnchorPane.setDisable(true);
-            
+
              Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAfficherProgramme.fxml"));
               InterfaceProgramme.sceneProgramme  = new Scene(root2);
-             //scene1.setFill(new Color(0,0,0,0));
-
              InterfaceProgramme.stageProgramme.setScene(InterfaceProgramme.sceneProgramme);
-            // s2.show();
+
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLProgrammesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+    }
+    
+            @FXML
+    private void ModifierProgramme() {
         
-        
-          //   AnchorPane.setOpacity(1);
-             
-        
+           
+          ListeProgramme currentProgramme=(ListeProgramme)TableProg.getSelectionModel().getSelectedItem();
+           currentIdProgramme=currentProgramme.getIdprog();
+    
+         try {
+
+             Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLModifierProgramme.fxml"));
+              InterfaceProgramme.sceneProgramme  = new Scene(root2);
+             InterfaceProgramme.stageProgramme.setScene(InterfaceProgramme.sceneProgramme);
+
         } catch (IOException ex) {
             Logger.getLogger(FXMLProgrammesController.class.getName()).log(Level.SEVERE, null, ex);
         }

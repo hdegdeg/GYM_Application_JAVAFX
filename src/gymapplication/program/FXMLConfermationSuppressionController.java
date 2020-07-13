@@ -17,6 +17,11 @@ import static cabinetmedical1.malades.FXMLGestionDesMaladesController.s1;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import gymapplication.DBConnection;
+import gymapplication.Programme.list.ListeExercice;
+import gymapplication.Programme.list.ListeJours;
+import gymapplication.accueil.FXMLAccueilController;
+import static gymapplication.accueil.FXMLAccueilController.stageProgramme;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -32,7 +37,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 /**
@@ -47,6 +54,9 @@ public class FXMLConfermationSuppressionController implements Initializable {
      */
     
     
+     Connection conn;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
     
     @FXML
     private JFXTextField Nom_utilisateur;
@@ -54,41 +64,132 @@ public class FXMLConfermationSuppressionController implements Initializable {
     @FXML
     private JFXPasswordField mot_passe;
 
+
+        @FXML
+    private Button btnClose;
+    
+    FXMLProgrammesController currentProgramme= new FXMLProgrammesController();
+  FXMLAccueilController InterfaceProgramme = new FXMLAccueilController();
+    
+    
+    
+        @FXML
+    private void SupprimerExo() {
+        try {
+                            System.out.println("Debut Exo");
+
+
+           String   sql = "delete  from Exercice  where idProgramme='"+currentProgramme.currentIdProgramme+"'";
+           pst = conn.prepareStatement(sql);
+           pst.executeUpdate();
+           pst.close();
+           rs.close();
+
+  
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+    }
+    
+    
     @FXML
-    private JFXButton connecter;
+    private void SupprimerJour() {
+        try {
+           System.out.println("Debut Jour");
+
+          String  sql = "delete  from Jour  where idProgramme='"+currentProgramme.currentIdProgramme+"'";
+           pst = conn.prepareStatement(sql);
+          pst.executeUpdate();
+           pst.close();
+           rs.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+    }
     
+    @FXML
+    private void SupprimerProgramme() {
+        try {
+                                        System.out.println("Debut Programme");
+
+          
+          String   sql="delete  from Programme  where idProgramme='"+currentProgramme.currentIdProgramme+"'";
+           pst = conn.prepareStatement(sql);
+          pst.executeUpdate();
+           pst.close();
+           rs.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+    }
     
-        Connection con=null;
-    PreparedStatement pst=null;
-    ResultSet rs=null;
-    
-    
-    
+   
+    @FXML
+    void Valider() {
+        
+        
+         SupprimerExo();
+         SupprimerJour();
+         SupprimerProgramme();
+
+         
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
+        
+        
+    }
+         @FXML
+    void Retour() {
+        
+        
+        
+      
+     
+         try {
+            
+            InterfaceProgramme.rootProgramme = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
+            Scene scene1 = new Scene(InterfaceProgramme.rootProgramme);
+          
+            stageProgramme.setScene(scene1);
+            stageProgramme.show();
+            
+             
+            
+        } catch (IOException ex) {
+            System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
+         }
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
-           //     con=DBConnection.EtablirConnection();
-
+         conn = DBConnection.EtablirConnection();
     }    
     
     
     
-    
+        @FXML
+    void quit() {
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
+
+    }
     
       @FXML
     void Confermer(MouseEvent event) {
       
-        /*
-        
-        FXMLGestionDesMaladesController SuppModif=new FXMLGestionDesMaladesController();
-        
+
         
         try {
-            String sql="select * from IDENTIFICATION where ID_USER= ? and MDP= ?";
+            String sql="select User,Password from Login where User= ? and Password= ?";
             
-            pst =con.prepareStatement(sql);
+           pst = conn.prepareStatement(sql);
             
             pst.setString(1,Nom_utilisateur.getText());
             pst.setString(2,mot_passe.getText());
@@ -96,53 +197,11 @@ public class FXMLConfermationSuppressionController implements Initializable {
             
             if(rs.next())
             {
-     
-                
-                if(SuppModif.getSuppModif()==1)
-        {
-                try {
-                   Parent root = FXMLLoader.load(getClass().getResource("/cabinetmedical1/malades/FXMLModifierMalade.fxml"));
-            Scene scene = new Scene(root);
-          
- 
-        s1.setScene(scene);
-        s1.show();
-        
-                } catch (IOException ex) {
-                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        
-        
-        }else{
-                       
-                    
-                       try {
-                sql="delete  from MALADES   where ID_MALADE= ?";
-                
-                pst=con.prepareStatement(sql);
-                pst.setString(1, SuppModif.getNumMadeUpdate());
-                 pst.executeUpdate();
-                
-                pst.close();
-                rs.close();
- 
-                
-               SuppModif.Accueil(event);
-           
-            } catch (SQLException ex) {
-                      
-            JOptionPane.showMessageDialog(null, ex);
-                        }
-                    
-                    
-                        }
-            
-           
-            
-                
+                Valider();
+                Retour();
             }else{
               
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
+           Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
            alert.setHeaderText("Erreur :   ");
            alert.setContentText("Le mot de passe ou l'utilisateur sont incorrect!!!");
@@ -154,7 +213,7 @@ public class FXMLConfermationSuppressionController implements Initializable {
           JOptionPane.showMessageDialog(null, ex);
         }
           
-*/
+
     }
     
     
