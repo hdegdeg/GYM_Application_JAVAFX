@@ -13,7 +13,7 @@ import cabinetmedical1.FXMLDocumentController;
 import static cabinetmedical1.FXMLDocumentController.stage;
 import static cabinetmedical1.malades.FXMLGestionDesMaladesController.s1;
 
-*/
+ */
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -52,170 +52,148 @@ public class FXMLConfermationSuppressionController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
-    
-     Connection conn;
+    Connection conn;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    
+
     @FXML
     private JFXTextField Nom_utilisateur;
 
     @FXML
     private JFXPasswordField mot_passe;
 
-
-        @FXML
+    @FXML
     private Button btnClose;
-    
-    FXMLProgrammesController currentProgramme= new FXMLProgrammesController();
-  FXMLAccueilController InterfaceProgramme = new FXMLAccueilController();
-    
-    
-    
-        @FXML
+
+    FXMLProgrammesController currentProgramme = new FXMLProgrammesController();
+    FXMLAccueilController InterfaceProgramme = new FXMLAccueilController();
+
+    @FXML
     private void SupprimerExo() {
         try {
-                            System.out.println("Debut Exo");
+            System.out.println("Debut Exo");
 
+            String sql = "delete  from Exercice  where idProgramme='" + currentProgramme.currentIdProgramme + "'";
+            pst = conn.prepareStatement(sql);
+            pst.executeUpdate();
+            pst.close();
+            rs.close();
 
-           String   sql = "delete  from Exercice  where idProgramme='"+currentProgramme.currentIdProgramme+"'";
-           pst = conn.prepareStatement(sql);
-           pst.executeUpdate();
-           pst.close();
-           rs.close();
-
-  
         } catch (SQLException ex) {
             ex.printStackTrace();
 
         }
     }
-    
-    
+
     @FXML
     private void SupprimerJour() {
         try {
-           System.out.println("Debut Jour");
+            System.out.println("Debut Jour");
 
-          String  sql = "delete  from Jour  where idProgramme='"+currentProgramme.currentIdProgramme+"'";
-           pst = conn.prepareStatement(sql);
-          pst.executeUpdate();
-           pst.close();
-           rs.close();
+            String sql = "delete  from Jour  where idProgramme='" + currentProgramme.currentIdProgramme + "'";
+            pst = conn.prepareStatement(sql);
+            pst.executeUpdate();
+            pst.close();
+            rs.close();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
 
         }
     }
-    
+
     @FXML
     private void SupprimerProgramme() {
         try {
-                                        System.out.println("Debut Programme");
+            System.out.println("Debut Programme");
 
-          
-          String   sql="delete  from Programme  where idProgramme='"+currentProgramme.currentIdProgramme+"'";
-           pst = conn.prepareStatement(sql);
-          pst.executeUpdate();
-           pst.close();
-           rs.close();
+            String sql = "delete  from Programme  where idProgramme='" + currentProgramme.currentIdProgramme + "'";
+            pst = conn.prepareStatement(sql);
+            pst.executeUpdate();
+            pst.close();
+            rs.close();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
 
         }
     }
-    
-   
+
     @FXML
     void Valider() {
-        
-        
-         SupprimerExo();
-         SupprimerJour();
-         SupprimerProgramme();
 
-         
+        SupprimerExo();
+        SupprimerJour();
+        SupprimerProgramme();
+
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
-        
-        
+
     }
-         @FXML
+
+    @FXML
     void Retour() {
-        
-        
-        
-      
-     
-         try {
-            
+
+        try {
+
             InterfaceProgramme.rootProgramme = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
             Scene scene1 = new Scene(InterfaceProgramme.rootProgramme);
-          
+
             stageProgramme.setScene(scene1);
             stageProgramme.show();
-            
-             
-            
+
         } catch (IOException ex) {
             System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
-         }
+        }
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-         conn = DBConnection.EtablirConnection();
-    }    
-    
-    
-    
-        @FXML
+
+        conn = DBConnection.EtablirConnection();
+    }
+
+    @FXML
     void quit() {
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
 
     }
-    
-      @FXML
-    void Confermer(MouseEvent event) {
-      
 
-        
+    @FXML
+    void Confermer(MouseEvent event) throws SQLException {
+
         try {
-            String sql="select User,Password from Login where User= ? and Password= ?";
-            
-           pst = conn.prepareStatement(sql);
-            
-            pst.setString(1,Nom_utilisateur.getText());
-            pst.setString(2,mot_passe.getText());
-            rs=pst.executeQuery();
-            
-            if(rs.next())
-            {
+            String sql = "select User,Password from Login where User= ? and Password= ?";
+
+            pst = conn.prepareStatement(sql);
+
+            pst.setString(1, Nom_utilisateur.getText());
+            pst.setString(2, mot_passe.getText());
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
                 Valider();
                 Retour();
-            }else{
-              
-           Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-           alert.setHeaderText("Erreur :   ");
-           alert.setContentText("Le mot de passe ou l'utilisateur sont incorrect!!!");
-           alert.showAndWait();
-                
+                pst.close();
+                rs.close();
+            } else {
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText("Erreur :   ");
+                alert.setContentText("Le mot de passe ou l'utilisateur sont incorrect!!!");
+                alert.showAndWait();
+
             }
-           
+
         } catch (SQLException ex) {
-          JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
-          
+        pst.close();
+        rs.close();
 
     }
-    
-    
-    
+
 }
