@@ -280,9 +280,6 @@ public class AjouteCondidatController implements Initializable {
         }
     }
 
-    @FXML
-    private void ModifierCondidat(ActionEvent event) {
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

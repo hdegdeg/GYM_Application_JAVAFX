@@ -44,129 +44,107 @@ public class FXMLAccueilController implements Initializable {
 
     Connection conn;
     PreparedStatement ps = null;
-    ResultSet rs = null ;
-    
-    
-    
-    
+    ResultSet rs = null;
+
     // Parent root;
     public static Stage stageProgramme = new Stage();
     public static Stage stageExpiration = new Stage();
-   public static Stage stageAbonnement = new Stage();
-   
-   public Scene sceneProgramme;
+    public static Stage stageAbonnement = new Stage();
+
+    public Scene sceneProgramme;
     @FXML
     public AnchorPane AnchorPane;
     private Stage stage = new Stage();
     private Stage stage2 = new Stage();
     public Parent rootProgramme;
     private Stage stage3 = new Stage();
-    
+
     /**
      * Initializes the controller class.
      */
-
-    
     @FXML
-    void Programme(MouseEvent event) {
+    void Programme(MouseEvent event) throws IOException {
+AnchorPane.setOpacity(0.4);
+        AnchorPane.setDisable(true);
 
-        try {
-            AnchorPane.setOpacity(0.4);
-            AnchorPane.setDisable(true);
-            
-            rootProgramme = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
-            Scene scene1 = new Scene(rootProgramme);
-          
-            stageProgramme.setScene(scene1);
-            stageProgramme.showAndWait();
-            
-             
-            
-            AnchorPane.setOpacity(1);
-            AnchorPane.setDisable(false);
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
+        Scene scene = new Scene(root);
+
+        scene.setFill(new Color(0, 0, 0, 0));
+        stageProgramme.setScene(scene);
+        stageProgramme.showAndWait();
+
+        AnchorPane.setDisable(false);
+        AnchorPane.setOpacity(1);
+       
 
     }
- 
-    
-     @FXML
-  public  void Abonnement(MouseEvent event) {
 
-        try {
-            AnchorPane.setOpacity(0.4);
-            AnchorPane.setDisable(true);
-            
-            Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLAbonnement.fxml"));
-            Scene scene1 = new Scene(root2);
-            //scene1.setFill(new Color(0,0,0,0));
-            // GYMApplication.mainStage.hide();
-            stageAbonnement.setScene(scene1);
-            stageAbonnement.showAndWait();
-            AnchorPane.setOpacity(1);
-            AnchorPane.setDisable(false);
-
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
     @FXML
-    private void ajouteCondidat(ActionEvent event) throws IOException {
-        
+    public void Abonnement(MouseEvent event) throws IOException {
         AnchorPane.setOpacity(0.4);
         AnchorPane.setDisable(true);
-        
-       Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/accueil/ajouteCondidat/ajouteCondidat.fxml"));
-       Scene scene = new Scene(root);
-       
-      // scene.setFill(new Color(0,0,0,0));
-       stage.setScene(scene);
-       stage.showAndWait();
-       
-       AnchorPane.setDisable(false);
-       AnchorPane.setOpacity(1);
+
+        Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLAbonnement.fxml"));
+        Scene scene = new Scene(root);
+
+        scene.setFill(new Color(0, 0, 0, 0));
+        stageAbonnement.setScene(scene);
+        stageAbonnement.showAndWait();
+
+        AnchorPane.setDisable(false);
+        AnchorPane.setOpacity(1);
+
+    }
+
+    @FXML
+    private void ajouteCondidat(ActionEvent event) throws IOException {
+
+        AnchorPane.setOpacity(0.4);
+        AnchorPane.setDisable(true);
+
+        Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/accueil/ajouteCondidat/ajouteCondidat.fxml"));
+        Scene scene = new Scene(root);
+
+        scene.setFill(new Color(0, 0, 0, 0));
+        stage.setScene(scene);
+        stage.showAndWait();
+
+        AnchorPane.setDisable(false);
+        AnchorPane.setOpacity(1);
     }
 
     @FXML
     private void listCondidats(ActionEvent event) throws IOException {
         AnchorPane.setOpacity(0.4);
         AnchorPane.setDisable(true);
-        
-       Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/listeCondidat/listCondidat.fxml"));
-       Scene scene = new Scene(root);
-       
-       //scene.setFill(new Color(0,0,0,0));
-       stage2.setScene(scene);
-       stage2.showAndWait();
-       
-       AnchorPane.setDisable(false);
-       AnchorPane.setOpacity(1);
+
+        Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/listeCondidat/listCondidat.fxml"));
+        Scene scene = new Scene(root);
+
+        scene.setFill(new Color(0, 0, 0, 0));
+        stage2.setScene(scene);
+        stage2.showAndWait();
+
+        AnchorPane.setDisable(false);
+        AnchorPane.setOpacity(1);
     }
 
     @FXML
-    private void abonnementExpire(ActionEvent event) {
-        
-        
-        try {
-            AnchorPane.setOpacity(0.4);
-            AnchorPane.setDisable(true);
-            
-            Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Expiration/FXMLExpiration.fxml"));
-            sceneProgramme = new Scene(root2);
-            
-           // scene1.setFill(new Color(0,0,0,0));
-            // GYMApplication.mainStage.hide();
-            stageExpiration.setScene(sceneProgramme);
-            stageExpiration.showAndWait();
-            
-            AnchorPane.setDisable(false);
-           AnchorPane.setOpacity(1);
+    private void abonnementExpire(ActionEvent event) throws IOException {
+        AnchorPane.setOpacity(0.4);
+        AnchorPane.setDisable(true);
 
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/Expiration/FXMLExpiration.fxml"));
+        Scene scene = new Scene(root);
+
+        scene.setFill(new Color(0, 0, 0, 0));
+        stage2.setScene(scene);
+        stage2.showAndWait();
+
+        AnchorPane.setDisable(false);
+        AnchorPane.setOpacity(1);
+
     }
 
     @FXML
@@ -174,43 +152,51 @@ public class FXMLAccueilController implements Initializable {
     }
 
     @FXML
-    private void deconnection(){
+    private void deconnection() {
         loginController.accueilStage.close();
         GYMApplication.logStage.show();
     }
-    private void alertDate() throws ParseException, SQLException,  IOException{
-             String dt = LocalDate.now().toString();  // Start date
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Calendar c = Calendar.getInstance();
-            c.setTime(sdf.parse(dt));
-            c.add(Calendar.DATE, 1);  // number of days to add
-            dt = sdf.format(c.getTime());
+
+    private void alertDate() throws ParseException, SQLException, IOException {
+        String dt = LocalDate.now().toString();  // Start date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c = Calendar.getInstance();
+        c.setTime(sdf.parse(dt));
+        c.add(Calendar.DATE, 1);  // number of days to add
+        dt = sdf.format(c.getTime());
         String sql = "select Condidat.idCondidat,Nom_Prenom,Type,Date_Fin from Condidat  INNER JOIN Abonnement ON Condidat.idCondidat = Abonnement.idCondidat and Abonnement.Date_Fin <= '" + dt + "' order by Nom_Prenom asc";
         ps = conn.prepareStatement(sql);
         rs = ps.executeQuery();
-        while(rs.next()){
-        ps.close();
-        rs.close();
-       
-       Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/AlertDate/alertDate.fxml"));
-       
-       Scene scene = new Scene(root);
-       scene.setFill(new Color(0,0,0,0));
-       stage3.setScene(scene);
-       stage3.show();
+        while (rs.next()) {
+            ps.close();
+            rs.close();
 
-   }
+            Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/AlertDate/alertDate.fxml"));
+
+            Scene scene = new Scene(root);
+            scene.setFill(new Color(0, 0, 0, 0));
+            stage3.setScene(scene);
+            stage3.show();
+
+        }
         ps.close();
         rs.close();
-       
-        }
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         stage3.initModality(Modality.APPLICATION_MODAL);
         stage3.initStyle(StageStyle.TRANSPARENT);
-       stage.initModality(Modality.APPLICATION_MODAL);
-       stage.initStyle(StageStyle.TRANSPARENT);
-       conn = DBConnection.EtablirConnection();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage2.initModality(Modality.APPLICATION_MODAL);
+        stage2.initStyle(StageStyle.TRANSPARENT);
+        stageAbonnement.initModality(Modality.APPLICATION_MODAL);
+        stageAbonnement.initStyle(StageStyle.TRANSPARENT);
+        stageProgramme.initModality(Modality.APPLICATION_MODAL);
+        stageProgramme.initStyle(StageStyle.TRANSPARENT);
+        conn = DBConnection.EtablirConnection();
         try {
             alertDate();
         } catch (ParseException ex) {

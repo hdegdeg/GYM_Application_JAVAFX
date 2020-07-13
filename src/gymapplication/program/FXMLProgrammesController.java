@@ -28,6 +28,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -50,127 +51,6 @@ public class FXMLProgrammesController implements Initializable {
     Connection conn;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    @FXML
-    private Label fxEX1;
-
-    @FXML
-    private Label fxEX2;
-
-    @FXML
-    private Label fxEX3;
-
-    @FXML
-    private Label fxEX4;
-
-    @FXML
-    private Label fxEX5;
-
-    @FXML
-    private Label fxEX6;
-
-    @FXML
-    private Label fxEX7;
-
-    @FXML
-    private Label fxEX8;
-
-    @FXML
-    private Label fxEX9;
-
-    @FXML
-    private Label fxEX10;
-
-    @FXML
-    private JFXTextField tfSeries1;
-
-    @FXML
-    private JFXTextField tfRepet1;
-
-    @FXML
-    private JFXTextField tfSeries2;
-
-    @FXML
-    private JFXTextField tfRepet2;
-
-    @FXML
-    private JFXTextField tfSeries3;
-
-    @FXML
-    private JFXTextField tfRepet3;
-
-    @FXML
-    private JFXTextField tfSeries4;
-
-    @FXML
-    private JFXTextField tfRepet4;
-
-    @FXML
-    private JFXTextField tfSeries5;
-
-    @FXML
-    private JFXTextField tfRepet5;
-
-    @FXML
-    private JFXTextField tfSeries6;
-
-    @FXML
-    private JFXTextField tfRepet6;
-
-    @FXML
-    private JFXTextField tfSeries7;
-
-    @FXML
-    private JFXTextField tfRepet7;
-
-    @FXML
-    private JFXTextField tfSeries8;
-
-    @FXML
-    private JFXTextField tfRepet8;
-
-    @FXML
-    private JFXTextField tfSeries9;
-
-    @FXML
-    private JFXTextField tfRepet9;
-
-    @FXML
-    private JFXTextField tfSeries10;
-
-    @FXML
-    private JFXTextField tfRepet10;
-
-    
-
-    @FXML
-    private JFXTextField tfNom1;
-
-    @FXML
-    private JFXTextField tfNom2;
-
-    @FXML
-    private JFXTextField tfNom3;
-
-    @FXML
-    private JFXTextField tfNom4;
-
-    @FXML
-    private JFXTextField tfNom5;
-
-    @FXML
-    private JFXTextField tfNom6;
-
-    @FXML
-    private JFXTextField tfNom7;
-
-    @FXML
-    private JFXTextField tfNom8;
-
-    @FXML
-    private JFXTextField tfNom9;
-
-    @FXML
-    private JFXTextField tfNom10;
 
     private ObservableList<ListeProgramme> listProg;
     @FXML
@@ -195,6 +75,18 @@ public class FXMLProgrammesController implements Initializable {
      private Stage stage = new Stage ();
     @FXML
     private AnchorPane AnchorPane;
+    @FXML
+    private Button btnClose;
+    
+    
+    
+    
+    @FXML
+    private void quit() {
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
+    }
+     
     /**
      * Initializes the controller class.
      */
