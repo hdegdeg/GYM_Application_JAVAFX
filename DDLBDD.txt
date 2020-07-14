@@ -24,16 +24,16 @@ CREATE TABLE Abonnement (
 );
 
 
-CREATE TABLE Jour (
-    NomJ        VARCHAR (0, 15),
-    idProgramme INTEGER         REFERENCES Programme (idProgramme),
-    Muscles     VARCHAR (0, 20),
+CREATE TABLE Jour  (
+    NomJ           VARCHAR (0, 15),
+    idProgramme  INTEGER         REFERENCES Programme (idProgramme) ON DELETE SET DEFAULT
+                                                                      ON UPDATE SET DEFAULT DEFERRABLE INITIALLY IMMEDIATE,
+    Muscles VARCHAR (0, 20),
     CONSTRAINT Jour_pk PRIMARY KEY (
         NomJ,
         idProgramme
     )
 );
-
 
 CREATE TABLE Exercice (
     idExercice        INTEGER PRIMARY KEY AUTOINCREMENT,

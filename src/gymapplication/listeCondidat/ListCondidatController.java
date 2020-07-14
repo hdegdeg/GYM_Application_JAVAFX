@@ -6,6 +6,8 @@
 package gymapplication.listeCondidat;
 
 import gymapplication.DBConnection;
+import gymapplication.accueil.FXMLAccueilController;
+import static gymapplication.accueil.FXMLAccueilController.stageProgramme;
 //import gymapplication.FXMLDocumentController;
 import gymapplication.accueil.ajouteCondidat.AjouteCondidatController;
 import gymapplication.listeCondidat.list.ListCondidat;
@@ -27,6 +29,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -70,7 +73,9 @@ public class ListCondidatController implements Initializable {
     private AnchorPane AnchorPane;
 
     private Stage stage = new Stage();
-
+    
+    @FXML
+    private Button btnClose;
     /**
      * Initializes the controller class.
      */
@@ -85,6 +90,9 @@ public class ListCondidatController implements Initializable {
 
     }
 
+    
+ 
+    
     private void uploadTableCondidat() throws SQLException {
         String sql = "select Condidat.idCondidat,Nom_Prenom,Age,Tele,Type,Date_Debut,Date_Fin from Condidat INNER JOIN Abonnement ON Condidat.idCondidat = Abonnement.idCondidat order by Nom_Prenom asc";
       
@@ -127,7 +135,22 @@ public class ListCondidatController implements Initializable {
     }
 
     @FXML
-    private void modifierCondidat(ActionEvent event) {
+    private void modifierCondidat() {
+        
+                
+        try {
+    
+            
+         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/listeCondidat/FXMLModifierCondidat.fxml"));
+         Scene scene1 = new Scene(root2);
+          
+         // GYMApplication.mainStage.hide();
+        s2.setScene(scene1);
+        s2.show();
+        
+        } catch (IOException ex) {
+            Logger.getLogger(ListCondidatController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -150,7 +173,15 @@ public class ListCondidatController implements Initializable {
     }
 
     
-      
+         @FXML
+    void quit() {
+
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
+        
+ 
+        //ThreadProgramme.thread.setNotiffy();
+    } 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

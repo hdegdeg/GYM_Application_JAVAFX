@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gymapplication.accueil.ajouteCondidat;
+package gymapplication.listeCondidat;
 
+import gymapplication.accueil.ajouteCondidat.*;
 import gymapplication.DBConnection;
 import gymapplication.accueil.FXMLAccueilController;
 import static gymapplication.accueil.FXMLAccueilController.stageProgramme;
@@ -44,7 +45,7 @@ import javafx.stage.Stage;
  *
  * @author gharbi abdelillah
  */
-public class AjouteCondidatController implements Initializable {
+public class FXMLModifierCondidatController implements Initializable {
 
     Connection conn;
     PreparedStatement pst = null;
@@ -320,7 +321,7 @@ public class AjouteCondidatController implements Initializable {
         try {
             calculeFinDate();
         } catch (ParseException ex) {
-            Logger.getLogger(AjouteCondidatController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLModifierCondidatController.class.getName()).log(Level.SEVERE, null, ex);
         }
         conn = DBConnection.EtablirConnection();
     }

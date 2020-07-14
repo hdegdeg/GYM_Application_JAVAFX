@@ -199,6 +199,9 @@ public class FXMLConfermationSuppressionController implements Initializable {
             {
                 Valider();
                 Retour();
+                
+                     pst.close();
+                    rs.close(); 
             }else{
               
            Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -18,6 +18,8 @@ import gymapplication.program.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import gymapplication.DBConnection;
+import gymapplication.accueil.FXMLAccueilController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -33,7 +35,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 /**
@@ -49,20 +53,22 @@ public class FXMLConfermationModificationController implements Initializable {
     
     
     
+    Connection conn;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    
     @FXML
     private JFXTextField Nom_utilisateur;
 
     @FXML
     private JFXPasswordField mot_passe;
 
-    @FXML
-    private JFXButton connecter;
+
+        @FXML
+    private Button btnClose;
+     FXMLAccueilController InterfaceProgramme = new FXMLAccueilController();
     
-    
-        Connection con=null;
-    PreparedStatement pst=null;
-    ResultSet rs=null;
-    
+   public static  boolean acess;
     
     
     
@@ -70,26 +76,29 @@ public class FXMLConfermationModificationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
-           //     con=DBConnection.EtablirConnection();
+         conn = DBConnection.EtablirConnection();
+       
 
     }    
     
     
     
-    
+   @FXML
+    void quit() {
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
+
+    } 
     
       @FXML
     void Confermer(MouseEvent event) {
       
-        /*
-        
-        FXMLGestionDesMaladesController SuppModif=new FXMLGestionDesMaladesController();
-        
+
         
         try {
-            String sql="select * from IDENTIFICATION where ID_USER= ? and MDP= ?";
+            String sql="select User,Password from Login where User= ? and Password= ?";
             
-            pst =con.prepareStatement(sql);
+           pst = conn.prepareStatement(sql);
             
             pst.setString(1,Nom_utilisateur.getText());
             pst.setString(2,mot_passe.getText());
@@ -97,53 +106,15 @@ public class FXMLConfermationModificationController implements Initializable {
             
             if(rs.next())
             {
-     
-                
-                if(SuppModif.getSuppModif()==1)
-        {
-                try {
-                   Parent root = FXMLLoader.load(getClass().getResource("/cabinetmedical1/malades/FXMLModifierMalade.fxml"));
-            Scene scene = new Scene(root);
+             Stage stage = (Stage) btnClose.getScene().getWindow();
+             stage.close();
+                            
+               pst.close();
+               rs.close(); 
           
- 
-        s1.setScene(scene);
-        s1.show();
-        
-                } catch (IOException ex) {
-                    Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        
-        
-        }else{
-                       
-                    
-                       try {
-                sql="delete  from MALADES   where ID_MALADE= ?";
-                
-                pst=con.prepareStatement(sql);
-                pst.setString(1, SuppModif.getNumMadeUpdate());
-                 pst.executeUpdate();
-                
-                pst.close();
-                rs.close();
- 
-                
-               SuppModif.Accueil(event);
-           
-            } catch (SQLException ex) {
-                      
-            JOptionPane.showMessageDialog(null, ex);
-                        }
-                    
-                    
-                        }
-            
-           
-            
-                
             }else{
               
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
+           Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
            alert.setHeaderText("Erreur :   ");
            alert.setContentText("Le mot de passe ou l'utilisateur sont incorrect!!!");
@@ -155,9 +126,10 @@ public class FXMLConfermationModificationController implements Initializable {
           JOptionPane.showMessageDialog(null, ex);
         }
           
-*/
+
     }
     
+
     
     
 }

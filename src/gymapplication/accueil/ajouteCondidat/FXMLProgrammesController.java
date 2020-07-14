@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gymapplication.program;
+package gymapplication.accueil.ajouteCondidat;
 
+import gymapplication.program.*;
 import com.jfoenix.controls.JFXTextField;
 import gymapplication.DBConnection;
 import gymapplication.Programme.list.ListeProgramme;

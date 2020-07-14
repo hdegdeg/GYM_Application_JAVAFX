@@ -150,6 +150,7 @@ public class FXMLModifierProgrammeController implements Initializable {
         try {
             ListeProgramme Programme;
            String currentText;
+            System.out.println("gymapplication"+currentProgramme.currentIdProgramme);
                String sql = "select idProgramme,Nom_Programme,Nombre_Jours from Programme where idProgramme=' "+currentProgramme.currentIdProgramme+"'";
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -252,7 +253,8 @@ public class FXMLModifierProgrammeController implements Initializable {
         pst = conn.prepareStatement(sql);
         rs = pst.executeQuery();
         String idProg=rs.getString(1);
-        
+                     pst.close();
+                    rs.close(); 
           
            
             for (ListeJours var:listeJours){
@@ -353,7 +355,7 @@ public class FXMLModifierProgrammeController implements Initializable {
                     pst.setString(2,nombreJours);
                     pst.executeUpdate();
                     pst.close();
-                    
+                    rs.close(); 
           
         
         } catch (SQLException ex) {
@@ -376,6 +378,7 @@ public class FXMLModifierProgrammeController implements Initializable {
         
         
         FXMLModifierProgrammeController.ButtonExoActive=false;
+        currentProgramme.currentIdProgramme="";
     }
     
      @FXML
@@ -384,6 +387,7 @@ public class FXMLModifierProgrammeController implements Initializable {
         
         
         FXMLModifierProgrammeController.ButtonExoActive=false;
+        currentProgramme.currentIdProgramme="";
      
          try {
             thread.setStoped(true);
@@ -690,6 +694,7 @@ public class FXMLModifierProgrammeController implements Initializable {
         
         
         FXMLModifierProgrammeController.ButtonExoActive=false;
+        currentProgramme.currentIdProgramme="";
         //ThreadProgramme.thread.setNotiffy();
     }
     
