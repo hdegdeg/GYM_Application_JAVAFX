@@ -113,7 +113,7 @@ public class FXMLSupprimerAbonnementController implements Initializable {
     }
 
     @FXML
-    private void Valider(MouseEvent event) {
+    private void Valider(MouseEvent event) throws IOException {
          
     
         try {

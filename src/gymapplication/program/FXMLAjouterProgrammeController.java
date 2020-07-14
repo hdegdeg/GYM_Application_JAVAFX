@@ -42,11 +42,10 @@ import javafx.stage.Stage;
  */
 public class FXMLAjouterProgrammeController implements Initializable {
 
-    
-     Connection conn;
+    Connection conn;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    
+
     @FXML
     private JFXTextField nomProg;
 
@@ -113,49 +112,45 @@ public class FXMLAjouterProgrammeController implements Initializable {
     @FXML
     private JFXTextField textFJrs7;
 
-    
     @FXML
     private Button btnClose;
     @FXML
     private JFXButton buttonValider;
-    
-    private Stage stageExercice = new Stage ();
-    
-    public static String idJours="";
-    public static String currentMuscle="";
-    public static boolean ButtonExoActive=false;
-    public  MyThread thread;
+
+    private Stage stageExercice = new Stage();
+
+    public static String idJours = "";
+    public static String currentMuscle = "";
+    public static boolean ButtonExoActive = false;
+    public MyThread thread;
     FXMLAccueilController InterfaceProgramme = new FXMLAccueilController();
-   
-    private static ArrayList<ListeJours> listeJours= new ArrayList<>();
-     private   ArrayList<ListeExercice> listeExo  = new ArrayList<ListeExercice>();
-     
-    public void addJourEntrainnement(ListeJours j){
-        
-        listeJours.add(j);    
+
+    private static ArrayList<ListeJours> listeJours = new ArrayList<>();
+    private ArrayList<ListeExercice> listeExo = new ArrayList<ListeExercice>();
+
+    public void addJourEntrainnement(ListeJours j) {
+
+        listeJours.add(j);
     }
-    
-    
-    
-       @FXML
+
+    @FXML
     private void AjouterExo() {
         try {
-            
-               String sql = "SELECT rowid from Programme order by ROWID DESC limit 1";
-      
-        pst = conn.prepareStatement(sql);
-        rs = pst.executeQuery();
-        String idProg=rs.getString(1);
-        
-           
-            for (ListeJours var:listeJours){
-            listeExo=var.ReturnListe();
-            
-            for(ListeExercice exo:listeExo){
-                
-                 sql = "insert into Exercice (Nom_Exo,Nombre_Repetition,Nombre_Series,idJour,idProgramme) values(?,?,?,?,?)";
+
+            String sql = "SELECT rowid from Programme order by ROWID DESC limit 1";
+
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            String idProg = rs.getString(1);
+
+            for (ListeJours var : listeJours) {
+                listeExo = var.ReturnListe();
+
+                for (ListeExercice exo : listeExo) {
+
+                    sql = "insert into Exercice (Nom_Exo,Nombre_Repetition,Nombre_Series,idJour,idProgramme) values(?,?,?,?,?)";
                     pst = conn.prepareStatement(sql);
-                    pst.setString(1,exo.getNom_Exo());
+                    pst.setString(1, exo.getNom_Exo());
                     pst.setString(2, exo.getNombre_Repetition());
                     pst.setString(3, exo.getNombre_Series());
                     pst.setString(4, exo.getIdJour());
@@ -163,453 +158,395 @@ public class FXMLAjouterProgrammeController implements Initializable {
                     pst.executeUpdate();
                     pst.close();
                     rs.close();
+                }
+
             }
-            
-            }          
-                    
-                    
-           
+            pst.close();
+            rs.close();
+
         } catch (SQLException ex) {
             ex.printStackTrace();
 
         }
     }
-     @FXML
+
+    @FXML
     private void AjouterJour() {
         try {
-            
-             String sql = "SELECT rowid from Programme order by ROWID DESC limit 1";
-      
-        pst = conn.prepareStatement(sql);
-        rs = pst.executeQuery();
-        String idProg=rs.getString(1);
-            
-            for (ListeJours var:listeJours){
-        
-                
+
+            String sql = "SELECT rowid from Programme order by ROWID DESC limit 1";
+
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            String idProg = rs.getString(1);
+
+            for (ListeJours var : listeJours) {
+
                 sql = "insert into Jour (NomJ,idProgramme,Muscles) values(?,?,?)";
-                    pst = conn.prepareStatement(sql);
-                    pst.setString(1, var.getNomJ());
-                    pst.setString(2, idProg);
-                    pst.setString(3, var.getMuscles());
-                    pst.executeUpdate();
-                    pst.close();
-                    rs.close();
-            
-            listeExo=var.ReturnListe();
-            for(ListeExercice exo:listeExo){
-                
-            System.out.println("Nom_Exo:"+exo.getNom_Exo()+" Nombre_Series:"+exo.getNombre_Series()+" Nombre_Repetition:"+exo.getNombre_Repetition()+" idJour:"+exo.getIdJour());
+                pst = conn.prepareStatement(sql);
+                pst.setString(1, var.getNomJ());
+                pst.setString(2, idProg);
+                pst.setString(3, var.getMuscles());
+                pst.executeUpdate();
+                pst.close();
+                rs.close();
+
+                listeExo = var.ReturnListe();
+                for (ListeExercice exo : listeExo) {
+
+                    System.out.println("Nom_Exo:" + exo.getNom_Exo() + " Nombre_Series:" + exo.getNombre_Series() + " Nombre_Repetition:" + exo.getNombre_Repetition() + " idJour:" + exo.getIdJour());
+                }
+
             }
-            
-            }          
-                    
-                    
-           
+            pst.close();
+            rs.close();
+
         } catch (SQLException ex) {
             ex.printStackTrace();
 
         }
     }
-    
-    @FXML
-    private void AjouterProgramme() {
-        try {
-            
-            Object nombreJoursINT=listeJours.size();
-            String nombreJours= nombreJoursINT.toString();
-          
-                    String sql = "insert into Programme (Nom_Programme,Nombre_Jours) values(?,?)";
-                    pst = conn.prepareStatement(sql);
-                    pst.setString(1, nomProg.getText());
-                    pst.setString(2,nombreJours);
-                    pst.executeUpdate();
-                    pst.close();
-                    
-          
-        
-        } catch (SQLException ex) {
-            ex.printStackTrace();
 
-        }
-    }
-    
-   
     @FXML
-    void Valider(MouseEvent event) {
+    private void AjouterProgramme() throws SQLException {
+
+        Object nombreJoursINT = listeJours.size();
+        String nombreJours = nombreJoursINT.toString();
+
+        String sql = "insert into Programme (Nom_Programme,Nombre_Jours) values(?,?)";
+        pst = conn.prepareStatement(sql);
+        pst.setString(1, nomProg.getText());
+        pst.setString(2, nombreJours);
+        pst.executeUpdate();
+        pst.close();
+
+    }
+
+    @FXML
+    void Valider(MouseEvent event) throws SQLException {
         thread.setStoped(true);
-        
-         AjouterProgramme();
-         AjouterJour();
-         AjouterExo();
-         
-          quit();
+
+        AjouterProgramme();
+        AjouterJour();
+        AjouterExo();
+
+        quit();
     }
-    
-     @FXML
+
+    @FXML
     void Retour(MouseEvent event) {
-        
-        
-        
-        FXMLAjouterProgrammeController.ButtonExoActive=false;
-     
-         try {
+
+        FXMLAjouterProgrammeController.ButtonExoActive = false;
+
+        try {
             thread.setStoped(true);
-            
+
             InterfaceProgramme.rootProgramme = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
             Scene scene1 = new Scene(InterfaceProgramme.rootProgramme);
-          
+
             stageProgramme.setScene(scene1);
             stageProgramme.show();
-            
-             
-            
+
         } catch (IOException ex) {
             System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
-         }
+        }
     }
-    
+
     @FXML
     void Exercice1(MouseEvent event) throws InterruptedException {
-        if(!ButtonExoActive)
-        {
-            ButtonExoActive=true;
-            idJours="Jour 1";
-            currentMuscle=textFJrs1.getText();
-        try {
-            
-            
-            Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
-            Scene scene1 = new Scene(root1);
-            //GYMApplication.mainStage.hide();
-            stageExercice.setScene(scene1);
-            stageExercice.show();
-            
-             
-            
-        } catch (IOException ex) {
-            System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
-        } 
-        
-        }else{
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Attention");
-                    alert.setHeaderText("Attention !!!");
-                    alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
-                    alert.showAndWait();
+        if (!ButtonExoActive) {
+            ButtonExoActive = true;
+            idJours = "Jour 1";
+            currentMuscle = textFJrs1.getText();
+            try {
+
+                Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
+                Scene scene1 = new Scene(root1);
+                //GYMApplication.mainStage.hide();
+                stageExercice.setScene(scene1);
+                stageExercice.show();
+
+            } catch (IOException ex) {
+                System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention");
+            alert.setHeaderText("Attention !!!");
+            alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
+            alert.showAndWait();
         }
 
     }
-    
+
     @FXML
     void Exercice2(MouseEvent event) throws InterruptedException {
-        if(!ButtonExoActive)
-        {
-            ButtonExoActive=true;
-            idJours="Jour 2";
-            currentMuscle=textFJrs2.getText();
-        try {
-            
-            
-            Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
-            Scene scene1 = new Scene(root1);
-            //GYMApplication.mainStage.hide();
-            stageExercice.setScene(scene1);
-            stageExercice.show();
-            
-             
-            
-        } catch (IOException ex) {
-            System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
-        } 
-        
-        }else{
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Attention");
-                    alert.setHeaderText("Attention !!!");
-                    alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
-                    alert.showAndWait();
+        if (!ButtonExoActive) {
+            ButtonExoActive = true;
+            idJours = "Jour 2";
+            currentMuscle = textFJrs2.getText();
+            try {
+
+                Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
+                Scene scene1 = new Scene(root1);
+                //GYMApplication.mainStage.hide();
+                stageExercice.setScene(scene1);
+                stageExercice.show();
+
+            } catch (IOException ex) {
+                System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention");
+            alert.setHeaderText("Attention !!!");
+            alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
+            alert.showAndWait();
         }
 
     }
 
     @FXML
     void Exercice3(MouseEvent event) throws InterruptedException {
-        if(!ButtonExoActive)
-        {
-            ButtonExoActive=true;
-            idJours="Jour 3";
-            currentMuscle=textFJrs3.getText();
-        try {
-            
-            
-            Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
-            Scene scene1 = new Scene(root1);
-            //GYMApplication.mainStage.hide();
-            stageExercice.setScene(scene1);
-            stageExercice.show();
-            
-             
-            
-        } catch (IOException ex) {
-            System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
-        } 
-        
-        }else{
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Attention");
-                    alert.setHeaderText("Attention !!!");
-                    alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
-                    alert.showAndWait();
+        if (!ButtonExoActive) {
+            ButtonExoActive = true;
+            idJours = "Jour 3";
+            currentMuscle = textFJrs3.getText();
+            try {
+
+                Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
+                Scene scene1 = new Scene(root1);
+                //GYMApplication.mainStage.hide();
+                stageExercice.setScene(scene1);
+                stageExercice.show();
+
+            } catch (IOException ex) {
+                System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention");
+            alert.setHeaderText("Attention !!!");
+            alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
+            alert.showAndWait();
         }
 
     }
-    
+
     @FXML
     void Exercice4(MouseEvent event) throws InterruptedException {
-        if(!ButtonExoActive)
-        {
-            ButtonExoActive=true;
-            idJours="Jour 4";
-            currentMuscle=textFJrs4.getText();
-        try {
-            
-            
-            Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
-            Scene scene1 = new Scene(root1);
-            //GYMApplication.mainStage.hide();
-            stageExercice.setScene(scene1);
-            stageExercice.show();
-            
-             
-            
-        } catch (IOException ex) {
-            System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
-        } 
-        
-        }else{
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Attention");
-                    alert.setHeaderText("Attention !!!");
-                    alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
-                    alert.showAndWait();
+        if (!ButtonExoActive) {
+            ButtonExoActive = true;
+            idJours = "Jour 4";
+            currentMuscle = textFJrs4.getText();
+            try {
+
+                Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
+                Scene scene1 = new Scene(root1);
+                //GYMApplication.mainStage.hide();
+                stageExercice.setScene(scene1);
+                stageExercice.show();
+
+            } catch (IOException ex) {
+                System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention");
+            alert.setHeaderText("Attention !!!");
+            alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
+            alert.showAndWait();
         }
 
     }
-    
+
     @FXML
     void Exercice5(MouseEvent event) throws InterruptedException {
-        if(!ButtonExoActive)
-        {
-            ButtonExoActive=true;
-           idJours="Jour 5";
-           currentMuscle=textFJrs5.getText();
-        try {
-            
-            
-            Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
-            Scene scene1 = new Scene(root1);
-            //GYMApplication.mainStage.hide();
-            stageExercice.setScene(scene1);
-            stageExercice.show();
-            
-             
-            
-        } catch (IOException ex) {
-            System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
-        } 
-        
-        }else{
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Attention");
-                    alert.setHeaderText("Attention !!!");
-                    alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
-                    alert.showAndWait();
+        if (!ButtonExoActive) {
+            ButtonExoActive = true;
+            idJours = "Jour 5";
+            currentMuscle = textFJrs5.getText();
+            try {
+
+                Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
+                Scene scene1 = new Scene(root1);
+                //GYMApplication.mainStage.hide();
+                stageExercice.setScene(scene1);
+                stageExercice.show();
+
+            } catch (IOException ex) {
+                System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention");
+            alert.setHeaderText("Attention !!!");
+            alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
+            alert.showAndWait();
         }
 
     }
-    
+
     @FXML
     void Exercice6(MouseEvent event) throws InterruptedException {
-        if(!ButtonExoActive)
-        {
-            ButtonExoActive=true;
-            idJours="Jour 6";
-            currentMuscle=textFJrs6.getText();
-        try {
-            
-            
-            Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
-            Scene scene1 = new Scene(root1);
-            //GYMApplication.mainStage.hide();
-            stageExercice.setScene(scene1);
-            stageExercice.show();
-            
-             
-            
-        } catch (IOException ex) {
-            System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
-        } 
-        
-        }else{
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Attention");
-                    alert.setHeaderText("Attention !!!");
-                    alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
-                    alert.showAndWait();
+        if (!ButtonExoActive) {
+            ButtonExoActive = true;
+            idJours = "Jour 6";
+            currentMuscle = textFJrs6.getText();
+            try {
+
+                Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
+                Scene scene1 = new Scene(root1);
+                //GYMApplication.mainStage.hide();
+                stageExercice.setScene(scene1);
+                stageExercice.show();
+
+            } catch (IOException ex) {
+                System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention");
+            alert.setHeaderText("Attention !!!");
+            alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
+            alert.showAndWait();
         }
 
     }
-    
+
     @FXML
     void Exercice7(MouseEvent event) throws InterruptedException {
-        if(!ButtonExoActive)
-        {
-            ButtonExoActive=true;
-           idJours="Jour 7";
-           currentMuscle=textFJrs7.getText();
-        try {
-            
-            
-            Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
-            Scene scene1 = new Scene(root1);
-            //GYMApplication.mainStage.hide();
-            stageExercice.setScene(scene1);
-            stageExercice.show();
-            
-             
-            
-        } catch (IOException ex) {
-            System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
-        } 
-        
-        }else{
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Attention");
-                    alert.setHeaderText("Attention !!!");
-                    alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
-                    alert.showAndWait();
+        if (!ButtonExoActive) {
+            ButtonExoActive = true;
+            idJours = "Jour 7";
+            currentMuscle = textFJrs7.getText();
+            try {
+
+                Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
+                Scene scene1 = new Scene(root1);
+                //GYMApplication.mainStage.hide();
+                stageExercice.setScene(scene1);
+                stageExercice.show();
+
+            } catch (IOException ex) {
+                System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention");
+            alert.setHeaderText("Attention !!!");
+            alert.setContentText("Une Fenetre d'exercices est déja active dans votre système");
+            alert.showAndWait();
         }
 
     }
-    
-    
-    
+
     @FXML
     void quit() {
         thread.setStoped(true);
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
-        
-        
-        FXMLAjouterProgrammeController.ButtonExoActive=false;
+
+        FXMLAjouterProgrammeController.ButtonExoActive = false;
         //ThreadProgramme.thread.setNotiffy();
     }
-    
-    
-    public void initThread(){
+
+    public void initThread() {
         thread = new MyThread();
         new Thread(thread).start();
     }
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         initThread();
         conn = DBConnection.EtablirConnection();
 
-         
-    }    
-    
-    
-    public class MyThread implements Runnable{
-    FXMLAjouterExercicesController prog = new FXMLAjouterExercicesController();
-     private  boolean isStopped=false;
-    private int i=0;
-     public synchronized void setStoped(boolean b)
-     {
-         isStopped=b;
-     }
-     
-      public synchronized void setWait() throws InterruptedException
-     {
-         wait();
-     }
-      
-      public synchronized void setNotiffy()
-     {
-         notifyAll();
-     }
-      public synchronized boolean testChampVide(String champ)
-      {
-          if(champ.equals(""))
-                  {
-                      return false;
-                  }else if(champ==null){
-                      return false;
-                  }
-             else {return true;}
-      }
-    @Override
-     public void run() 
-    { 
-        
-        
-          while( isStopped==false){
-  
-        System.out.println("**************************************************") ;
-            if(isStopped==true) {
-                System.out.println("Server Stopped.") ;
-                return;
+    }
+
+    public class MyThread implements Runnable {
+
+        FXMLAjouterExercicesController prog = new FXMLAjouterExercicesController();
+        private boolean isStopped = false;
+        private int i = 0;
+
+        public synchronized void setStoped(boolean b) {
+            isStopped = b;
+        }
+
+        public synchronized void setWait() throws InterruptedException {
+            wait();
+        }
+
+        public synchronized void setNotiffy() {
+            notifyAll();
+        }
+
+        public synchronized boolean testChampVide(String champ) {
+            if (champ.equals("")) {
+                return false;
+            } else if (champ == null) {
+                return false;
+            } else {
+                return true;
             }
-           
-            if(testChampVide(textFJrs1.getText()))
-            {
-                ButtonJrs1.setDisable(false);
-                ButtonJrs1.setStyle("-fx-background-color: #41af3a");
-                jrs1.setTextFill(Color.BLUE);
-                
-            }
-            else if(!testChampVide(textFJrs1.getText()))
-            {
-               ButtonJrs1.setDisable(true);
-               ButtonJrs1.setStyle("-fx-background-color: WHITE");
-                jrs1.setTextFill(Color.GREEN);
-            }
-            //////////////////////////////////
-            
-           if(testChampVide(textFJrs2.getText()))
-            {
-                ButtonJrs2.setDisable(false);
-                ButtonJrs2.setStyle("-fx-background-color: #41af3a");
-                jrs2.setTextFill(Color.BLUE);
-                
-            }
-            else if(!testChampVide(textFJrs2.getText()))
-            {
-               ButtonJrs2.setDisable(true);
-               ButtonJrs2.setStyle("-fx-background-color: WHITE");
-                jrs2.setTextFill(Color.GREEN);
-            }
-            //////////////////////////////////
-            
-            if(testChampVide(textFJrs3.getText()))
-            {
-                ButtonJrs3.setDisable(false);
-                ButtonJrs3.setStyle("-fx-background-color: #41af3a");
-                jrs3.setTextFill(Color.BLUE);
-                
-            }
-            else if(!testChampVide(textFJrs3.getText()))
-            {
-               ButtonJrs3.setDisable(true);
-               ButtonJrs3.setStyle("-fx-background-color: WHITE");
-                jrs3.setTextFill(Color.GREEN);
-            }
-            //////////////////////////////////
-            
-          /*  if(testChampVide(textFJrs1.getText()))
+        }
+
+        @Override
+        public void run() {
+
+            while (isStopped == false) {
+
+                System.out.println("**************************************************");
+                if (isStopped == true) {
+                    System.out.println("Server Stopped.");
+                    return;
+                }
+
+                if (testChampVide(textFJrs1.getText())) {
+                    ButtonJrs1.setDisable(false);
+                    ButtonJrs1.setStyle("-fx-background-color: #41af3a");
+                    jrs1.setTextFill(Color.BLUE);
+
+                } else if (!testChampVide(textFJrs1.getText())) {
+                    ButtonJrs1.setDisable(true);
+                    ButtonJrs1.setStyle("-fx-background-color: WHITE");
+                    jrs1.setTextFill(Color.GREEN);
+                }
+                //////////////////////////////////
+
+                if (testChampVide(textFJrs2.getText())) {
+                    ButtonJrs2.setDisable(false);
+                    ButtonJrs2.setStyle("-fx-background-color: #41af3a");
+                    jrs2.setTextFill(Color.BLUE);
+
+                } else if (!testChampVide(textFJrs2.getText())) {
+                    ButtonJrs2.setDisable(true);
+                    ButtonJrs2.setStyle("-fx-background-color: WHITE");
+                    jrs2.setTextFill(Color.GREEN);
+                }
+                //////////////////////////////////
+
+                if (testChampVide(textFJrs3.getText())) {
+                    ButtonJrs3.setDisable(false);
+                    ButtonJrs3.setStyle("-fx-background-color: #41af3a");
+                    jrs3.setTextFill(Color.BLUE);
+
+                } else if (!testChampVide(textFJrs3.getText())) {
+                    ButtonJrs3.setDisable(true);
+                    ButtonJrs3.setStyle("-fx-background-color: WHITE");
+                    jrs3.setTextFill(Color.GREEN);
+                }
+                //////////////////////////////////
+
+                /*  if(testChampVide(textFJrs1.getText()))
             {
                 ButtonJrs1.setDisable(false);
                 ButtonJrs1.setStyle("-fx-background-color: #41af3a");
@@ -621,97 +558,71 @@ public class FXMLAjouterProgrammeController implements Initializable {
                ButtonJrs1.setDisable(true);
                 jrs1.setTextFill(Color.GREEN);
             }*/
-            //////////////////////////////////
-            if(testChampVide(textFJrs4.getText()))
-            {
-                ButtonJrs4.setDisable(false);
-                ButtonJrs4.setStyle("-fx-background-color: #41af3a");
-                jrs4.setTextFill(Color.BLUE);
-                
+                //////////////////////////////////
+                if (testChampVide(textFJrs4.getText())) {
+                    ButtonJrs4.setDisable(false);
+                    ButtonJrs4.setStyle("-fx-background-color: #41af3a");
+                    jrs4.setTextFill(Color.BLUE);
+
+                } else if (!testChampVide(textFJrs4.getText())) {
+                    ButtonJrs4.setDisable(true);
+                    ButtonJrs4.setStyle("-fx-background-color: WHITE");
+                    jrs4.setTextFill(Color.GREEN);
+                }
+                //////////////////////////////////
+
+                if (testChampVide(textFJrs5.getText())) {
+                    ButtonJrs5.setDisable(false);
+                    ButtonJrs5.setStyle("-fx-background-color: #41af3a");
+                    jrs5.setTextFill(Color.BLUE);
+
+                } else if (!testChampVide(textFJrs5.getText())) {
+                    ButtonJrs5.setDisable(true);
+                    ButtonJrs5.setStyle("-fx-background-color: WHITE");
+                    jrs5.setTextFill(Color.GREEN);
+                }
+                //////////////////////////////////
+
+                if (testChampVide(textFJrs6.getText())) {
+                    ButtonJrs6.setDisable(false);
+                    ButtonJrs6.setStyle("-fx-background-color: #41af3a");
+                    jrs6.setTextFill(Color.BLUE);
+
+                } else if (!testChampVide(textFJrs6.getText())) {
+                    ButtonJrs6.setDisable(true);
+                    ButtonJrs6.setStyle("-fx-background-color: WHITE");
+                    jrs6.setTextFill(Color.GREEN);
+                }
+                //////////////////////////////////
+
+                if (testChampVide(textFJrs7.getText())) {
+                    ButtonJrs7.setDisable(false);
+                    ButtonJrs7.setStyle("-fx-background-color: #41af3a");
+                    jrs7.setTextFill(Color.BLUE);
+
+                } else if (!testChampVide(textFJrs7.getText())) {
+                    ButtonJrs7.setDisable(true);
+                    ButtonJrs7.setStyle("-fx-background-color: WHITE");
+                    jrs7.setTextFill(Color.GREEN);
+                }
+                //////////////////////////////////
+                /////////////////////////////////////////
+
+                if (testChampVide(nomProg.getText()) && (testChampVide(textFJrs1.getText()) || testChampVide(textFJrs2.getText()) || testChampVide(textFJrs3.getText()) || testChampVide(textFJrs4.getText()) || testChampVide(textFJrs5.getText()) || testChampVide(textFJrs6.getText()) || testChampVide(textFJrs7.getText()))) {
+                    buttonValider.setDisable(false);
+                    buttonValider.setStyle("-fx-background-color: #41af3a");
+                    jrs7.setTextFill(Color.BLUE);
+
+                } else {
+                    buttonValider.setDisable(true);
+                    buttonValider.setStyle("-fx-background-color: WHITE");
+
+                }
+
             }
-            else if(!testChampVide(textFJrs4.getText()))
-            {
-               ButtonJrs4.setDisable(true);
-               ButtonJrs4.setStyle("-fx-background-color: WHITE");
-                jrs4.setTextFill(Color.GREEN);
-            }
-            //////////////////////////////////
-            
-            if(testChampVide(textFJrs5.getText()))
-            {
-                ButtonJrs5.setDisable(false);
-                ButtonJrs5.setStyle("-fx-background-color: #41af3a");
-                jrs5.setTextFill(Color.BLUE);
-                
-            }
-            else if(!testChampVide(textFJrs5.getText()))
-            {
-               ButtonJrs5.setDisable(true);
-               ButtonJrs5.setStyle("-fx-background-color: WHITE");
-                jrs5.setTextFill(Color.GREEN);
-            }
-            //////////////////////////////////
-            
-            if(testChampVide(textFJrs6.getText()))
-            {
-                ButtonJrs6.setDisable(false);
-                ButtonJrs6.setStyle("-fx-background-color: #41af3a");
-                jrs6.setTextFill(Color.BLUE);
-                
-            }
-            else if(!testChampVide(textFJrs6.getText()))
-            {
-               ButtonJrs6.setDisable(true);
-               ButtonJrs6.setStyle("-fx-background-color: WHITE");
-                jrs6.setTextFill(Color.GREEN);
-            }
-            //////////////////////////////////
-            
-            if(testChampVide(textFJrs7.getText()))
-            {
-                ButtonJrs7.setDisable(false);
-                ButtonJrs7.setStyle("-fx-background-color: #41af3a");
-                jrs7.setTextFill(Color.BLUE);
-                
-            }
-            else if(!testChampVide(textFJrs7.getText()))
-            {
-               ButtonJrs7.setDisable(true);
-               ButtonJrs7.setStyle("-fx-background-color: WHITE");
-                jrs7.setTextFill(Color.GREEN);
-            }
-            //////////////////////////////////
-            /////////////////////////////////////////
-            
-            
-            if( testChampVide(nomProg.getText()) && ( testChampVide(textFJrs1.getText()) || testChampVide(textFJrs2.getText()) || testChampVide(textFJrs3.getText())   || testChampVide(textFJrs4.getText())   || testChampVide(textFJrs5.getText())   || testChampVide(textFJrs6.getText())   ||    testChampVide(textFJrs7.getText())))
-            {
-                buttonValider.setDisable(false);
-                buttonValider.setStyle("-fx-background-color: #41af3a");
-                jrs7.setTextFill(Color.BLUE);
-                
-            }
-            else 
-            {
-               buttonValider.setDisable(true);
-               buttonValider.setStyle("-fx-background-color: WHITE");
-               
-            }
-            
-           
-            
-           }
-            
-            
-            
-            
+
         }
-        
-        
-        
-        
-        
-  
-    } 
-    
+
+    }
+
 }

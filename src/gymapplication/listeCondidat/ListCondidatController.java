@@ -73,9 +73,15 @@ public class ListCondidatController implements Initializable {
     private AnchorPane AnchorPane;
 
     private Stage stage = new Stage();
-    
+
     @FXML
     private Button btnClose;
+
+     @FXML
+    private void quit() {
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
+    }
     /**
      * Initializes the controller class.
      */
@@ -173,15 +179,7 @@ public class ListCondidatController implements Initializable {
     }
 
     
-         @FXML
-    void quit() {
 
-        Stage stage = (Stage) btnClose.getScene().getWindow();
-        stage.close();
-        
- 
-        //ThreadProgramme.thread.setNotiffy();
-    } 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

@@ -29,6 +29,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -82,8 +83,16 @@ public class FXMLAbonnementController implements Initializable {
      ListAbonnement Labonnement= new  ListAbonnement();
     
     StaticListAbonnement StaticLabonnement = new StaticListAbonnement();
+    @FXML
+    private AnchorPane AnchorPaneAbonnement;
+    @FXML
+    private Button btnClose;
     
-  
+  @FXML
+    private void quit() {
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
+    }
     private void initTable() {
       
         fxIdAbon.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("idAbonnement2"));

@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/E:/degdeg/DEGDEG/NetBeansProjects/GYMApplication/src/gymapplication/listeCondidat/listCondidat.fxml</file>
             <file>file:/E:/degdeg/DEGDEG/NetBeansProjects/GYMApplication/src/gymapplication/program/FXMLConfermationModificationController.java</file>
@@ -24,5 +25,8 @@
             <file>file:/E:/degdeg/DEGDEG/NetBeansProjects/GYMApplication/src/gymapplication/program/FXMLProgrammesController.java</file>
             <file>file:/E:/degdeg/DEGDEG/NetBeansProjects/GYMApplication/src/gymapplication/Abonnement/FXMLAbonnementController.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> 1478f3bd8588087588d6c60e66987adfd4dabb89
     </open-files>
 </project-private>

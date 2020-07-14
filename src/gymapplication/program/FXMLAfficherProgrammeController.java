@@ -39,6 +39,7 @@ import javafx.stage.Stage;
  * @author hdegd
  */
 public class FXMLAfficherProgrammeController implements Initializable {
+
     Connection conn;
     PreparedStatement pst = null;
     ResultSet rs = null;
@@ -74,8 +75,8 @@ public class FXMLAfficherProgrammeController implements Initializable {
     private JFXTextField textFJrs7;
     @FXML
     private JFXButton buttonValider;
-    
-      @FXML
+
+    @FXML
     private JFXTextArea FxListeExo1;
 
     @FXML
@@ -100,199 +101,199 @@ public class FXMLAfficherProgrammeController implements Initializable {
 
     FXMLAccueilController InterfaceProgramme = new FXMLAccueilController();
 
-    FXMLProgrammesController currentProgramme= new FXMLProgrammesController();
-    
+    FXMLProgrammesController currentProgramme = new FXMLProgrammesController();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-        System.out.println("gymapplication.program.:"+currentProgramme.currentIdProgramme);
-       ConnectionDB();
-       uploadTableProgramme();
-       
-    }    
 
-        public void ConnectionDB(){
-            
-              conn=DBConnection.EtablirConnection();
-        }
-     private void uploadTableProgramme()  {
+        System.out.println("gymapplication.program.:" + currentProgramme.currentIdProgramme);
+        ConnectionDB();
         try {
-            ListeProgramme Programme;
-           String currentText;
-               String sql = "select Nom_Programme from Programme where idProgramme=' "+currentProgramme.currentIdProgramme+"'";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            if(rs.next()){
-            nomProg.setText(rs.getString(1)); 
-            pst.close();
-            rs.close();
-            }
-           
-             sql = "select muscles from Jour where idProgramme=' "+currentProgramme.currentIdProgramme+"' and NomJ='Jour 1'";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            if(rs.next()){
-            textFJrs1.setText(rs.getString(1)); 
-            pst.close();
-            rs.close();
-            
-            sql = "select Nom_Exo,Nombre_Repetition,Nombre_Series from Exercice where idProgramme=' "+currentProgramme.currentIdProgramme+"' and idJour='Jour 1'";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-              while (rs.next()) {
-                  currentText=FxListeExo1.getText();
-                  FxListeExo1.setText(currentText+"Exo: "+rs.getString(1)+", "+rs.getString(3)+" Series,"+" "+ rs.getString(2)+" Rep \n");
-              }
-            pst.close();
-            rs.close();
-            }
-          ///////////////////////////////////////////////////////////////////////////////////////////////////  
-            sql = "select muscles from Jour where idProgramme=' "+currentProgramme.currentIdProgramme+"' and NomJ='Jour 2'";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            if(rs.next()){
-            textFJrs2.setText(rs.getString(1)); 
-            pst.close();
-            rs.close();
-            
-            sql = "select Nom_Exo,Nombre_Repetition,Nombre_Series from Exercice where idProgramme=' "+currentProgramme.currentIdProgramme+"' and idJour='Jour 2'";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-              while (rs.next()) {
-                  currentText=FxListeExo2.getText();
-                  FxListeExo2.setText(currentText+"Exo: "+rs.getString(1)+", "+rs.getString(3)+" Series,"+" "+ rs.getString(2)+" Rep \n");
-              }
-            pst.close();
-            rs.close();
-            }
-            
-            ///////////////////////////////////////////////////////
-            sql = "select muscles from Jour where idProgramme=' "+currentProgramme.currentIdProgramme+"' and NomJ='Jour 3'";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-           if(rs.next()){
-            textFJrs3.setText(rs.getString(1)); 
-            pst.close();
-            rs.close();
-            
-            sql = "select Nom_Exo,Nombre_Repetition,Nombre_Series from Exercice where idProgramme=' "+currentProgramme.currentIdProgramme+"' and idJour='Jour 3'";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-              while (rs.next()) {
-                  currentText=FxListeExo3.getText();
-                  FxListeExo3.setText(currentText+"Exo: "+rs.getString(1)+", "+rs.getString(3)+" Series,"+" "+ rs.getString(2)+" Rep \n");
-              }
-            pst.close();
-            rs.close();
-           }
-           
-           ///////////////////////////////////////////////////////////////////////////////////////////
-            sql = "select muscles from Jour where idProgramme=' "+currentProgramme.currentIdProgramme+"' and NomJ='Jour 4'";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-           if(rs.next()){
-            textFJrs4.setText(rs.getString(1)); 
-            pst.close();
-            rs.close();
-            
-           sql = "select Nom_Exo,Nombre_Repetition,Nombre_Series from Exercice where idProgramme=' "+currentProgramme.currentIdProgramme+"' and idJour='Jour 4'";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-              while (rs.next()) {
-                  currentText=FxListeExo4.getText();
-                  FxListeExo4.setText(currentText+"Exo: "+rs.getString(1)+", "+rs.getString(3)+" Series,"+" "+ rs.getString(2)+" Rep \n");
-              }
-            pst.close();
-            rs.close();
-           }
-           ///////////////////////////////////////////////////////////////////////////////////////
-           
-            sql = "select muscles from Jour where idProgramme=' "+currentProgramme.currentIdProgramme+"' and NomJ='Jour 5'";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            
-            if(rs.next()){
-            textFJrs5.setText(rs.getString(1)); 
-            pst.close();
-            rs.close();
-            
-            sql = "select Nom_Exo,Nombre_Repetition,Nombre_Series from Exercice where idProgramme=' "+currentProgramme.currentIdProgramme+"' and idJour='Jour 5'";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-              while (rs.next()) {
-                  currentText=FxListeExo5.getText();
-                  FxListeExo5.setText(currentText+"Exo: "+rs.getString(1)+", "+rs.getString(3)+" Series,"+" "+ rs.getString(2)+" Rep \n");
-              }
-            pst.close();
-            rs.close();
-            }
-            
-            /////////////////////////////////////////////////////////////////////////////////
-            
-            
-            sql = "select muscles from Jour where idProgramme=' "+currentProgramme.currentIdProgramme+"' and NomJ='Jour 6'";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            if(rs.next()){
-            textFJrs6.setText(rs.getString(1)); 
-            pst.close();
-            rs.close();
-            
-             sql = "select Nom_Exo,Nombre_Repetition,Nombre_Series from Exercice where idProgramme=' "+currentProgramme.currentIdProgramme+"' and idJour='Jour 6'";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-              while (rs.next()) {
-                  currentText=FxListeExo6.getText();
-                  FxListeExo6.setText(currentText+"Exo: "+rs.getString(1)+", "+rs.getString(3)+" Series,"+" "+ rs.getString(2)+" Rep \n");
-              }
-            pst.close();
-            rs.close();
-            }
-            
-            sql = "select muscles from Jour where idProgramme=' "+currentProgramme.currentIdProgramme+"' and NomJ='Jour 7'";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            if(rs.next()){
-            textFJrs7.setText(rs.getString(1)); 
-            pst.close();
-            rs.close();
-            
-            sql = "select Nom_Exo,Nombre_Repetition,Nombre_Series from Exercice where idProgramme=' "+currentProgramme.currentIdProgramme+"' and idJour='Jour 7'";
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-              while (rs.next()) {
-                  currentText=FxListeExo7.getText();
-                  FxListeExo7.setText(currentText+"Exo: "+rs.getString(1)+", "+rs.getString(3)+" Series,"+" "+ rs.getString(2)+" Rep \n");
-              }
-            pst.close();
-            rs.close();
-            }
+            uploadTableProgramme();
         } catch (SQLException ex) {
-            Logger.getLogger(FXMLProgrammesController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLAfficherProgrammeController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
-    
+
+    public void ConnectionDB() {
+
+        conn = DBConnection.EtablirConnection();
+    }
+
+    private void uploadTableProgramme() throws SQLException {
+        
+            ListeProgramme Programme;
+            String currentText;
+            String sql = "select Nom_Programme from Programme where idProgramme=' " + currentProgramme.currentIdProgramme + "'";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                nomProg.setText(rs.getString(1));
+                pst.close();
+                rs.close();
+            }
+
+            sql = "select muscles from Jour where idProgramme=' " + currentProgramme.currentIdProgramme + "' and NomJ='Jour 1'";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                textFJrs1.setText(rs.getString(1));
+                pst.close();
+                rs.close();
+
+                sql = "select Nom_Exo,Nombre_Repetition,Nombre_Series from Exercice where idProgramme=' " + currentProgramme.currentIdProgramme + "' and idJour='Jour 1'";
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    currentText = FxListeExo1.getText();
+                    FxListeExo1.setText(currentText + "Exo: " + rs.getString(1) + ", " + rs.getString(3) + " Series," + " " + rs.getString(2) + " Rep \n");
+                }
+                pst.close();
+                rs.close();
+            }
+            ///////////////////////////////////////////////////////////////////////////////////////////////////  
+            sql = "select muscles from Jour where idProgramme=' " + currentProgramme.currentIdProgramme + "' and NomJ='Jour 2'";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                textFJrs2.setText(rs.getString(1));
+                pst.close();
+                rs.close();
+
+                sql = "select Nom_Exo,Nombre_Repetition,Nombre_Series from Exercice where idProgramme=' " + currentProgramme.currentIdProgramme + "' and idJour='Jour 2'";
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    currentText = FxListeExo2.getText();
+                    FxListeExo2.setText(currentText + "Exo: " + rs.getString(1) + ", " + rs.getString(3) + " Series," + " " + rs.getString(2) + " Rep \n");
+                }
+                pst.close();
+                rs.close();
+            }
+
+            ///////////////////////////////////////////////////////
+            sql = "select muscles from Jour where idProgramme=' " + currentProgramme.currentIdProgramme + "' and NomJ='Jour 3'";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                textFJrs3.setText(rs.getString(1));
+                pst.close();
+                rs.close();
+
+                sql = "select Nom_Exo,Nombre_Repetition,Nombre_Series from Exercice where idProgramme=' " + currentProgramme.currentIdProgramme + "' and idJour='Jour 3'";
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    currentText = FxListeExo3.getText();
+                    FxListeExo3.setText(currentText + "Exo: " + rs.getString(1) + ", " + rs.getString(3) + " Series," + " " + rs.getString(2) + " Rep \n");
+                }
+                pst.close();
+                rs.close();
+            }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////
+            sql = "select muscles from Jour where idProgramme=' " + currentProgramme.currentIdProgramme + "' and NomJ='Jour 4'";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                textFJrs4.setText(rs.getString(1));
+                pst.close();
+                rs.close();
+
+                sql = "select Nom_Exo,Nombre_Repetition,Nombre_Series from Exercice where idProgramme=' " + currentProgramme.currentIdProgramme + "' and idJour='Jour 4'";
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    currentText = FxListeExo4.getText();
+                    FxListeExo4.setText(currentText + "Exo: " + rs.getString(1) + ", " + rs.getString(3) + " Series," + " " + rs.getString(2) + " Rep \n");
+                }
+                pst.close();
+                rs.close();
+            }
+            ///////////////////////////////////////////////////////////////////////////////////////
+
+            sql = "select muscles from Jour where idProgramme=' " + currentProgramme.currentIdProgramme + "' and NomJ='Jour 5'";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                textFJrs5.setText(rs.getString(1));
+                pst.close();
+                rs.close();
+
+                sql = "select Nom_Exo,Nombre_Repetition,Nombre_Series from Exercice where idProgramme=' " + currentProgramme.currentIdProgramme + "' and idJour='Jour 5'";
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    currentText = FxListeExo5.getText();
+                    FxListeExo5.setText(currentText + "Exo: " + rs.getString(1) + ", " + rs.getString(3) + " Series," + " " + rs.getString(2) + " Rep \n");
+                }
+                pst.close();
+                rs.close();
+            }
+
+            /////////////////////////////////////////////////////////////////////////////////
+            sql = "select muscles from Jour where idProgramme=' " + currentProgramme.currentIdProgramme + "' and NomJ='Jour 6'";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                textFJrs6.setText(rs.getString(1));
+                pst.close();
+                rs.close();
+
+                sql = "select Nom_Exo,Nombre_Repetition,Nombre_Series from Exercice where idProgramme=' " + currentProgramme.currentIdProgramme + "' and idJour='Jour 6'";
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    currentText = FxListeExo6.getText();
+                    FxListeExo6.setText(currentText + "Exo: " + rs.getString(1) + ", " + rs.getString(3) + " Series," + " " + rs.getString(2) + " Rep \n");
+                }
+                pst.close();
+                rs.close();
+            }
+
+            sql = "select muscles from Jour where idProgramme=' " + currentProgramme.currentIdProgramme + "' and NomJ='Jour 7'";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                textFJrs7.setText(rs.getString(1));
+                pst.close();
+                rs.close();
+
+                sql = "select Nom_Exo,Nombre_Repetition,Nombre_Series from Exercice where idProgramme=' " + currentProgramme.currentIdProgramme + "' and idJour='Jour 7'";
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+                while (rs.next()) {
+                    currentText = FxListeExo7.getText();
+                    FxListeExo7.setText(currentText + "Exo: " + rs.getString(1) + ", " + rs.getString(3) + " Series," + " " + rs.getString(2) + " Rep \n");
+                }
+                pst.close();
+                rs.close();
+            }
+       
+        pst.close();
+        rs.close();
+    }
+
     @FXML
     private void Retour(MouseEvent event) {
-        
-              try {
-            
-            
+
+        try {
+
             InterfaceProgramme.rootProgramme = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
             Scene scene1 = new Scene(InterfaceProgramme.rootProgramme);
-          
+
             stageProgramme.setScene(scene1);
             stageProgramme.show();
-            
-             
-            
+
         } catch (IOException ex) {
             System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");
-         }
+        }
     }
 
     @FXML
@@ -303,6 +304,6 @@ public class FXMLAfficherProgrammeController implements Initializable {
     private void quit(ActionEvent event) {
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
-  }
-    
+    }
+
 }

@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+
 <Group xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.listeCondidat.ListCondidatController">
    <children>
       <AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="650.0" prefWidth="600.0" stylesheets="@../style.css">
@@ -71,6 +72,7 @@
                               </HBox>
                            </children>
                         </VBox>
+
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -95,6 +97,7 @@
             </SplitPane>
          </children>
       </AnchorPane>
-      <Button id="btnClose" fx:id="btnClose" layoutX="585.0" layoutY="-8.0" mnemonicParsing="false" onMouseClicked="#quit" prefHeight="27.0" prefWidth="27.0" stylesheets="@../../style/button.css" />
+
+      <Button id="btnClose" fx:id="btnClose" layoutX="585.0" layoutY="-8.0" mnemonicParsing="false" onAction="#quit" prefHeight="27.0" prefWidth="27.0" stylesheets="@../../style/button.css" />
    </children>
 </Group>
