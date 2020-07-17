@@ -243,6 +243,7 @@ public class FXMLAjouterProgrammeController implements Initializable {
 
             InterfaceProgramme.rootProgramme = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
             Scene scene1 = new Scene(InterfaceProgramme.rootProgramme);
+            scene1.setFill(new Color(0, 0, 0, 0));
 
             stageProgramme.setScene(scene1);
             stageProgramme.show();

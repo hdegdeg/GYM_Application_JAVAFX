@@ -5,7 +5,6 @@
  */
 package gymapplication.Abonnement;
 
-import gymapplication.Abonnement.list.StaticListAbonnement;
 import gymapplication.accueil.ajouteCondidat.*;
 import gymapplication.DBConnection;
 //import gymapplication.FXMLDocumentController;
@@ -48,19 +47,18 @@ import javafx.stage.Stage;
  *
  * @author gharbi abdelillah
  */
-public class FXMLSupprimerAbonnementController implements Initializable {
+public class FXMLNouvelleAbonnementController extends Thread implements Initializable  {
 
     Connection conn;
     PreparedStatement pst = null;
     ResultSet rs = null;
 
-     StaticListAbonnement Labonnement= new  StaticListAbonnement();
+     ListCondidatStatic Lcondidat= new  ListCondidatStatic();
    
     public static  Stage s3=new Stage();
     
     FXMLAbonnementController InterfaceRounouvellement= new FXMLAbonnementController();
     FXMLAccueilController InterfaceAbonnement = new FXMLAccueilController();
-    
     @FXML
     public Label lblCaption;
     @FXML
@@ -69,7 +67,7 @@ public class FXMLSupprimerAbonnementController implements Initializable {
     private TextField tfAge;
     @FXML
     private TextField tfNumTel;
-     @FXML
+    @FXML
     private TextField tfPrix;
     @FXML
     private ComboBox<String> comboAbonnement;
@@ -100,76 +98,92 @@ public class FXMLSupprimerAbonnementController implements Initializable {
     @FXML
     public Button btnModifier;
 
-  
+    /**
+     * Initializes the controller class.
+     */
     @FXML
     private void quit() {
-        Labonnement.setIdAbonnement2(null);
-        Labonnement.setDate_Debut(null);
-        Labonnement.setDate_Fin(null);
-        Labonnement.setIdCondidat(null);
-        Labonnement.setNombre_Mois(null);
-        Labonnement.setType(null);
-        Labonnement.setPrix(null);
+          Lcondidat.setCin(null);
+        Lcondidat.setNom(null);
+        Lcondidat.setAge(null);
+        Lcondidat.setTel(null);
         
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
     }
 
+    
+    
     @FXML
     private void Valider(MouseEvent event) throws IOException {
          
-    
+        Lcondidat.setCin(null);
+        Lcondidat.setNom(null);
+        Lcondidat.setAge(null);
+        Lcondidat.setTel(null);
+       
+        
         try {
             abonnement();
-            
+
              InterfaceRounouvellement.s2.close();
              InterfaceAbonnement.stageAbonnement.close();
              InterfaceAbonnement.Abonnement(event);
-            
+
+
         } catch (SQLException ex) {
-            Logger.getLogger(FXMLSupprimerAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLNouvelleAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
-        Labonnement.setIdAbonnement2(null);
-        Labonnement.setDate_Debut(null);
-        Labonnement.setDate_Fin(null);
-        Labonnement.setIdCondidat(null);
-        Labonnement.setNombre_Mois(null);
-        Labonnement.setType(null);
-        Labonnement.setPrix(null);
     }
-    
-    
-    private void initializeCondidat() 
+    private void initializeCondidat()
     {
-        System.out.println("isn't new data"+ Labonnement.getIdCondidat());
-         String sql = "select idCondidat, Nom_Prenom, Age, Tele from Condidat where idCondidat='" + Labonnement.getIdCondidat() + "'";
-      
-          
-        try {
-            pst=conn.prepareStatement(sql);
-             rs=pst.executeQuery();
-            if(rs.next())
-            {
-                
-             tfCIN.setText(rs.getString(1));
-             tfNom.setText(rs.getString(2));
-             tfAge.setText(rs.getString(3));
-             tfNumTel.setText(rs.getString(4));
-                
-            }
-            pst.close();
-            rs.close();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(FXMLSupprimerAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
+        tfCIN.setText(Lcondidat.getCin());
+        tfNom.setText(Lcondidat.getNom());
+        tfAge.setText(Lcondidat.getAge());
+        tfNumTel.setText(Lcondidat.getTel());
     }
     
     
-   
+    @FXML
+    private void AjouteCondidat(ActionEvent event) {
+        try {
+            if (isValidCondition()) {
+                if (isnewData()) {
+                    String sql = "insert into Condidat values(?,?,?,?,?)";
+                    pst = conn.prepareStatement(sql);
+                    pst.setString(1, tfCIN.getText());
+                    pst.setString(2, tfNom.getText());
+                    pst.setString(3, tfAge.getText());
+                    pst.setString(4, tfNumTel.getText());
+                    pst.setString(5, "1");
+                    pst.executeUpdate();
+                    pst.close();
+                    abonnement();
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Sucess");
+                    alert.setHeaderText("Sucess :   ");
+                    alert.setContentText("le condidat :" + "  '" + tfNom.getText() + "' " + "a été ajouté avec succès");
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur");
+                    alert.setHeaderText("Erreur :   ");
+                    alert.setContentText("cette données est deja existe!!!");
+                    alert.showAndWait();
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText("Erreur :   ");
+                alert.setContentText("Vérifiez les données du condidat!!!");
+                alert.showAndWait();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+    }
     //////////////////////  validé les condition du remplir les champ  //////////////
 
     private boolean isValidCondition() throws SQLException {
@@ -208,9 +222,9 @@ public class FXMLSupprimerAbonnementController implements Initializable {
             if (comboAbonnement.getValue().equals("abonnée")) {
                 typeAbonnement = comboType.getValue().toString();
                 if (tfNbrMois.getText().trim().isEmpty()
-                        || dateDebut.getValue().equals(null)
+                        || !dateDebut.getValue().equals(null)
                         || (comboType.getSelectionModel().isEmpty() && comboType.getPromptText().isEmpty())) {
-                    System.out.println("*******************************************************************************************************il y a un ou plusieur champs vide");
+                    System.out.println("il y a un ou plusieur champs vide");
                     isEmpty = false;
                 }
             } else {
@@ -242,63 +256,36 @@ public class FXMLSupprimerAbonnementController implements Initializable {
     }
 
     private void abonnement() throws SQLException {
-        Object testDateDebut=dateDebut.getValue();
-        if (comboAbonnement.getValue().toString().equals("non-abonnée") || comboType.getValue().toString().equals("")) {
+        
+        Object testValueType=comboType.getValue();
+        if (comboAbonnement.getValue().toString().equals("non-abonnée") || testValueType==null) {
             
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Erreur");
                     alert.setHeaderText("Erreur :   ");
-                    alert.setContentText("vous avez pas selectionner le champ abonnement ");
+                    alert.setContentText("Il y a un ou plusieurs champs vide ");
                     alert.showAndWait();
-                    
                    
             pst.close();
         } else {
-          if( testDateDebut==null)
-            {  
-                                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                                 alert.setTitle("Erreur");
-                                 alert.setHeaderText("Erreur :   ");
-                                 alert.setContentText("SVP choisissez la date de début");
-                                 alert.showAndWait();
-            
-            }else{
-              
-              if(isValidCondition() )
-                    {
-                             String sql="delete from Abonnement where idAbonnement= ?";
-
-                             typeAbonnement = comboType.getValue().toString();
-                             //String sql = "update into Abonnement values(?,?,?,?,?,?)";
-                             
-                              
-                
-                             pst=conn.prepareStatement(sql);
-                             pst.setString(1, Labonnement.getIdAbonnement2());
-                             pst.executeUpdate();
-                
-                             pst.close();
-                             rs.close();
-                                    
-                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                 alert.setTitle("Suppression");
-                                 alert.setHeaderText("Suppression :   ");
-                                 alert.setContentText("L'Abonnement numéro : " + Labonnement.getIdAbonnement2()+" du Condidat "+Labonnement.getIdCondidat()+" a été supprimer");
-                                 alert.showAndWait();
-                             
-                    }else {
-                                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                                 alert.setTitle("Erreur");
-                                 alert.setHeaderText("Erreur :   ");
-                                 alert.setContentText("Vérifiez les données du condidat!!!");
-                                 alert.showAndWait();
-                           }
-            }
-          
+            typeAbonnement = comboType.getValue().toString();
+            String sql = "insert into Abonnement values(?,?,?,?,?,?,?)";
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, null);
+            pst.setString(2, dateDebut.getValue().toString());
+            pst.setString(3, lblFinDate.getText());
+            pst.setString(4, tfNbrMois.getText());
+            pst.setString(5, typeAbonnement);
+            pst.setString(6,tfPrix.getText());
+            pst.setString(7, tfCIN.getText());
+            pst.executeUpdate();
+            pst.close();
         }
     }
 
-   
+    @FXML
+    private void AjouteProgramme(ActionEvent event) {
+    }
 
     @FXML
     private void calculeFinDate() throws ParseException {
@@ -335,6 +322,7 @@ public class FXMLSupprimerAbonnementController implements Initializable {
                 tfNbrMois.setVisible(false);
                 lblFinAbonnement.setVisible(false);
                 lblFinDate.setVisible(false);
+                tfPrix.setVisible(false);
 
             } else {
                 System.out.println(comboAbonnement.getValue().toString());
@@ -346,11 +334,14 @@ public class FXMLSupprimerAbonnementController implements Initializable {
                 tfNbrMois.setVisible(true);
                 lblFinAbonnement.setVisible(true);
                 lblFinDate.setVisible(true);
+                tfPrix.setVisible(true);
             }
         }
     }
 
-  
+    @FXML
+    private void ModifierCondidat(ActionEvent event) {
+    }
     
       @FXML
     void ListCondidat(MouseEvent event) {
@@ -367,7 +358,7 @@ public class FXMLSupprimerAbonnementController implements Initializable {
         s3.show();
         
         } catch (IOException ex) {
-            Logger.getLogger(FXMLSupprimerAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLNouvelleAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
         }
              
 
@@ -375,21 +366,23 @@ public class FXMLSupprimerAbonnementController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        comboAbonnement.getItems().addAll("abonnée", "non-abonnée");
-        comboAbonnement.setValue("abonnée");
-        
-        comboType.getItems().addAll("Gym", "Natation", "Cardio", "Zomba", "Street");
-        comboType.setValue(Labonnement.getType());
-        dateDebut.setValue(LocalDate.now());
-       tfPrix.setText(Labonnement.getPrix());
-        tfNbrMois.setText(Labonnement.getNombre_Mois());
-        lblFinDate.setText(Labonnement.getDate_Fin());
        
         
-        conn = DBConnection.EtablirConnection();
-            initializeCondidat();
+        comboAbonnement.getItems().addAll("abonnée", "non-abonnée");
+        comboType.getItems().addAll("Gym", "Natation", "Cardio", "Zomba", "Street");
+        dateDebut.setValue(LocalDate.now());
+        tfNbrMois.setText("01");
+        tfPrix.setText("00");
         
-         
+        initializeCondidat();
+        
+        try {
+            calculeFinDate();
+        } catch (ParseException ex) {
+            Logger.getLogger(FXMLNouvelleAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        conn = DBConnection.EtablirConnection();
+       // AnchorPaneAbonnement.setDisable(true);
        
         
     }

@@ -146,7 +146,7 @@ public class FXMLProgrammesController implements Initializable {
             
          Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLConfermationSuppression.fxml"));
          Scene scene1 = new Scene(root2);
-          
+         //scene1.setFill(new Color(0, 0, 0, 0));
          // GYMApplication.mainStage.hide();
         s2.setScene(scene1);
         s2.show();
@@ -164,7 +164,7 @@ public class FXMLProgrammesController implements Initializable {
            AnchorPane.setOpacity(0.4);
        Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouterProgramme.fxml"));
        InterfaceProgramme.sceneProgramme = new Scene(root);
-      // scene.setFill(new Color(0,0,0,0));
+       InterfaceProgramme.sceneProgramme.setFill(new Color(0,0,0,0));
        InterfaceProgramme.stageProgramme.setScene(InterfaceProgramme.sceneProgramme);
        //InterfaceProgramme.stageProgramme.showAndWait();
       // AnchorPane.setOpacity(1);
@@ -183,7 +183,8 @@ public class FXMLProgrammesController implements Initializable {
 
              Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAfficherProgramme.fxml"));
               InterfaceProgramme.sceneProgramme  = new Scene(root2);
-             InterfaceProgramme.stageProgramme.setScene(InterfaceProgramme.sceneProgramme);
+              InterfaceProgramme.sceneProgramme.setFill(new Color(0,0,0,0));
+              InterfaceProgramme.stageProgramme.setScene(InterfaceProgramme.sceneProgramme);
 
         } catch (IOException ex) {
             Logger.getLogger(FXMLProgrammesController.class.getName()).log(Level.SEVERE, null, ex);
@@ -201,35 +202,15 @@ public class FXMLProgrammesController implements Initializable {
 
              Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLModifierProgramme.fxml"));
               InterfaceProgramme.sceneProgramme  = new Scene(root2);
-             InterfaceProgramme.stageProgramme.setScene(InterfaceProgramme.sceneProgramme);
+              InterfaceProgramme.sceneProgramme.setFill(new Color(0,0,0,0));
+              InterfaceProgramme.stageProgramme.setScene(InterfaceProgramme.sceneProgramme);
              
                 FXMLConfermationModificationController.acess=false;
         } catch (IOException ex) {
             Logger.getLogger(FXMLProgrammesController.class.getName()).log(Level.SEVERE, null, ex);
         }
            }
-        /*
-           
-          ListeProgramme currentProgramme=(ListeProgramme)TableProg.getSelectionModel().getSelectedItem();
-           currentIdProgramme=currentProgramme.getIdprog();
-    
-           
-              try {
-    
-            
-         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLConfermationModification.fxml"));
-         Scene scene1 = new Scene(root2);
-          
-         // GYMApplication.mainStage.hide();
-        s2.setScene(scene1);
-        s2.show();
-        
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLProgrammesController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            */ 
-    
-     
+
     }
     
     

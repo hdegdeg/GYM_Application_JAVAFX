@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: whit;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.Abonnement.FXMLConfermationModificationController">
+<AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: whit;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.Abonnement.FXMLConfermationRounouvellementControlle">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="210.0" prefWidth="260.0" style="-fx-border-color: black; -fx-border-width: 5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

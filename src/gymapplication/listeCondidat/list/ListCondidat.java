@@ -17,9 +17,8 @@ public class ListCondidat {
     private SimpleStringProperty nom = new SimpleStringProperty();
     private SimpleStringProperty age = new SimpleStringProperty();
     private SimpleStringProperty tel = new SimpleStringProperty();
-    private SimpleStringProperty abonnement = new SimpleStringProperty();
-    private SimpleStringProperty debut = new SimpleStringProperty();
-    private SimpleStringProperty fin = new SimpleStringProperty();
+    private SimpleStringProperty sexe = new SimpleStringProperty();
+    private SimpleStringProperty nomProgramme = new SimpleStringProperty();
 
     public String getCin() {
         return cin.get();
@@ -53,28 +52,21 @@ public class ListCondidat {
         this.tel.set(tel);
     }
 
-    public String getAbonnement() {
-        return abonnement.get();
+    public String getNomProgramme() {
+        return nomProgramme.get();
     }
 
-    public void setAbonnement(String abonnement) {
-        this.abonnement.set(abonnement);
+    public void setNomProgramme(String nomProgramme) {
+        this.nomProgramme.set(nomProgramme);
     }
 
-    public String getDebut() {
-        return debut.get();
+    public String getSexe() {
+        return sexe.get();
     }
 
-    public void setDebut(String debut) {
-        this.debut.set(debut);
+    public void setSexe(String Sexe) {
+        this.sexe.set(Sexe);
     }
 
-    public String getFin() {
-        return fin.get();
-    }
 
-    public void setFin(String fin) {
-        this.fin.set(fin);
-    }
-    
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -9,8 +10,11 @@
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -37,17 +41,17 @@
       </MenuBar>
       <AnchorPane prefHeight="750.0" prefWidth="1200.0" styleClass="accueil" stylesheets="@../style.css" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
          <children>
-            <HBox alignment="CENTER_RIGHT" prefHeight="160.0" prefWidth="1140.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <HBox alignment="TOP_RIGHT" prefHeight="160.0" prefWidth="1140.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                <children>
-                  <JFXButton onAction="#ajouteCondidat" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" style="-fx-background-color: black;" styleClass="buttonAjouter" text=" " textFill="#ffffff00">
+                  <JFXButton onMouseClicked="#ajouteCondidat" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" styleClass="buttonAjouter" text=" " textFill="#ffffff00">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton onAction="#listCondidats" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" styleClass="buttonListCondidats" text=" " textFill="#00000016">
+                  <JFXButton onMouseClicked="#listCondidats" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" styleClass="buttonListCondidats" text=" " textFill="#00000016">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton onAction="#abonnementExpire" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" styleClass="buttonExpires" text=" " textFill="#ffffff00">
+                  <JFXButton onMouseClicked="#abonnementExpire" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" styleClass="buttonExpires" text=" " textFill="#ffffff00">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
@@ -55,7 +59,7 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton onMouseClicked="#Programme" prefHeight="160.0" prefWidth="190.0" ripplerFill="#424dee" styleClass="buttonProgrammes" text=" " textFill="WHITE">
+                  <JFXButton onMouseClicked="#Programme" prefHeight="164.0" prefWidth="190.0" ripplerFill="#424dee" styleClass="buttonProgrammes" text=" " textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -68,7 +72,35 @@
                               <Light.Distant />
                            </light>
                         </Lighting>
-                     </effect></JFXButton>
+                     </effect>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="180.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <JFXButton buttonType="RAISED" onMouseClicked="#Statistique" prefHeight="33.0" prefWidth="256.0" ripplerFill="#eb0e0e" style="-fx-text-fill: white; -fx-font-weight: bolder; -fx-background-color: #393636; -fx-background-radius: 0;" text="Statistics" textFill="#393636">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></JFXButton>
+                        <VBox prefHeight="134.0" prefWidth="181.0" style="-fx-border-style: solid; -fx-border-width: 3; -fx-border-color: #41af3a;">
+                           <children>
+                              <ImageView fitHeight="134.0" fitWidth="179.0" onMouseClicked="#Statistique" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Image/statistics.jpg" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </VBox>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
             <Label layoutX="352.0" layoutY="280.0" opacity="0.75" prefHeight="250.0" prefWidth="530.0" style="-fx-background-color: white; -fx-background-radius: 40;" />
@@ -78,7 +110,15 @@
                   <Font name="Monotype Corsiva" size="64.0" />
                </font>
             </Text>
-            <JFXButton id="logOut" layoutX="1024.0" layoutY="546.0" onAction="#deconnection" prefHeight="68.0" prefWidth="72.0" text=" " AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="44.0" />
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="700.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0">
+               <children>
+                  <JFXButton id="logOut" onAction="#deconnection" prefHeight="68.0" prefWidth="72.0" text=" ">
+                     <HBox.margin>
+                        <Insets right="50.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
          </children></AnchorPane>
    </children>
 </AnchorPane>

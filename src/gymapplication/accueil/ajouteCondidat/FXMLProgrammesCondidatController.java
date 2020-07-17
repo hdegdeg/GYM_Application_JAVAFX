@@ -11,6 +11,7 @@ import gymapplication.DBConnection;
 import gymapplication.Programme.list.ListeProgramme;
 import gymapplication.accueil.FXMLAccueilController;
 import gymapplication.accueil.*;
+import gymapplication.listeCondidat.FXMLModifierCondidatController;
 import gymapplication.listeCondidat.list.ListCondidat;
 //import gymapplication.FXMLDocumentController;
 import java.io.IOException;
@@ -29,6 +30,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -45,7 +47,7 @@ import javafx.stage.StageStyle;
  *
  * @author hdegd
  */
-public class FXMLProgrammesController implements Initializable {
+public class FXMLProgrammesCondidatController implements Initializable {
 
     
     Connection conn;
@@ -187,8 +189,11 @@ public class FXMLProgrammesController implements Initializable {
     private TableColumn<ListeProgramme, String> columnNombreJ;
     
     FXMLAccueilController InterfaceProgramme = new FXMLAccueilController();
+    FXMLModifierCondidatController ModifierProgramme=new FXMLModifierCondidatController();
     private int nombreExo;
     
+    @FXML
+    private Button btnClose;
     public static String currentIdProgramme;
     
     // Parent root;
@@ -201,7 +206,11 @@ public class FXMLProgrammesController implements Initializable {
      */
     
       
-    
+    @FXML
+    private void quit() {
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
+    }
     private void initTable() {
         columnIdProg.setCellValueFactory(new PropertyValueFactory<ListeProgramme, String>("idprog"));
         columnNomProg.setCellValueFactory(new PropertyValueFactory<ListeProgramme, String>("nomprog"));
@@ -242,111 +251,31 @@ public class FXMLProgrammesController implements Initializable {
             pst.close();
             rs.close();
         } catch (SQLException ex) {
-            Logger.getLogger(FXMLProgrammesController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLProgrammesCondidatController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
   
-    @FXML
-    void supprimer(MouseEvent event) {
-           
-       
-        try {
-    
-            
-         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLConfermationSuppression.fxml"));
-         Scene scene1 = new Scene(root2);
-          
-         // GYMApplication.mainStage.hide();
-        s2.setScene(scene1);
-        s2.show();
-        
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLProgrammesController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-             
 
-    }
+
     
         @FXML
-    void AjouterProgramme(MouseEvent event) throws IOException {
-           
-           AnchorPane.setOpacity(0.4);
-       Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouterProgramme.fxml"));
-       InterfaceProgramme.sceneProgramme = new Scene(root);
-      // scene.setFill(new Color(0,0,0,0));
-       InterfaceProgramme.stageProgramme.setScene(InterfaceProgramme.sceneProgramme);
-       //InterfaceProgramme.stageProgramme.showAndWait();
-      // AnchorPane.setOpacity(1);
-       
-
-    }
-    
-        @FXML
-    private void AfficherProgramme() {
+    private void selectionnerProgramme() {
         
            
           ListeProgramme currentProgramme=(ListeProgramme)TableProg.getSelectionModel().getSelectedItem();
            currentIdProgramme=currentProgramme.getIdprog();
-    
-         try {
-
-             Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAfficherProgramme.fxml"));
-              InterfaceProgramme.sceneProgramme  = new Scene(root2);
-             InterfaceProgramme.stageProgramme.setScene(InterfaceProgramme.sceneProgramme);
-
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLProgrammesController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+           ModifierProgramme.staticProgramme=currentProgramme.getIdprog();
+            quit();
      
     }
     
-            @FXML
-    private void ModifierProgramme() {
-                ListeProgramme currentProgramme=(ListeProgramme)TableProg.getSelectionModel().getSelectedItem();
-           currentIdProgramme=currentProgramme.getIdprog();
-           if(!currentIdProgramme.equals("") && !currentIdProgramme.equals(null))
-           {
-                 try {
 
-             Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLModifierProgramme.fxml"));
-              InterfaceProgramme.sceneProgramme  = new Scene(root2);
-             InterfaceProgramme.stageProgramme.setScene(InterfaceProgramme.sceneProgramme);
-             
-                FXMLConfermationModificationController.acess=false;
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLProgrammesController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-           }
-        /*
-           
-          ListeProgramme currentProgramme=(ListeProgramme)TableProg.getSelectionModel().getSelectedItem();
-           currentIdProgramme=currentProgramme.getIdprog();
-    
-           
-              try {
-    
-            
-         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLConfermationModification.fxml"));
-         Scene scene1 = new Scene(root2);
-          
-         // GYMApplication.mainStage.hide();
-        s2.setScene(scene1);
-        s2.show();
-        
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLProgrammesController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            */ 
-    
-     
-    }
-    
     
      @Override
     public void initialize(URL url, ResourceBundle rb) {
         stage.initModality(Modality.APPLICATION_MODAL);
        stage.initStyle(StageStyle.TRANSPARENT);
-       
+       currentIdProgramme="1";
        ConnectionDB();
         initTable() ;
        uploadTableProgramme();

@@ -2,8 +2,8 @@
     -fx-width:85px;
     -fx-height:85px;
     -fx-font:bold 13px Arial;
-    -fx-background-radius:100;
-    -fx-background-color: #2f2f2fa3;
+    -fx-background-radius:50;
+    -fx-background-color: white;
     -fx-text-fill:  #FF1493;
     -fx-font-weight: bolder;
     
@@ -14,7 +14,7 @@
     -fx-height:85px;
     -fx-font:bold 13px Arial;
     -fx-background-radius:100;
-    -fx-background-color: #2f2f2fa3;
+    -fx-background-color: white;
     -fx-text-fill:  #FF1493;
     -fx-font-weight: bolder;
      -fx-cursor: hand;
@@ -28,11 +28,12 @@
     -fx-background-radius:100;
     -fx-background-color: gray;
     -fx-effect: dropshadow( three-pass-box , rgba(255,215,0,55295) , 5, 0.0 , 0 , 1 );
-    -fx-rotate: 5;
 }
 .TextField{
-    -fx-text-fill: blue;
-    -fx-prompt-text-fill: black;
+
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill:  black;
+    -fx-prompt-text-fill: #41af3a;
 }
 .gestion{
     

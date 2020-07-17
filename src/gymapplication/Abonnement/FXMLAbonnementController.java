@@ -77,6 +77,9 @@ public class FXMLAbonnementController implements Initializable {
 
     @FXML
     private TableColumn<ListAbonnement, String> fxCondidat;
+    
+     @FXML
+    private TableColumn<ListAbonnement, String> fxPrix;
 
    //  @FXML
     // public AnchorPane AnchorPaneAbonnement;
@@ -101,14 +104,12 @@ public class FXMLAbonnementController implements Initializable {
         fxFin.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("Date_Fin"));
         fxNombre.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("Nombre_Mois"));
         fxType.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("Type"));
-                                                                            
+        fxPrix.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("Prix"));                                                                 
         fxCondidat.setCellValueFactory(new PropertyValueFactory<ListAbonnement, String>("idCondidat"));
 
     }
     
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -130,67 +131,48 @@ public class FXMLAbonnementController implements Initializable {
               Abonnement=FXCollections.observableArrayList();
         }
      
-     
-    @FXML
-    void supprimer(MouseEvent event) {
-           
-        Labonnement=(ListAbonnement)fxTbAbonnement.getSelectionModel().getSelectedItem();
-           
-           //FXMLRounouvellementController.s3.close();
-          
+     private void selectionnerAbonnement(){
+                    
+           Labonnement=(ListAbonnement)fxTbAbonnement.getSelectionModel().getSelectedItem();
+
            StaticLabonnement.setIdAbonnement2(Labonnement.getIdAbonnement2());
            StaticLabonnement.setDate_Debut(Labonnement.getDate_Debut());
            StaticLabonnement.setDate_Fin(Labonnement.getDate_Fin());
            StaticLabonnement.setNombre_Mois(Labonnement.getNombre_Mois());
            StaticLabonnement.setType(Labonnement.getType());
+            StaticLabonnement.setPrix(Labonnement.getPrix());
            StaticLabonnement.setIdCondidat(Labonnement.getIdCondidat());
+     }
+     
+    @FXML
+    void supprimer(MouseEvent event) {
            
+     selectionnerAbonnement();
            
         try {
-    
-         //   AnchorPane.setOpacity(0.4);
-          //  AnchorPane.setDisable(true);
-            
-            Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLSupprimerAbonnement.fxml"));
+
+            Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLConfermationSuppression.fxml"));
              Scene scene1 = new Scene(root2);
-          //  scene1.setFill(new Color(0,0,0,0));
 
             s2.setScene(scene1);
             s2.show();
-        
-        
-          //  AnchorPane.setOpacity(1);
-          //  AnchorPane.setDisable(false);
-        
-        
-             
 
     }   catch (IOException ex) {
             Logger.getLogger(FXMLAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-     @FXML
+    @FXML
     void Rounouvellement(MouseEvent event) {
-           
-       
+
         try {
-    
-            
-       //      AnchorPaneAbonnement.setOpacity(0.4);
-            // AnchorPane.setDisable(true);
-            
-             Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLRounouvellement.fxml"));
+
+             Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLConfermationRounouvellement.fxml"));
              Scene scene1 = new Scene(root2);
-            // scene1.setFill(new Color(0,0,0,0));
 
              s2.setScene(scene1);
              s2.show();
-        
-        
-           //  AnchorPaneAbonnement.setOpacity(1);
-             //AnchorPane.setDisable(false);
-        
+
         } catch (IOException ex) {
             Logger.getLogger(FXMLAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -200,7 +182,7 @@ public class FXMLAbonnementController implements Initializable {
      public void recupererAbonnement() throws SQLException
     {
         Abonnement.clear();
-        String sql1 ="select Abonnement.idAbonnement,Abonnement.Date_Debut,Date_Fin,Nombre_Mois,Type ,Abonnement.idCondidat , Condidat.Nom_Prenom  From Abonnement INNER JOIN Condidat ON Abonnement.idCondidat = Condidat.idCondidat ";
+        String sql1 ="select Abonnement.idAbonnement,Abonnement.Date_Debut,Date_Fin,Nombre_Mois,Type,Prix ,Abonnement.idCondidat , Condidat.Nom_Prenom  From Abonnement INNER JOIN Condidat ON Abonnement.idCondidat = Condidat.idCondidat ";
 
             pst = con.prepareStatement(sql1);
             rs = pst.executeQuery();
@@ -214,16 +196,14 @@ public class FXMLAbonnementController implements Initializable {
                 M.setDate_Fin(rs.getString(3));
                 M.setNombre_Mois(rs.getString(4));
                 M.setType(rs.getString(5));
-                M.setIdCondidat(rs.getString(6));
-                M.setNamebonnée(rs.getString(7));
+                M.setPrix(rs.getString(6));
+                M.setIdCondidat(rs.getString(7));
+                M.setNamebonnée(rs.getString(8));
                 
                 Abonnement.add(M);
                 fxTbAbonnement.setItems(Abonnement);
                
-                
-                System.out.println("gymapplication...recupererAbonnement()"+M.getIdAbonnement2()+M.getIdCondidat());
-                
-                
+  
             }
              pst.close();
            rs.close();
@@ -235,36 +215,16 @@ public class FXMLAbonnementController implements Initializable {
      
       @FXML
     private void modifierCondidat(MouseEvent event) {
-        
-           
-           Labonnement=(ListAbonnement)fxTbAbonnement.getSelectionModel().getSelectedItem();
-           
-           //FXMLRounouvellementController.s3.close();
-          
-           StaticLabonnement.setIdAbonnement2(Labonnement.getIdAbonnement2());
-           StaticLabonnement.setDate_Debut(Labonnement.getDate_Debut());
-           StaticLabonnement.setDate_Fin(Labonnement.getDate_Fin());
-           StaticLabonnement.setNombre_Mois(Labonnement.getNombre_Mois());
-           StaticLabonnement.setType(Labonnement.getType());
-           StaticLabonnement.setIdCondidat(Labonnement.getIdCondidat());
+                selectionnerAbonnement();
          
          try {
-    
-            
-            // AnchorPane.setOpacity(0.4);
-            // AnchorPane.setDisable(true);
-            
-             Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLModifierAbonnement.fxml"));
+
+             Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLConfermationModification.fxml"));
              Scene scene1 = new Scene(root2);
-             //scene1.setFill(new Color(0,0,0,0));
 
              s2.setScene(scene1);
              s2.show();
-        
-        
-          //   AnchorPane.setOpacity(1);
-             
-        
+
         } catch (IOException ex) {
             Logger.getLogger(FXMLAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
         }

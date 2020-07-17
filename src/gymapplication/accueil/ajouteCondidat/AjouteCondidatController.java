@@ -7,7 +7,9 @@ package gymapplication.accueil.ajouteCondidat;
 
 import gymapplication.DBConnection;
 import gymapplication.accueil.FXMLAccueilController;
+import static gymapplication.accueil.FXMLAccueilController.stageCondidat;
 import static gymapplication.accueil.FXMLAccueilController.stageProgramme;
+import gymapplication.listeCondidat.ListCondidatController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -37,6 +39,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -57,7 +60,9 @@ public class AjouteCondidatController implements Initializable {
     @FXML
     private TextField tfAge;
     @FXML
-    private TextField tfNumTel;
+    private TextField tfNumTel; 
+    @FXML
+    private ComboBox<String> comboSexe;
     @FXML
     private ComboBox<String> comboAbonnement;
     @FXML
@@ -66,6 +71,8 @@ public class AjouteCondidatController implements Initializable {
     private Label lblFinDate;
     @FXML
     private TextField tfNbrMois;
+    @FXML
+    private TextField tfPrix;
     @FXML
     private Button btnClose;
     @FXML
@@ -90,6 +97,10 @@ public class AjouteCondidatController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    ListCondidatController InterfaceListCondidat=new ListCondidatController();
+    FXMLProgrammesCondidatController ProgrammeSelectionner = new FXMLProgrammesCondidatController();
+    
+    FXMLAccueilController Accueil = new FXMLAccueilController();
     @FXML
     private void quit() {
         Stage stage = (Stage) btnClose.getScene().getWindow();
@@ -103,40 +114,58 @@ public class AjouteCondidatController implements Initializable {
         try {
 
             
-            Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/accueil/ajouteCondidat/FXMLProgrammes.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/accueil/ajouteCondidat/FXMLProgrammesCondidat.fxml"));
             Scene scene1 = new Scene(root);
-          
+            scene1.setFill(new Color(0, 0, 0, 0));
             stageProgramme.setScene(scene1);
             stageProgramme.show();
+            //stage.showAndWait();
             
-             
         } catch (IOException ex) {
             Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
     
+    private void testExistProgramme(){
+        if( ProgrammeSelectionner.currentIdProgramme==null || ProgrammeSelectionner.currentIdProgramme.equals(""))
+        {ProgrammeSelectionner.currentIdProgramme="1";}
+    }
+    
+    private void actualiser() throws IOException{
+        quit();
+        // InterfaceListCondidat.stage.close();
+            
+    }
     
     @FXML
-    private void AjouteCondidat(ActionEvent event) {
+    private void AjouteCondidat(ActionEvent event) throws IOException {
         try {
             if (isValidCondition()) {
                 if (isnewData()) {
-                    String sql = "insert into Condidat values(?,?,?,?,?)";
+                    testExistProgramme();
+                    
+                    String sql = "insert into Condidat values(?,?,?,?,?,?)";
                     pst = conn.prepareStatement(sql);
                     pst.setString(1, tfCIN.getText());
                     pst.setString(2, tfNom.getText());
                     pst.setString(3, tfAge.getText());
                     pst.setString(4, tfNumTel.getText());
-                    pst.setString(5, "1");
+                    pst.setString(5, comboSexe.getValue().toString());
+                    pst.setString(6, ProgrammeSelectionner.currentIdProgramme);
                     pst.executeUpdate();
                     pst.close();
                     abonnement();
+                    ProgrammeSelectionner.currentIdProgramme="1";
+                    
+                    
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Sucess");
                     alert.setHeaderText("Sucess :   ");
                     alert.setContentText("le condidat :" + "  '" + tfNom.getText() + "' " + "a été ajouté avec succès");
                     alert.showAndWait();
+
+                    actualiser();
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Erreur");
@@ -186,6 +215,8 @@ public class AjouteCondidatController implements Initializable {
                 || tfNom.getText().trim().isEmpty()
                 || tfAge.getText().trim().isEmpty()
                 || tfNumTel.getText().trim().isEmpty()
+                ||  tfPrix.getText().trim().isEmpty()
+                ||(comboSexe.getSelectionModel().isEmpty() && comboSexe.getPromptText().isEmpty())
                 || (comboAbonnement.getSelectionModel().isEmpty() && comboAbonnement.getPromptText().isEmpty())) {
 
             System.out.println("il y a un ou plusieur champs vide");
@@ -229,25 +260,17 @@ public class AjouteCondidatController implements Initializable {
 
     private void abonnement() throws SQLException {
         if (comboAbonnement.getValue().toString().equals("non-abonnée")) {
-            String sql = "insert into Abonnement values(?,?,?,?,?,?)";
-            pst = conn.prepareStatement(sql);
-            pst.setString(1, null);
-            pst.setString(2, LocalDate.now().toString());
-            pst.setString(3, null);
-            pst.setString(4, "00");
-            pst.setString(5, typeAbonnement);
-            pst.setString(6, tfCIN.getText());
-            pst.executeUpdate();
-            pst.close();
+
         } else {
-            String sql = "insert into Abonnement values(?,?,?,?,?,?)";
+            String sql = "insert into Abonnement values(?,?,?,?,?,?,?)";
             pst = conn.prepareStatement(sql);
             pst.setString(1, null);
             pst.setString(2, dateDebut.getValue().toString());
             pst.setString(3, lblFinDate.getText());
             pst.setString(4, tfNbrMois.getText());
             pst.setString(5, typeAbonnement);
-            pst.setString(6, tfCIN.getText());
+            pst.setString(6, tfPrix.getText());
+            pst.setString(7, tfCIN.getText());
             pst.executeUpdate();
             pst.close();
         }
@@ -292,6 +315,7 @@ public class AjouteCondidatController implements Initializable {
                 tfNbrMois.setVisible(false);
                 lblFinAbonnement.setVisible(false);
                 lblFinDate.setVisible(false);
+                tfPrix.setVisible(false);
 
             } else {
                 System.out.println(comboAbonnement.getValue().toString());
@@ -303,6 +327,7 @@ public class AjouteCondidatController implements Initializable {
                 tfNbrMois.setVisible(true);
                 lblFinAbonnement.setVisible(true);
                 lblFinDate.setVisible(true);
+                tfPrix.setVisible(true);
             }
         }
     }
@@ -311,9 +336,11 @@ public class AjouteCondidatController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         comboAbonnement.getItems().addAll("abonnée", "non-abonnée");
-        comboType.getItems().addAll("Gym", "Natation", "Cardio", "Zomba", "Street");
+        comboType.getItems().addAll("Gym", "Natation", "Cardio", "Zomba", "Street","Crossfit");
+        comboSexe.getItems().addAll("Homme", "Femme");
         dateDebut.setValue(LocalDate.now());
         tfNbrMois.setText("01");
+        tfPrix.setText("00");
         try {
             calculeFinDate();
         } catch (ParseException ex) {

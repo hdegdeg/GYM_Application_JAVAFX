@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
@@ -14,14 +15,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <Group xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.listeCondidat.ListCondidatController">
    <children>
-      <AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="650.0" prefWidth="600.0" stylesheets="@../style.css">
+      <AnchorPane id="AnchorPane" fx:id="AnchorPane" layoutX="20.0" layoutY="20.0" prefHeight="650.0" prefWidth="602.0" stylesheets="@../style.css">
          <children>
             <SplitPane dividerPositions="0.24670433145009416" orientation="VERTICAL" prefHeight="543.0" prefWidth="715.0" styleClass="CoverCondidats" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-              <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="268.0" prefWidth="713.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -32,7 +32,7 @@
                               </Label>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#ajouteCondidat" prefHeight="38.0" prefWidth="176.0" styleClass="buttonCondidat" text="Ajouter condidat">
+                                    <Button mnemonicParsing="false" onMouseClicked="#ajouteCondidat" prefHeight="38.0" prefWidth="176.0" styleClass="buttonCondidat" text="Ajouter condidat">
                                        <graphic>
                                           <ImageView fitHeight="25.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -44,7 +44,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
-                                    <Button mnemonicParsing="false" onAction="#modifierCondidat" prefHeight="38.0" prefWidth="176.0" styleClass="buttonCondidat" text="Modifier condidat">
+                                    <Button mnemonicParsing="false" onMouseClicked="#modifierCondidat" prefHeight="38.0" prefWidth="176.0" styleClass="buttonCondidat" text="Modifier condidat">
                                        <graphic>
                                           <ImageView fitHeight="28.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -56,7 +56,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
-                                    <Button mnemonicParsing="false" onAction="#supprimerCondidat" prefHeight="38.0" prefWidth="176.0" styleClass="buttonCondidat" text="Supprimer condidat">
+                                    <Button mnemonicParsing="false" onMouseClicked="#supprimerCondidat" prefHeight="38.0" prefWidth="176.0" styleClass="buttonCondidat" text="Supprimer condidat">
                                        <graphic>
                                           <ImageView fitHeight="24.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -72,32 +72,40 @@
                               </HBox>
                            </children>
                         </VBox>
-
                      </children>
                   </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
                         <TableView fx:id="tableCondidat" layoutY="-124.0" prefHeight="397.0" prefWidth="703.0" style="-fx-background-color: #2f2f2fa3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <columns>
-                            <TableColumn fx:id="columnCIN" prefWidth="75.0" text="CIN" />
-                            <TableColumn fx:id="columnNom" prefWidth="75.0" text="Nom &amp; Prénom" />
+                           <columns>
+                              <TableColumn fx:id="columnCIN" prefWidth="75.0" text="CIN" />
+                              <TableColumn fx:id="columnNom" prefWidth="75.0" text="Nom &amp; Prénom" />
+                              <TableColumn fx:id="columnSexe" prefWidth="75.0" text="Sexe" />
                               <TableColumn fx:id="columnAge" prefWidth="75.0" text="Age" />
                               <TableColumn fx:id="columnTel" prefWidth="75.0" text="Telephone" />
-                              <TableColumn fx:id="columnAbonnement" prefWidth="75.0" text="Abonnement" />
-                              <TableColumn fx:id="columnDebut" prefWidth="75.0" text="Debut" />
-                              <TableColumn fx:id="columnFin" prefWidth="75.0" text="Fin" />
-                          </columns>
+                              <TableColumn fx:id="columnProgramme" prefWidth="75.0" text="Programme" />
+                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                         </TableView>
                      </children>
                   </AnchorPane>
-              </items>
+               </items>
             </SplitPane>
          </children>
       </AnchorPane>
-
-      <Button id="btnClose" fx:id="btnClose" layoutX="585.0" layoutY="-8.0" mnemonicParsing="false" onAction="#quit" prefHeight="27.0" prefWidth="27.0" stylesheets="@../../style/button.css" />
+      <HBox alignment="TOP_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="41.0" prefWidth="622.0">
+         <padding>
+            <Insets top="-5.0" />
+         </padding>
+         <children>
+            <Button id="btnClose" fx:id="btnClose" mnemonicParsing="false" onMouseClicked="#quit" prefHeight="38.0" prefWidth="38.0" stylesheets="@../../style/button.css">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </Group>

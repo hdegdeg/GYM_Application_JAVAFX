@@ -97,7 +97,8 @@ public class FXMLModifierAbonnementController implements Initializable {
     private Label lblDateDebut;
     @FXML
     public Button btnModifier;
-
+    @FXML
+    private TextField tfPrix;
   
     @FXML
     private void quit() {
@@ -107,6 +108,7 @@ public class FXMLModifierAbonnementController implements Initializable {
         Labonnement.setIdCondidat(null);
         Labonnement.setNombre_Mois(null);
         Labonnement.setType(null);
+        Labonnement.setPrix(null);
         
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
@@ -132,6 +134,7 @@ public class FXMLModifierAbonnementController implements Initializable {
         Labonnement.setIdCondidat(null);
         Labonnement.setNombre_Mois(null);
         Labonnement.setType(null);
+        Labonnement.setPrix(null);
     }
     
     
@@ -259,7 +262,7 @@ public class FXMLModifierAbonnementController implements Initializable {
               
               if(isValidCondition() )
                     {
-                             String sql="update Abonnement  set  Date_Debut=?, Date_Fin=? ,Nombre_Mois=? ,Type=?  where idAbonnement= '"+ Labonnement.getIdAbonnement2()+"'";
+                             String sql="update Abonnement  set  Date_Debut=?, Date_Fin=? ,Nombre_Mois=? ,Type=?,Prix=?  where idAbonnement= '"+ Labonnement.getIdAbonnement2()+"'";
 
                              typeAbonnement = comboType.getValue().toString();
                              //String sql = "update into Abonnement values(?,?,?,?,?,?)";
@@ -269,7 +272,8 @@ public class FXMLModifierAbonnementController implements Initializable {
                              pst.setString(2, lblFinDate.getText());
                              pst.setString(3, tfNbrMois.getText());
                              pst.setString(4, typeAbonnement);
-                         // pst.setString(6, tfCIN.getText());
+                             pst.setString(5, tfPrix.getText());
+                             
                              pst.executeUpdate();
                              pst.close();
                              
@@ -327,6 +331,7 @@ public class FXMLModifierAbonnementController implements Initializable {
                 tfNbrMois.setVisible(false);
                 lblFinAbonnement.setVisible(false);
                 lblFinDate.setVisible(false);
+                tfPrix.setVisible(false);
 
             } else {
                 System.out.println(comboAbonnement.getValue().toString());
@@ -338,6 +343,7 @@ public class FXMLModifierAbonnementController implements Initializable {
                 tfNbrMois.setVisible(true);
                 lblFinAbonnement.setVisible(true);
                 lblFinDate.setVisible(true);
+                tfPrix.setVisible(true);
             }
         }
     }
@@ -372,6 +378,7 @@ public class FXMLModifierAbonnementController implements Initializable {
         
         comboType.getItems().addAll("Gym", "Natation", "Cardio", "Zomba", "Street");
         comboType.setValue(Labonnement.getType());
+        tfPrix.setText(Labonnement.getPrix());
         
         tfNbrMois.setText(Labonnement.getNombre_Mois());
         lblFinDate.setText(Labonnement.getDate_Fin());

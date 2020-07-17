@@ -20,6 +20,7 @@ public class ListAbonnement {
     private SimpleStringProperty Date_Fin = new SimpleStringProperty();
     private SimpleStringProperty Nombre_Mois = new SimpleStringProperty();
     private SimpleStringProperty Type = new SimpleStringProperty();
+    private SimpleStringProperty Prix = new SimpleStringProperty();
     private SimpleStringProperty idCondidat = new SimpleStringProperty();
     private SimpleStringProperty Namebonnée = new SimpleStringProperty();
 
@@ -69,6 +70,14 @@ public class ListAbonnement {
 
     public void setType(String Type) {
         this.Type.set(Type);
+    }
+    
+     public String getPrix() {
+        return Prix.get();
+    }
+
+    public void setPrix(String Prix) {
+        this.Prix.set(Prix);
     }
 
     public String getIdCondidat() {

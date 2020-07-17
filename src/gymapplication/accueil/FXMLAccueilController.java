@@ -48,15 +48,18 @@ public class FXMLAccueilController implements Initializable {
 
     // Parent root;
     public static Stage stageProgramme = new Stage();
+    public static Stage stageCondidat = new Stage();
     public static Stage stageExpiration = new Stage();
     public static Stage stageAbonnement = new Stage();
-
+    public static Stage stageStatistique = new Stage();
     public Scene sceneProgramme;
     @FXML
-    public AnchorPane AnchorPane;
+    public   AnchorPane AnchorPane;
     private Stage stage = new Stage();
-    private Stage stage2 = new Stage();
+ 
     public Parent rootProgramme;
+    public Parent rootCondidat;
+    public Parent rootAbonnement;
     private Stage stage3 = new Stage();
 
     /**
@@ -64,7 +67,7 @@ public class FXMLAccueilController implements Initializable {
      */
     @FXML
     void Programme(MouseEvent event) throws IOException {
-AnchorPane.setOpacity(0.4);
+        AnchorPane.setOpacity(0.4);
         AnchorPane.setDisable(true);
 
         Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
@@ -98,13 +101,13 @@ AnchorPane.setOpacity(0.4);
     }
 
     @FXML
-    private void ajouteCondidat(ActionEvent event) throws IOException {
+    private void ajouteCondidat() throws IOException {
 
         AnchorPane.setOpacity(0.4);
         AnchorPane.setDisable(true);
 
-        Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/accueil/ajouteCondidat/ajouteCondidat.fxml"));
-        Scene scene = new Scene(root);
+        rootAbonnement = FXMLLoader.load(getClass().getResource("/gymapplication/accueil/ajouteCondidat/ajouteCondidat.fxml"));
+        Scene scene = new Scene(rootAbonnement);
 
         scene.setFill(new Color(0, 0, 0, 0));
         stage.setScene(scene);
@@ -115,23 +118,25 @@ AnchorPane.setOpacity(0.4);
     }
 
     @FXML
-    private void listCondidats(ActionEvent event) throws IOException {
+    public void listCondidats() throws IOException {
+
+       
         AnchorPane.setOpacity(0.4);
         AnchorPane.setDisable(true);
 
-        Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/listeCondidat/listCondidat.fxml"));
-        Scene scene = new Scene(root);
+         rootCondidat = FXMLLoader.load(getClass().getResource("/gymapplication/listeCondidat/listCondidat.fxml"));
+        Scene scene = new Scene(rootCondidat);
 
         scene.setFill(new Color(0, 0, 0, 0));
-        stage2.setScene(scene);
-        stage2.showAndWait();
+        stageCondidat.setScene(scene);
+        stageCondidat.showAndWait();
 
         AnchorPane.setDisable(false);
         AnchorPane.setOpacity(1);
     }
 
     @FXML
-    private void abonnementExpire(ActionEvent event) throws IOException {
+    public void abonnementExpire(MouseEvent event) throws IOException {
         AnchorPane.setOpacity(0.4);
         AnchorPane.setDisable(true);
 
@@ -139,8 +144,8 @@ AnchorPane.setOpacity(0.4);
         Scene scene = new Scene(root);
 
         scene.setFill(new Color(0, 0, 0, 0));
-        stage2.setScene(scene);
-        stage2.showAndWait();
+        stageExpiration.setScene(scene);
+        stageExpiration.show();
 
         AnchorPane.setDisable(false);
         AnchorPane.setOpacity(1);
@@ -151,6 +156,23 @@ AnchorPane.setOpacity(0.4);
     private void renouvellement(ActionEvent event) {
     }
 
+    
+       @FXML
+    private void Statistique(MouseEvent event) throws IOException {
+        AnchorPane.setOpacity(0.4);
+        AnchorPane.setDisable(true);
+
+        Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/Statistique/FXMLStatistique.fxml"));
+        Scene scene = new Scene(root);
+
+        scene.setFill(new Color(0, 0, 0, 0));
+        stageStatistique.setScene(scene);
+        stageStatistique.show();
+
+        AnchorPane.setDisable(false);
+        AnchorPane.setOpacity(1);
+
+    }
     @FXML
     private void deconnection() {
         loginController.accueilStage.close();
@@ -190,12 +212,14 @@ AnchorPane.setOpacity(0.4);
         stage3.initStyle(StageStyle.TRANSPARENT);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.TRANSPARENT);
-        stage2.initModality(Modality.APPLICATION_MODAL);
-        stage2.initStyle(StageStyle.TRANSPARENT);
+        stageExpiration.initModality(Modality.APPLICATION_MODAL);
+        stageExpiration.initStyle(StageStyle.TRANSPARENT);
         stageAbonnement.initModality(Modality.APPLICATION_MODAL);
         stageAbonnement.initStyle(StageStyle.TRANSPARENT);
         stageProgramme.initModality(Modality.APPLICATION_MODAL);
         stageProgramme.initStyle(StageStyle.TRANSPARENT);
+        stageCondidat.initModality(Modality.APPLICATION_MODAL);
+        stageCondidat.initStyle(StageStyle.TRANSPARENT);
         conn = DBConnection.EtablirConnection();
         try {
             alertDate();

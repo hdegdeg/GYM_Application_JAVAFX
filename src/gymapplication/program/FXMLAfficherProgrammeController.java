@@ -31,6 +31,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -287,6 +288,7 @@ public class FXMLAfficherProgrammeController implements Initializable {
 
             InterfaceProgramme.rootProgramme = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
             Scene scene1 = new Scene(InterfaceProgramme.rootProgramme);
+            scene1.setFill(new Color(0, 0, 0, 0));
 
             stageProgramme.setScene(scene1);
             stageProgramme.show();

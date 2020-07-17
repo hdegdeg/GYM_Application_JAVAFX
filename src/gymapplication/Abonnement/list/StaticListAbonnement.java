@@ -20,6 +20,7 @@ public class StaticListAbonnement {
     private static SimpleStringProperty Date_Fin = new SimpleStringProperty();
     private static SimpleStringProperty Nombre_Mois = new SimpleStringProperty();
     private static SimpleStringProperty Type = new SimpleStringProperty();
+    private static SimpleStringProperty Prix = new SimpleStringProperty();
     private static SimpleStringProperty idCondidat = new SimpleStringProperty();
 
     public String getIdAbonnement2() {
@@ -62,6 +63,14 @@ public class StaticListAbonnement {
         this.Type.set(Type);
     }
 
+    
+    public String getPrix() {
+        return Prix.get();
+    }
+
+    public void setPrix(String Prix) {
+        this.Prix.set(Prix);
+    }
     public String getIdCondidat() {
         return idCondidat.get();
     }

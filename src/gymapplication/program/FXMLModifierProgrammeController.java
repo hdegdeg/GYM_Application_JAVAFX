@@ -287,12 +287,7 @@ public class FXMLModifierProgrammeController implements Initializable {
 
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
-            //  idProg=rs.getString(1);
 
-            /* sql = "delete  from Exercice  where idProgramme='"+idProg+"'";
-           pst = conn.prepareStatement(sql);
-           rs = pst.executeQuery();
-             */
             for (ListeJours var : listeJours) {
 
                 sql = "delete  from Jour  where idProgramme='" + currentProgramme.currentIdProgramme + "' and NomJ='" + var.getNomJ() + "'";
@@ -378,6 +373,7 @@ public class FXMLModifierProgrammeController implements Initializable {
 
             InterfaceProgramme.rootProgramme = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
             Scene scene1 = new Scene(InterfaceProgramme.rootProgramme);
+            scene1.setFill(new Color(0, 0, 0, 0));
 
             stageProgramme.setScene(scene1);
             stageProgramme.show();

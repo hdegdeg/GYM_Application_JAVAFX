@@ -7,10 +7,12 @@ package gymapplication.listeCondidat;
 
 import gymapplication.DBConnection;
 import gymapplication.accueil.FXMLAccueilController;
+import static gymapplication.accueil.FXMLAccueilController.stageCondidat;
 import static gymapplication.accueil.FXMLAccueilController.stageProgramme;
 //import gymapplication.FXMLDocumentController;
 import gymapplication.accueil.ajouteCondidat.AjouteCondidatController;
 import gymapplication.listeCondidat.list.ListCondidat;
+import gymapplication.listeCondidat.list.ListCondidatStatic;
 import static gymapplication.program.FXMLProgrammesController.s2;
 import java.io.IOException;
 import java.net.URL;
@@ -50,7 +52,8 @@ public class ListCondidatController implements Initializable {
     Connection conn;
     PreparedStatement pst = null;
     ResultSet rs = null;
-
+   public static Stage stagesuppression=new Stage();
+   public static Stage stageModification=new Stage();
     private ObservableList<ListCondidat> listC;
 
     @FXML
@@ -64,43 +67,55 @@ public class ListCondidatController implements Initializable {
     @FXML
     private TableColumn<ListCondidat, String> columnTel;
     @FXML
-    private TableColumn<ListCondidat, String> columnAbonnement;
+    private TableColumn<ListCondidat, String> columnSexe;
     @FXML
-    private TableColumn<ListCondidat, String> columnDebut;
-    @FXML
-    private TableColumn<ListCondidat, String> columnFin;
+    private TableColumn<ListCondidat, String> columnProgramme;
+
+    ListCondidat CurrentCondidat= new ListCondidat();
+    ListCondidatStatic CurrentCondidatStatic = new ListCondidatStatic();
     @FXML
     private AnchorPane AnchorPane;
 
-    private Stage stage = new Stage();
+    public static Stage stageAjouter = new Stage();
 
     @FXML
     private Button btnClose;
 
+    //public  Stage stage ;
      @FXML
-    private void quit() {
-        Stage stage = (Stage) btnClose.getScene().getWindow();
-        stage.close();
+    public void quit() {
+        stageAjouter.close();
+        stageModification.close();
+      Stage stage = (Stage) btnClose.getScene().getWindow();
+       stage.close();
+       
     }
-    /**
-     * Initializes the controller class.
-     */
+
     private void initTable() {
         columnCIN.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("cin"));
         columnNom.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("nom"));
         columnAge.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("age"));
         columnTel.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("tel"));
-        columnAbonnement.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("abonnement"));
-        columnDebut.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("debut"));
-        columnFin.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("fin"));
+        columnSexe.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("sexe"));
+        columnProgramme.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("nomProgramme"));
+
 
     }
 
     
- 
+    private void selectCondidat(){
+          CurrentCondidat=(ListCondidat)tableCondidat.getSelectionModel().getSelectedItem();
+
+           CurrentCondidatStatic.setCin(CurrentCondidat.getCin());
+           CurrentCondidatStatic.setNom(CurrentCondidat.getNom());
+           CurrentCondidatStatic.setSexe(CurrentCondidat.getSexe());
+           CurrentCondidatStatic.setAge(CurrentCondidat.getAge());
+           CurrentCondidatStatic.setTel(CurrentCondidat.getTel());
+           CurrentCondidatStatic.setNomProgramme(CurrentCondidat.getNomProgramme());
+    }
     
-    private void uploadTableCondidat() throws SQLException {
-        String sql = "select Condidat.idCondidat,Nom_Prenom,Age,Tele,Type,Date_Debut,Date_Fin from Condidat INNER JOIN Abonnement ON Condidat.idCondidat = Abonnement.idCondidat order by Nom_Prenom asc";
+       private void uploadTableCondidatWithOutProgram() throws SQLException {
+        String sql = "select Condidat.idCondidat,Nom_Prenom,Age,Tele,Sexe from Condidat where idProg= 1" ;
       
         tableCondidat.getItems().clear();
         pst = conn.prepareStatement(sql);
@@ -111,9 +126,30 @@ public class ListCondidatController implements Initializable {
             condidat.setNom(rs.getString(2));
             condidat.setAge(rs.getString(3));
             condidat.setTel(rs.getString(4));
-            condidat.setAbonnement(rs.getString(5));
-            condidat.setDebut(rs.getString(6));
-            condidat.setFin(rs.getString(7));
+            condidat.setSexe(rs.getString(5));
+            condidat.setNomProgramme("Aucun Programme");
+            listC.add(condidat);
+            tableCondidat.setItems(listC);
+        }
+
+        pst.close();
+        rs.close();
+       }
+    
+    private void uploadTableCondidatWithProgram() throws SQLException {
+        String sql = "select Condidat.idCondidat,Nom_Prenom,Age,Tele,Sexe,Programme.Nom_Programme from Condidat,Programme where Condidat.idProg= Programme.idProgramme" ;
+      
+       // tableCondidat.getItems().clear();
+        pst = conn.prepareStatement(sql);
+        rs = pst.executeQuery();
+        while (rs.next()) {
+            ListCondidat condidat = new ListCondidat();
+            condidat.setCin(rs.getString(1));
+            condidat.setNom(rs.getString(2));
+            condidat.setAge(rs.getString(3));
+            condidat.setTel(rs.getString(4));
+            condidat.setSexe(rs.getString(5));
+            condidat.setNomProgramme(rs.getString(6));
             listC.add(condidat);
             tableCondidat.setItems(listC);
         }
@@ -123,36 +159,17 @@ public class ListCondidatController implements Initializable {
     }
 
     @FXML
-    private void ajouteCondidat(ActionEvent event) throws IOException {
-        AjouteCondidatController condidat;
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/gymapplication/accueil/ajouteCondidat/ajouteCondidat.fxml"));
-        AnchorPane.setOpacity(0.4);
-        Parent root = fxmlLoader.load();
-        condidat = fxmlLoader.getController();
-        condidat.lblCaption.setText("Modifier un Condidat");
-      //  condidat.btnModifier.setVisible(true);
-        Scene scene = new Scene(root);
-        scene.setFill(new Color(0, 0, 0, 0));
-        stage.setScene(scene);
-
-        stage.showAndWait();
-        AnchorPane.setOpacity(1);
-    }
-
-    @FXML
-    private void modifierCondidat() {
-        
-                
+    private void ajouteCondidat() throws IOException {
         try {
-    
-            
-         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/listeCondidat/FXMLModifierCondidat.fxml"));
+         
+
+        
+         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/listeCondidat/FXMLAjouteCondidat.fxml"));
          Scene scene1 = new Scene(root2);
-          
+        scene1.setFill(new Color(0, 0, 0, 0));
          // GYMApplication.mainStage.hide();
-        s2.setScene(scene1);
-        s2.show();
+        stageAjouter.setScene(scene1);
+        stageAjouter.show();
         
         } catch (IOException ex) {
             Logger.getLogger(ListCondidatController.class.getName()).log(Level.SEVERE, null, ex);
@@ -160,18 +177,35 @@ public class ListCondidatController implements Initializable {
     }
 
     @FXML
-    private void supprimerCondidat(ActionEvent event) {
-        
-          
+    private void modifierCondidat() {    
         try {
-    
+        
+
+          selectCondidat();
+          
+         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/listeCondidat/FXMLModifierCondidat.fxml"));
+         Scene scene1 = new Scene(root2);
+         scene1.setFill(new Color(0, 0, 0, 0));
+         // GYMApplication.mainStage.hide();
+        stageModification.setScene(scene1);
+        stageModification.show();
+        
+        } catch (IOException ex) {
+            Logger.getLogger(ListCondidatController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void supprimerCondidat() {
+        try {
+          selectCondidat();
             
-         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLConfermationSuppression.fxml"));
+         Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/listeCondidat/FXMLConfermationSuppression.fxml"));
          Scene scene1 = new Scene(root2);
           
          // GYMApplication.mainStage.hide();
-        s2.setScene(scene1);
-        s2.show();
+        stagesuppression.setScene(scene1);
+        stagesuppression.show();
         
         } catch (IOException ex) {
             Logger.getLogger(ListCondidatController.class.getName()).log(Level.SEVERE, null, ex);
@@ -182,15 +216,16 @@ public class ListCondidatController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initStyle(StageStyle.TRANSPARENT);
-
+        //stageAjouter.initModality(Modality.APPLICATION_MODAL);
+        //stageAjouter.initStyle(StageStyle.TRANSPARENT);    
+        //stageModification.initModality(Modality.APPLICATION_MODAL);
+       // stageModification.initStyle(StageStyle.TRANSPARENT);
         listC = FXCollections.observableArrayList();
         initTable();
         conn = DBConnection.EtablirConnection();
         try {
-            uploadTableCondidat();
+            uploadTableCondidatWithOutProgram();
+            uploadTableCondidatWithProgram();
         } catch (SQLException ex) {
             Logger.getLogger(ListCondidatController.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.StackedBarChart?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" styleClass="gestionStatistic" stylesheets="@../StyleGestion.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.Statistique.FXMLStatistiqueController">
+   <children>
+      <AnchorPane layoutX="12.0" layoutY="14.0" prefHeight="365.0" prefWidth="574.0" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+         <children>
+            <AnchorPane layoutX="-1.0" layoutY="36.0" prefHeight="632.0" prefWidth="1174.0" style="-fx-background-color: #2f2f2fa3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="665.0" prefWidth="1174.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <VBox prefHeight="96.0" prefWidth="158.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <AnchorPane style="-fx-background-color: white;">
+                                       <children>
+                                          <StackedBarChart fx:id="fxidBarchar" prefHeight="467.0" prefWidth="1172.0" title="Statique" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <xAxis>
+                                              <CategoryAxis fx:id="fxidcategorie" label="Mois" side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis fx:id="fxidNumber" label="NombesMalades" side="LEFT" />
+                                            </yAxis>
+                                          </StackedBarChart>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <VBox prefHeight="96.0" prefWidth="158.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <VBox prefHeight="328.0" prefWidth="1172.0" spacing="30.0">
+                                       <children>
+                                          <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="1139.0" spacing="3.0">
+                                             <children>
+                                                <JFXButton fx:id="fxidRecherche" onMouseClicked="#Recherche" prefHeight="50.0" prefWidth="105.0" style="-fx-background-radius: 5;" text="Valider" />
+                                                <JFXTextField fx:id="fxidAnne" alignment="CENTER" focusColor="#1400f5" prefHeight="49.0" prefWidth="488.0" promptText="SVP Introduire Une Année: Ex (2020)" style="-fx-background-color: #ffffff;" styleClass="TextField" unFocusColor="DEEPPINK">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                   <effect>
+                                                      <Lighting>
+                                                         <bumpInput>
+                                                            <Lighting>
+                                                               <bumpInput>
+                                                                  <Shadow />
+                                                               </bumpInput>
+                                                               <light>
+                                                                  <Light.Distant />
+                                                               </light>
+                                                            </Lighting>
+                                                         </bumpInput>
+                                                         <light>
+                                                            <Light.Distant />
+                                                         </light>
+                                                      </Lighting>
+                                                   </effect>
+                                                </JFXTextField>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </HBox>
+                                          <GridPane hgap="80.0" prefHeight="328.0" prefWidth="1172.0" vgap="25.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <JFXTextField fx:id="fxidNombreJour" alignment="CENTER" editable="false" focusColor="WHITE" labelFloat="true" prefHeight="49.0" prefWidth="488.0" promptText="Nombres Abonnement Ce Jour" styleClass="TextField" unFocusColor="DEEPPINK">
+                                                   <font>
+                                                      <Font name="System Bold" size="18.0" />
+                                                   </font>
+                                                </JFXTextField>
+                                                <JFXTextField fx:id="fxidTotalesCons" alignment="CENTER" editable="false" focusColor="WHITE" labelFloat="true" prefHeight="49.0" prefWidth="488.0" promptText="Totales Abonnements" styleClass="TextField" unFocusColor="DEEPPINK" GridPane.rowIndex="2">
+                                                   <font>
+                                                      <Font name="System Bold" size="18.0" />
+                                                   </font>
+                                                </JFXTextField>
+                                                <JFXTextField fx:id="fxidBenificeJour" alignment="CENTER" editable="false" focusColor="WHITE" labelFloat="true" prefHeight="49.0" prefWidth="488.0" promptText="Benifice Ce Jour" styleClass="TextField" unFocusColor="DEEPPINK" GridPane.columnIndex="1">
+                                                   <font>
+                                                      <Font name="System Bold" size="18.0" />
+                                                   </font>
+                                                </JFXTextField>
+                                                <JFXTextField fx:id="fxidBenificeMois" alignment="CENTER" focusColor="WHITE" labelFloat="true" prefHeight="49.0" prefWidth="528.0" promptText="Benifice Ce Mois" styleClass="TextField" unFocusColor="DEEPPINK" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                   <font>
+                                                      <Font name="System Bold" size="18.0" />
+                                                   </font>
+                                                </JFXTextField>
+                                                <JFXTextField fx:id="fxidTotalesBenifice" alignment="CENTER" editable="false" focusColor="WHITE" labelFloat="true" prefHeight="49.0" prefWidth="488.0" promptText="Benifice Totales" styleClass="TextField" unFocusColor="DEEPPINK" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                   <font>
+                                                      <Font name="System Bold" size="18.0" />
+                                                   </font>
+                                                </JFXTextField>
+                                                <JFXTextField fx:id="fxidNombreMois" alignment="CENTER" editable="false" focusColor="WHITE" labelFloat="true" prefHeight="49.0" prefWidth="536.0" promptText="Nombres Abonnement Ce Mois" styleClass="TextField" unFocusColor="DEEPPINK" GridPane.rowIndex="1">
+                                                   <font>
+                                                      <Font name="System Bold" size="18.0" />
+                                                   </font>
+                                                </JFXTextField>
+                                             </children>
+                                             <padding>
+                                                <Insets left="80.0" right="80.0" />
+                                             </padding>
+                                          </GridPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

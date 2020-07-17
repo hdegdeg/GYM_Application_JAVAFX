@@ -17,9 +17,9 @@ public class ListCondidatStatic {
     private static SimpleStringProperty nom = new SimpleStringProperty();
     private static SimpleStringProperty age = new SimpleStringProperty();
     private static SimpleStringProperty tel = new SimpleStringProperty();
-    private static  SimpleStringProperty abonnement = new SimpleStringProperty();
-    private static SimpleStringProperty debut = new SimpleStringProperty();
-    private static SimpleStringProperty fin = new SimpleStringProperty();
+    private static SimpleStringProperty sexe = new SimpleStringProperty();
+    private static SimpleStringProperty nomProgramme = new SimpleStringProperty();
+
 
     public String getCin() {
         return cin.get();
@@ -44,6 +44,14 @@ public class ListCondidatStatic {
     public void setAge(String age) {
         this.age.set(age);
     }
+    
+    public String getSexe() {
+        return sexe.get();
+    }
+
+    public void setSexe(String Sexe) {
+        this.sexe.set(Sexe);
+    }
 
     public String getTel() {
         return tel.get();
@@ -53,28 +61,12 @@ public class ListCondidatStatic {
         this.tel.set(tel);
     }
 
-    public String getAbonnement() {
-        return abonnement.get();
+    public String getNomProgramme() {
+        return nomProgramme.get();
     }
 
-    public void setAbonnement(String abonnement) {
-        this.abonnement.set(abonnement);
-    }
-
-    public String getDebut() {
-        return debut.get();
-    }
-
-    public void setDebut(String debut) {
-        this.debut.set(debut);
-    }
-
-    public String getFin() {
-        return fin.get();
-    }
-
-    public void setFin(String fin) {
-        this.fin.set(fin);
+    public void setNomProgramme(String nomProgramme) {
+        this.nomProgramme.set(nomProgramme);
     }
     
 }

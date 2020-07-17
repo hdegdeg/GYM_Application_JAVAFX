@@ -11,7 +11,7 @@ import gymapplication.DBConnection;
 import gymapplication.accueil.ajouteCondidat.AjouteCondidatController;
 import gymapplication.listeCondidat.list.ListCondidat;
 import gymapplication.listeCondidat.list.ListCondidatStatic;
-import static gymapplication.program.FXMLProgrammesController.s2;
+import static gymapplication.Abonnement.FXMLAbonnementController.s2;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -54,7 +54,7 @@ public class FXMLlistCondidatController implements Initializable {
     
     ListCondidatStatic StaticLcondidat = new ListCondidatStatic();
     
-    FXMLAbonnementController Abonnement= new FXMLAbonnementController();
+    FXMLConfermationRounouvellementControlle Abonnement= new FXMLConfermationRounouvellementControlle();
     private ObservableList<ListCondidat> listC;
 
     @FXML
@@ -67,12 +67,7 @@ public class FXMLlistCondidatController implements Initializable {
     private TableColumn<ListCondidat, String> columnAge;
     @FXML
     private TableColumn<ListCondidat, String> columnTel;
-   // @FXML
-   // private TableColumn<ListCondidat, String> columnAbonnement;
-   // @FXML
-   // private TableColumn<ListCondidat, String> columnDebut;
- //   @FXML
-   // private TableColumn<ListCondidat, String> columnFin;
+
     @FXML
     private AnchorPane AnchorPane;
 
@@ -86,14 +81,10 @@ public class FXMLlistCondidatController implements Initializable {
         columnNom.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("nom"));
         columnAge.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("age"));
         columnTel.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("tel"));
-      //  columnAbonnement.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("abonnement"));
-      //  columnDebut.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("debut"));
-      //  columnFin.setCellValueFactory(new PropertyValueFactory<ListCondidat, String>("fin"));
 
     }
 
     private void uploadTableCondidat() throws SQLException {
-        //String sql = "select Condidat.idCondidat,Nom_Prenom,Age,Tele,Type,Date_Debut,Date_Fin from Condidat INNER JOIN Abonnement ON Condidat.idCondidat = Abonnement.idCondidat order by Nom_Prenom asc";
           String sql = "select Condidat.idCondidat,Nom_Prenom,Age,Tele from Condidat ";
 
         tableCondidat.getItems().clear();
@@ -105,9 +96,7 @@ public class FXMLlistCondidatController implements Initializable {
             condidat.setNom(rs.getString(2));
             condidat.setAge(rs.getString(3));
             condidat.setTel(rs.getString(4));
-          //  condidat.setAbonnement(rs.getString(5));
-           // condidat.setDebut(rs.getString(6));
-           // condidat.setFin(rs.getString(7));
+
             listC.add(condidat);
             tableCondidat.setItems(listC);
         }
@@ -121,23 +110,18 @@ public class FXMLlistCondidatController implements Initializable {
     @FXML
     private void modifierCondidat(MouseEvent event) {
         
-           System.out.println("IL FAUT Selcetion d'un malade");
            Lcondidat=(ListCondidat)tableCondidat.getSelectionModel().getSelectedItem();
            
-           FXMLRounouvellementController.s3.close();
+           FXMLNouvelleAbonnementController.s3.close();
           
           StaticLcondidat.setCin(Lcondidat.getCin());
          StaticLcondidat.setNom(Lcondidat.getNom());
          StaticLcondidat.setAge(Lcondidat.getAge());
          StaticLcondidat.setTel(Lcondidat.getTel());
-         
-       //  Abonnement.AnchorPane.setDisable(false);
-       //InterfaceAbonnement.AnchorPane.setDisable(false);
-        // Abonnement.AnchorPaneAbonnement.setDisable(false);
-         Abonnement.s2.close();
-         Abonnement.Rounouvellement(event);
-       //  Abonnement.AnchorPaneAbonnement.setDisable(false);
-         //Abonnement.AnchorPane.setDisable(false);
+
+         s2.close();
+         Abonnement.ConfermationRounouvellement();
+
     }
 
 

@@ -31,7 +31,7 @@
                         <Font size="25.0" />
                      </font>
                   </Label>
-                  <GridPane prefHeight="424.0" prefWidth="522.0">
+                  <GridPane hgap="15.0" prefHeight="424.0" prefWidth="522.0" vgap="23.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="129.0" />
@@ -44,6 +44,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -81,24 +83,26 @@
                               <Cursor fx:constant="TEXT" />
                            </cursor>
                         </TextField>
+                        <Label fx:id="lblSexe" text="Sexe:" GridPane.rowIndex="8" />
+                        <ComboBox fx:id="comboSexe" prefWidth="150.0" GridPane.rowIndex="9" />
                         <Label text="Num Tel :" GridPane.rowIndex="6" />
-                        <Label text="Abonnement :" GridPane.rowIndex="8" />
-                        <ComboBox fx:id="comboAbonnement" onAction="#testAbonnement" prefHeight="33.0" prefWidth="199.0" GridPane.columnSpan="2" GridPane.rowIndex="9" />
-                        <Label fx:id="lblDateDebut" prefWidth="90.0" text="Date de debut :" GridPane.rowIndex="10" />
-                        <Label fx:id="lblFinAbonnement" text="fin d'abannement :" GridPane.columnSpan="2" GridPane.rowIndex="12" />
-                        <DatePicker fx:id="dateDebut" GridPane.columnSpan="2" GridPane.rowIndex="11" />
-                        <TextField fx:id="tfNbrMois" onKeyReleased="#calculeFinDate" GridPane.columnIndex="2" GridPane.rowIndex="11">
+                        <Label text="Abonnement :" GridPane.rowIndex="10" />
+                        <ComboBox fx:id="comboAbonnement" onAction="#testAbonnement" prefHeight="33.0" prefWidth="199.0" GridPane.columnSpan="2" GridPane.rowIndex="11" />
+                        <Label fx:id="lblDateDebut" prefWidth="90.0" text="Date de debut :" GridPane.rowIndex="12" />
+                        <Label fx:id="lblFinAbonnement" text="fin d'abannement :" GridPane.columnSpan="2" GridPane.rowIndex="14" />
+                        <DatePicker fx:id="dateDebut" GridPane.columnSpan="2" GridPane.rowIndex="13" />
+                        <TextField fx:id="tfNbrMois" onKeyReleased="#calculeFinDate" GridPane.columnIndex="2" GridPane.rowIndex="13">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </TextField>
-                        <Label fx:id="lblNbrMois" alignment="CENTER" prefWidth="113.0" text="combien de  mois? :" GridPane.columnIndex="2" GridPane.rowIndex="10">
+                        <Label fx:id="lblNbrMois" alignment="CENTER" prefWidth="113.0" text="combien de  mois? :" GridPane.columnIndex="2" GridPane.rowIndex="12">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="lblFinDate" textFill="#0c7904" GridPane.rowIndex="13" />
-                        <VBox alignment="TOP_CENTER" prefHeight="80.0" prefWidth="507.0" spacing="10.0" GridPane.columnSpan="4" GridPane.rowIndex="15">
+                        <Label fx:id="lblFinDate" textFill="#0c7904" GridPane.rowIndex="15" />
+                        <VBox alignment="TOP_CENTER" prefHeight="80.0" prefWidth="507.0" spacing="10.0" GridPane.columnSpan="4" GridPane.rowIndex="16">
                            <children>
                               <Button mnemonicParsing="false" onMouseClicked="#Programme" text="programme entrainement">
                                  <cursor>
@@ -121,12 +125,14 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblType" layoutX="10.0" layoutY="213.0" text="Type Abonnement :" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-                        <ComboBox fx:id="comboType" prefWidth="150.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="9" />
+                        <Label fx:id="lblType" layoutX="10.0" layoutY="213.0" text="Type Abonnement :" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+                        <ComboBox fx:id="comboType" prefHeight="33.0" prefWidth="116.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="11" />
+                        <TextField fx:id="tfPrix" onKeyReleased="#calculeFinDate" GridPane.columnIndex="3" GridPane.rowIndex="13" />
+                        <Label fx:id="lblNbrMois1" alignment="CENTER" prefWidth="113.0" text="Prix Abonnement :" GridPane.columnIndex="3" GridPane.rowIndex="12" />
                         
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </GridPane>
                </children>

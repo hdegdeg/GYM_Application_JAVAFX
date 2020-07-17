@@ -16,7 +16,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <Group xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.Expiration.FXMLExpirationController">
    <children>
       <AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="600.0" stylesheets="@../style.css">
@@ -34,12 +33,12 @@
                               </Label>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                                  <children>
-                                    <JFXButton buttonType="RAISED" prefHeight="38.0" prefWidth="176.0" ripplerFill="#110101" text="Renouvellement">
+                                    <JFXButton buttonType="RAISED" onMouseClicked="#Rounouvellement" prefHeight="38.0" prefWidth="176.0" ripplerFill="#110101" text="Renouvellement">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                        <graphic>
-                                          <ImageView fitHeight="22.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="22.0" fitWidth="29.0" onMouseClicked="#Rounouvellement" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../Image/icons8_Update_50px.png" />
                                              </image>
@@ -57,13 +56,13 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <TableView layoutX="132.0" layoutY="126.0" prefHeight="500.0" prefWidth="598.0" style="-fx-background-color: #2f2f2fa3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="fxTableExpiration" layoutX="132.0" layoutY="126.0" prefHeight="500.0" prefWidth="598.0" style="-fx-background-color: #2f2f2fa3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="id_Abonnement" />
-                              <TableColumn prefWidth="75.0" text="date_fin" />
-                              <TableColumn prefWidth="75.0" text="Type" />
-                              <TableColumn prefWidth="75.0" text="Condidat" />
-                            <TableColumn prefWidth="75.0" text="Téléphone Condidat" />
+                            <TableColumn fx:id="fxIdAbon" prefWidth="75.0" text="id_Abonnement" />
+                              <TableColumn fx:id="fxTypeAbon" prefWidth="75.0" text="Type" />
+                              <TableColumn fx:id="fxExpAbon" prefWidth="75.0" text="Date Expiration" />
+                              <TableColumn fx:id="fxNomCondidat" prefWidth="75.0" text="Condidat" />
+                            <TableColumn fx:id="fxTelCondidat" prefWidth="75.0" text="Téléphone Condidat" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

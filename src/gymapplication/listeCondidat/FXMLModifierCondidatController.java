@@ -9,6 +9,8 @@ import gymapplication.accueil.ajouteCondidat.*;
 import gymapplication.DBConnection;
 import gymapplication.accueil.FXMLAccueilController;
 import static gymapplication.accueil.FXMLAccueilController.stageProgramme;
+import static gymapplication.listeCondidat.ListCondidatController.stageModification;
+import gymapplication.listeCondidat.list.ListCondidatStatic;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -60,6 +62,10 @@ public class FXMLModifierCondidatController implements Initializable {
     @FXML
     private TextField tfNumTel;
     @FXML
+    private TextField tfSexe;
+    @FXML
+    private TextField tfProgramme;
+    @FXML
     private ComboBox<String> comboAbonnement;
     @FXML
     private DatePicker dateDebut;
@@ -71,8 +77,7 @@ public class FXMLModifierCondidatController implements Initializable {
     private Button btnClose;
     @FXML
     private TextField tfCIN;
-    @FXML
-    private Label isEmpty;
+
     @FXML
     private ComboBox<String> comboType;
 
@@ -85,6 +90,10 @@ public class FXMLModifierCondidatController implements Initializable {
     private Label lblType;
     @FXML
     private Label lblDateDebut;
+
+    public static  String staticProgramme="";
+    ListCondidatStatic CurrentCondidatStatic = new ListCondidatStatic();
+    FXMLAccueilController Accueil = new FXMLAccueilController();
    // @FXML
    // public Button btnModifier;
 
@@ -93,58 +102,87 @@ public class FXMLModifierCondidatController implements Initializable {
      */
     @FXML
     private void quit() {
+        ListCondidatController.stageModification.close();
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
+      
     }
 
+    void initCondidat() throws SQLException {
+        tfCIN.setText(CurrentCondidatStatic.getCin());
+        tfNom.setText(CurrentCondidatStatic.getNom());
+        tfAge.setText(CurrentCondidatStatic.getAge());
+        tfNumTel.setText(CurrentCondidatStatic.getTel());
+        tfSexe.setText(CurrentCondidatStatic.getSexe());
+        tfProgramme.setText(CurrentCondidatStatic.getNomProgramme());
+
+        
+        
+            String sql = "select idProg from Condidat where idCondidat='" +CurrentCondidatStatic.getCin() + "'";
+            pst=conn.prepareStatement(sql);
+             rs=pst.executeQuery();
+            if(rs.next())
+            {staticProgramme=rs.getString(1);}else{staticProgramme="1";}
+            pst.close();
+            rs.close();
+    }
+    
+    
+    void updateNomProgramme()throws SQLException  {
+            String sql = "select Nom_Programme from Programme where idProgramme='" +staticProgramme+ "'";
+            pst=conn.prepareStatement(sql);
+             rs=pst.executeQuery();
+            if(rs.next())
+            {tfProgramme.setText(rs.getString(1));}
+            pst.close();
+            rs.close();
+    }
     
      @FXML
-    void Programme( ) {
+    void Programme( ) throws SQLException{
 
         try {
 
-            
-            Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/accueil/ajouteCondidat/FXMLProgrammes.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/accueil/ajouteCondidat/FXMLProgrammesCondidat.fxml"));
             Scene scene1 = new Scene(root);
           
             stageProgramme.setScene(scene1);
-            stageProgramme.show();
+            stageProgramme.showAndWait();
             
+            
+
+           
              
         } catch (IOException ex) {
             Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        updateNomProgramme();
     }
     
     
     @FXML
-    private void AjouteCondidat(ActionEvent event) {
+    private void ModifierCondidat() {
+         System.out.println("gymapplication.*********************"+staticProgramme);
         try {
-            if (isValidCondition()) {
-                if (isnewData()) {
-                    String sql = "insert into Condidat values(?,?,?,?,?)";
+            if (!isEmpty()) {
+                    String sql="update Condidat  set  idCondidat=?, Nom_Prenom=? ,Age=? ,Tele=?,Sexe=?, idProg=?  where idCondidat= '"+ CurrentCondidatStatic.getCin()+"'";
                     pst = conn.prepareStatement(sql);
                     pst.setString(1, tfCIN.getText());
                     pst.setString(2, tfNom.getText());
                     pst.setString(3, tfAge.getText());
                     pst.setString(4, tfNumTel.getText());
-                    pst.setString(5, "1");
+                    pst.setString(5, tfSexe.getText());
+                    pst.setString(6,staticProgramme);
                     pst.executeUpdate();
-                    pst.close();
-                    abonnement();
+                         pst.close();
+                         rs.close();
+
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Sucess");
                     alert.setHeaderText("Sucess :   ");
-                    alert.setContentText("le condidat :" + "  '" + tfNom.getText() + "' " + "a été ajouté avec succès");
+                    alert.setContentText("le condidat :" + "  '" + tfNom.getText() + "' " + "a été Modifier avec succès");
                     alert.showAndWait();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Erreur");
-                    alert.setHeaderText("Erreur :   ");
-                    alert.setContentText("cette données est deja existe!!!");
-                    alert.showAndWait();
-                }
+                    quit();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur");
@@ -157,173 +195,33 @@ public class FXMLModifierCondidatController implements Initializable {
 
         }
     }
-    //////////////////////  validé les condition du remplir les champ  //////////////
 
-    private boolean isValidCondition() throws SQLException {
-        isEmpty.setText("");
-        boolean registration = false;
-        if (isEmpty()) {
-            System.out.println("Condition valid");
-            registration = true;
-            isEmpty.setText("done !!!");
-            isEmpty.setStyle("-fx-text-fill:green;");
-
-        } else {
-            isEmpty.setText("SVP entrer tous les champs !!!");
-            isEmpty.setStyle("-fx-text-fill:red;");
-
-            System.out.println("Condition Invalid");
-            registration = false;
-        }
-
-        return registration;
-
-    }
 
     ///////////////    pour verifier les champ vide /////////////////
     private boolean isEmpty() {
         boolean isEmpty = false;
-        if (tfCIN.getText().trim().isEmpty()
-                || tfNom.getText().trim().isEmpty()
-                || tfAge.getText().trim().isEmpty()
-                || tfNumTel.getText().trim().isEmpty()
-                || (comboAbonnement.getSelectionModel().isEmpty() && comboAbonnement.getPromptText().isEmpty())) {
-
-            System.out.println("il y a un ou plusieur champs vide");
-            isEmpty = false;
-        } else {
-            if (comboAbonnement.getValue().equals("abonnée")) {
-                typeAbonnement = comboType.getValue().toString();
-                if (tfNbrMois.getText().trim().isEmpty()
-                        || !dateDebut.getValue().equals(null)
-                        || (comboType.getSelectionModel().isEmpty() && comboType.getPromptText().isEmpty())) {
-                    System.out.println("il y a un ou plusieur champs vide");
-                    isEmpty = false;
-                }
-            } else {
-                typeAbonnement = comboAbonnement.getValue().toString();
-            }
-            System.out.println("donne");
-            isEmpty = true;
-        }
+        System.out.println("id)"+tfCIN.getText()+"  nom"+tfNom.getText()+"  age"+tfAge.getText()+"  tel"+tfNumTel.getText()+"   sex"+tfSexe.getText());
+        if (tfCIN.getText()==null ||tfCIN.getText().toString().equals("")
+                || tfNom.getText()==null ||tfNom.getText().toString().equals("")
+                || tfAge.getText()==null ||tfAge.getText().toString().equals("")
+                || tfNumTel.getText()==null ||tfNumTel.getText().toString().equals("")
+                || tfSexe.getText()==null ||tfSexe.getText().toString().equals("")
+            )   {isEmpty = true; } 
+        
         return isEmpty;
     }
 
-    /////////////////////   verifier si cette condidat est nouveau ou deja inscrit //////////
-    private boolean isnewData() throws SQLException {
 
-        String sql = "select * from Condidat where idCondidat='" + tfCIN.getText() + "'";
-        pst = conn.prepareStatement(sql);
-        rs = pst.executeQuery();
-        while (rs.next()) {
-            pst.close();
-            rs.close();
-            System.out.println("isn't new data");
-            return false;
-
-        }
-        pst.close();
-        rs.close();
-        System.out.println("is new data");
-        return true;
-    }
-
-    private void abonnement() throws SQLException {
-        if (comboAbonnement.getValue().toString().equals("non-abonnée")) {
-            String sql = "insert into Abonnement values(?,?,?,?,?,?)";
-            pst = conn.prepareStatement(sql);
-            pst.setString(1, null);
-            pst.setString(2, LocalDate.now().toString());
-            pst.setString(3, null);
-            pst.setString(4, "00");
-            pst.setString(5, typeAbonnement);
-            pst.setString(6, tfCIN.getText());
-            pst.executeUpdate();
-            pst.close();
-        } else {
-            String sql = "insert into Abonnement values(?,?,?,?,?,?)";
-            pst = conn.prepareStatement(sql);
-            pst.setString(1, null);
-            pst.setString(2, dateDebut.getValue().toString());
-            pst.setString(3, lblFinDate.getText());
-            pst.setString(4, tfNbrMois.getText());
-            pst.setString(5, typeAbonnement);
-            pst.setString(6, tfCIN.getText());
-            pst.executeUpdate();
-            pst.close();
-        }
-    }
-
-    @FXML
-    private void AjouteProgramme(ActionEvent event) {
-    }
-
-    @FXML
-    private void calculeFinDate() throws ParseException {
-
-        Integer nbr = 0;
-        if (tfNbrMois.equals(null)) {
-            nbr = 0;
-            tfNbrMois.setText("0");
-        } else {
-            nbr = Integer.parseInt(tfNbrMois.getText());
-        }
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = format.parse(dateDebut.getValue().toString());
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-
-        calendar.add(Calendar.MONTH, nbr);
-        calendar.add(Calendar.DATE, -1);
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        lblFinDate.setText(sdf.format(calendar.getTime()));
-
-    }
-
-    @FXML
-    private void testAbonnement() {
-        if (!comboAbonnement.getSelectionModel().isEmpty()) {
-            if (comboAbonnement.getValue().toString().equals("non-abonnée")) {
-                System.out.println("ksjlkjkljlkjlkjkjlkllllkkllddlkjlkjkdldkljlkzajlka");
-                comboType.setVisible(false);
-                lblType.setVisible(false);
-                lblDateDebut.setVisible(false);
-                dateDebut.setVisible(false);
-                lblNbrMois.setVisible(false);
-                tfNbrMois.setVisible(false);
-                lblFinAbonnement.setVisible(false);
-                lblFinDate.setVisible(false);
-
-            } else {
-                System.out.println(comboAbonnement.getValue().toString());
-                comboType.setVisible(true);
-                lblType.setVisible(true);
-                lblDateDebut.setVisible(true);
-                dateDebut.setVisible(true);
-                lblNbrMois.setVisible(true);
-                tfNbrMois.setVisible(true);
-                lblFinAbonnement.setVisible(true);
-                lblFinDate.setVisible(true);
-            }
-        }
-    }
-
-    @FXML
-    private void ModifierCondidat(ActionEvent event) {
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        comboAbonnement.getItems().addAll("abonnée", "non-abonnée");
-        comboType.getItems().addAll("Gym", "Natation", "Cardio", "Zomba", "Street");
-        dateDebut.setValue(LocalDate.now());
-        tfNbrMois.setText("01");
+  
+        conn = DBConnection.EtablirConnection();
         try {
-            calculeFinDate();
-        } catch (ParseException ex) {
+            initCondidat();
+        } catch (SQLException ex) {
             Logger.getLogger(FXMLModifierCondidatController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        conn = DBConnection.EtablirConnection();
     }
     
     
