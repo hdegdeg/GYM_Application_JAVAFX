@@ -36,6 +36,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 /**
@@ -69,6 +70,8 @@ public class FXMLExpirationController implements Initializable {
      public ObservableList<listDate> listD;
     @FXML
     private Button btnClose;
+    @FXML
+    private TextField fxRechercher;
 
     public static Stage stageRounouvellement = new Stage();
      listDate Labonnement= new  listDate();
@@ -98,6 +101,54 @@ public class FXMLExpirationController implements Initializable {
     private void quit() {
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
+    }
+    
+                @FXML
+      public void RechercheCondidat() throws SQLException, ParseException
+    {
+
+        
+        if(fxRechercher==null || fxRechercher.getText().equals(""))
+        {
+            uploadProduitEX();
+        }else{
+        listD.clear();
+        
+        String dt = LocalDate.now().toString();  // Start date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c = Calendar.getInstance();
+        c.setTime(sdf.parse(dt));
+        c.add(Calendar.DATE, 1);  // number of days to add
+        dt = sdf.format(c.getTime());
+        String sql="select Condidat.idCondidat,Nom_Prenom,Tele,Abonnement.idAbonnement,Type,Date_Fin from Condidat  INNER JOIN Abonnement ON Condidat.idCondidat = Abonnement.idCondidat and (Abonnement.Date_Fin <= '" + dt + "') and (Condidat.idCondidat like '%"+fxRechercher.getText()+"%' OR lower(Condidat.Nom_Prenom) LIKE '%"+fxRechercher.getText().toLowerCase()+"%' OR Condidat.Tele LIKE '%"+fxRechercher.getText()+"%')";
+            
+        try {
+            pst=con.prepareStatement(sql);
+            rs=pst.executeQuery();
+            
+            while(rs.next())
+            {
+            listDate date = new listDate();
+            date.setidCondidat(rs.getString(1));
+            date.setNomCondidat(rs.getString(2));
+            date.setTelCondidat(rs.getString(3));
+            date.setIdAbonnement(rs.getString(4));
+            date.setType(rs.getString(5));
+            date.setDateExp(rs.getString(6));
+
+            listD.add(date);
+            fxTableExpiration.setItems(listD);
+            }
+             pst.close();
+           rs.close();
+          
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLExpirationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+  
+        }
     }
     
     private void selectionnerAbonnement(){

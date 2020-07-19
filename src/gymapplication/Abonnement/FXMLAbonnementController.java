@@ -32,6 +32,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -90,6 +91,8 @@ public class FXMLAbonnementController implements Initializable {
     private AnchorPane AnchorPaneAbonnement;
     @FXML
     private Button btnClose;
+     @FXML
+    private TextField fxRechercher;
     
   @FXML
     private void quit() {
@@ -144,6 +147,49 @@ public class FXMLAbonnementController implements Initializable {
            StaticLabonnement.setIdCondidat(Labonnement.getIdCondidat());
      }
      
+     
+                 @FXML
+      public void RechercheCondidat() throws SQLException
+    {
+
+        
+        if(fxRechercher==null || fxRechercher.getText().equals(""))
+        {
+            recupererAbonnement();
+        }else{
+        Abonnement.clear();
+        String sql="select Abonnement.idAbonnement,Abonnement.Date_Debut,Date_Fin,Nombre_Mois,Type,Prix ,Abonnement.idCondidat , Condidat.Nom_Prenom  From Abonnement,Condidat where (Abonnement.idCondidat = Condidat.idCondidat)  and  (Abonnement.idCondidat like '"+fxRechercher.getText().toLowerCase()+"%' OR lower(Condidat.Nom_Prenom) LIKE '%"+fxRechercher.getText().toLowerCase()+"%' )";
+            
+        try {
+            pst=con.prepareStatement(sql);
+            rs=pst.executeQuery();
+            
+            while(rs.next())
+            {
+                ListAbonnement M=new ListAbonnement();
+                M.setIdAbonnement2(rs.getString(1));
+                M.setDate_Debut(rs.getString(2));
+                M.setDate_Fin(rs.getString(3));
+                M.setNombre_Mois(rs.getString(4));
+                M.setType(rs.getString(5));
+                M.setPrix(rs.getString(6));
+                M.setIdCondidat(rs.getString(7));
+                M.setNamebonnée(rs.getString(8));
+                
+                Abonnement.add(M);
+                fxTbAbonnement.setItems(Abonnement);
+            }
+             pst.close();
+           rs.close();
+          
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+  
+        }
+    }
     @FXML
     void supprimer(MouseEvent event) {
            

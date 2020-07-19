@@ -31,6 +31,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -70,6 +71,8 @@ public class FXMLlistCondidatController implements Initializable {
 
     @FXML
     private AnchorPane AnchorPane;
+    @FXML
+    private TextField fxRechercher;
 
     private Stage stage = new Stage();
 
@@ -105,7 +108,44 @@ public class FXMLlistCondidatController implements Initializable {
         rs.close();
     }
 
+               @FXML
+      public void RechercheCondidat() throws SQLException
+    {
+
+        
+        if(fxRechercher==null || fxRechercher.getText().equals(""))
+        {
+        uploadTableCondidat();
+        }else{
+        listC.clear();
+        String sql="select Condidat.idCondidat,Nom_Prenom,Age,Tele from Condidat where (Condidat.idCondidat like '%"+fxRechercher.getText().toLowerCase()+"%' OR lower(Condidat.Nom_Prenom) LIKE '"+fxRechercher.getText().toLowerCase()+"%' OR Condidat.Tele LIKE '%"+fxRechercher.getText().toLowerCase()+"%')";
+            
+        try {
+            pst=conn.prepareStatement(sql);
+            rs=pst.executeQuery();
+            
+            while(rs.next())
+            {
+            ListCondidat condidat = new ListCondidat();
+            condidat.setCin(rs.getString(1));
+            condidat.setNom(rs.getString(2));
+            condidat.setAge(rs.getString(3));
+            condidat.setTel(rs.getString(4));
+
+            listC.add(condidat);
+            tableCondidat.setItems(listC);
+            }
+             pst.close();
+           rs.close();
+          
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ListCondidatController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
+  
+        }
+    } 
 
     @FXML
     private void modifierCondidat(MouseEvent event) {

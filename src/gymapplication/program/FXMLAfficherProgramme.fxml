@@ -342,7 +342,7 @@
                         <Insets left="5.0" right="5.0" />
                      </VBox.margin>
                   </GridPane>
-                  <JFXButton fx:id="buttonValider" onMouseClicked="#Valider" prefHeight="53.0" prefWidth="106.0" text="Imprimer" underline="true">
+                  <JFXButton fx:id="buttonValider" onMouseClicked="#ImprimerProgramme" prefHeight="53.0" prefWidth="106.0" text="Imprimer" underline="true">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

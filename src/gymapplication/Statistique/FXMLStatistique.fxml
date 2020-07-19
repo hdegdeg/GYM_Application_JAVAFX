@@ -55,7 +55,7 @@
                                           <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="1139.0" spacing="3.0">
                                              <children>
                                                 <JFXButton fx:id="fxidRecherche" onMouseClicked="#Recherche" prefHeight="50.0" prefWidth="105.0" style="-fx-background-radius: 5;" text="Valider" />
-                                                <JFXTextField fx:id="fxidAnne" alignment="CENTER" focusColor="#1400f5" prefHeight="49.0" prefWidth="488.0" promptText="SVP Introduire Une Année: Ex (2020)" style="-fx-background-color: #ffffff;" styleClass="TextField" unFocusColor="DEEPPINK">
+                                                <JFXTextField fx:id="fxidAnne" alignment="CENTER" focusColor="#1400f5" onKeyReleased="#Recherche" prefHeight="49.0" prefWidth="488.0" promptText="SVP Introduire Une Année: Ex (2020)" style="-fx-background-color: #ffffff;" styleClass="TextField" unFocusColor="DEEPPINK">
                                                    <font>
                                                       <Font size="18.0" />
                                                    </font>

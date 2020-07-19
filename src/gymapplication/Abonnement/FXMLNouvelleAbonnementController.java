@@ -40,7 +40,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -367,7 +369,7 @@ public class FXMLNouvelleAbonnementController extends Thread implements Initiali
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
-        
+
         comboAbonnement.getItems().addAll("abonnée", "non-abonnée");
         comboType.getItems().addAll("Gym", "Natation", "Cardio", "Zomba", "Street");
         dateDebut.setValue(LocalDate.now());

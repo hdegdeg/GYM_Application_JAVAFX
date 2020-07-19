@@ -19,7 +19,7 @@ import gymapplication.program.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import static gymapplication.Abonnement.FXMLAbonnementController.s2;
+import static gymapplication.Abonnement.FXMLNouvelleAbonnementController.s3;
 import gymapplication.Abonnement.list.StaticListAbonnement;
 import gymapplication.DBConnection;
 import gymapplication.accueil.FXMLAccueilController;
@@ -43,7 +43,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
 
 /**
@@ -72,7 +74,7 @@ public class FXMLConfermationRounouvellementControlle implements Initializable {
     StaticListAbonnement CurrentAbonnement= new  StaticListAbonnement();
     FXMLAccueilController InterfaceProgramme = new FXMLAccueilController();
     FXMLAccueilController Accueil = new FXMLAccueilController();
-
+    private static Stage stageRounouvellement = new Stage();
 
 
     @FXML
@@ -85,7 +87,8 @@ public class FXMLConfermationRounouvellementControlle implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        stageRounouvellement.initModality(Modality.APPLICATION_MODAL);
+        stageRounouvellement.initStyle(StageStyle.TRANSPARENT);
         conn = DBConnection.EtablirConnection();
     }
 
@@ -104,9 +107,9 @@ public class FXMLConfermationRounouvellementControlle implements Initializable {
 
              Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLNouvelleAbonnement.fxml"));
              Scene scene1 = new Scene(root2);
-
-             s2.setScene(scene1);
-             s2.show();
+             scene1.setFill(new Color(0, 0, 0, 0));
+             stageRounouvellement.setScene(scene1);
+             stageRounouvellement.show();
 
         } catch (IOException ex) {
             Logger.getLogger(FXMLAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,7 +129,10 @@ public class FXMLConfermationRounouvellementControlle implements Initializable {
             pst.setString(2, mot_passe.getText());
             rs = pst.executeQuery();
 
-            if (rs.next()) { ConfermationRounouvellement();}
+            if (rs.next()) { 
+                quit();
+                ConfermationRounouvellement();
+            }
             
             else {
 

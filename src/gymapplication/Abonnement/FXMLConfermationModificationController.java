@@ -43,7 +43,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
 
 /**
@@ -72,7 +74,7 @@ public class FXMLConfermationModificationController implements Initializable {
     StaticListAbonnement CurrentAbonnement= new  StaticListAbonnement();
     FXMLAccueilController InterfaceProgramme = new FXMLAccueilController();
     FXMLAccueilController Accueil = new FXMLAccueilController();
-
+    private static Stage stageRounouvellement = new Stage();
 
 
     @FXML
@@ -85,7 +87,8 @@ public class FXMLConfermationModificationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        stageRounouvellement.initModality(Modality.APPLICATION_MODAL);
+        stageRounouvellement.initStyle(StageStyle.TRANSPARENT);
         conn = DBConnection.EtablirConnection();
     }
 
@@ -105,8 +108,8 @@ public class FXMLConfermationModificationController implements Initializable {
              Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLModifierAbonnement.fxml"));
              Scene scene1 = new Scene(root2);
 
-             s2.setScene(scene1);
-             s2.show();
+             stageRounouvellement.setScene(scene1);
+             stageRounouvellement.show();
 
         } catch (IOException ex) {
             Logger.getLogger(FXMLAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,7 +129,9 @@ public class FXMLConfermationModificationController implements Initializable {
             pst.setString(2, mot_passe.getText());
             rs = pst.executeQuery();
 
-            if (rs.next()) { ConfermationModification();}
+            if (rs.next()) { 
+                quit();
+                ConfermationModification();}
             
             else {
 

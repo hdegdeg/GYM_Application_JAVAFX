@@ -9,6 +9,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -46,6 +47,19 @@
                                        </graphic>
                                     </JFXButton>
                                  </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="3.0">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Image/icons8_Search_50px.png" />
+                                       </image>
+                                    </ImageView>
+                                    <TextField fx:id="fxRechercher" onKeyTyped="#RechercheCondidat" prefHeight="25.0" prefWidth="216.0" promptText="Rechercher" style="-fx-border-style: solid; -fx-border-width: 1; -fx-border-color: gray; -fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5;" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets right="25.0" />
+                                 </VBox.margin>
                               </HBox>
                            </children>
                            <padding>

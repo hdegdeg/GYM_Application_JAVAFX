@@ -13,12 +13,16 @@ import gymapplication.Programme.list.ListeProgramme;
 import gymapplication.accueil.FXMLAccueilController;
 import static gymapplication.accueil.FXMLAccueilController.stageProgramme;
 import static gymapplication.program.FXMLProgrammesController.currentIdProgramme;
+import static gymapplication.program.FXMLProgrammesController.s2;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +36,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 
 /**
  * FXML Controller class
@@ -99,6 +112,9 @@ public class FXMLAfficherProgrammeController implements Initializable {
     private JFXTextArea FxListeExo2;
     @FXML
     private Button btnClose;
+    JRDataSource datasource;
+    JasperReport jpsr;
+    JasperPrint jsprPrint;
 
     FXMLAccueilController InterfaceProgramme = new FXMLAccueilController();
 
@@ -281,6 +297,78 @@ public class FXMLAfficherProgrammeController implements Initializable {
         rs.close();
     }
 
+    
+     public File save(){              
+
+              FileChooser fileChooser=new FileChooser();
+                  fileChooser.setInitialDirectory(new File("C:\\"));
+                  
+                    
+                  
+                  fileChooser.getExtensionFilters().addAll(
+                          new FileChooser.ExtensionFilter("PDF Files","*")
+                  );
+                  
+                  
+                  File f=fileChooser.showSaveDialog(s2);
+                  
+         
+         return f;
+         }
+         
+             @FXML
+    void ImprimerProgramme(MouseEvent event) {
+               File f=save();
+
+            try {
+                SelectionnerProgramme();
+                JasperExportManager.exportReportToPdfFile(jsprPrint,f.getPath()+".pdf");
+            } catch (JRException ex) {
+                Logger.getLogger(FXMLProgrammesController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+     
+
+    }
+        
+    private void SelectionnerProgramme() throws JRException {
+
+                jpsr= JasperCompileManager.compileReport("E:/degdeg/DEGDEG/NetBeansProjects/GYMApplication/src/gymapplication/FicheProgramme.jrxml");
+                JRDataSource Data=new JREmptyDataSource();
+                     
+                Map<String,Object> parametre=new HashMap<String, Object>();
+                
+                parametre.put("NOM",nomProg.getText());
+                parametre.put("M1" ,textFJrs1.getText());
+                parametre.put("X1" , FxListeExo1.getText());
+                
+                parametre.put("M2",textFJrs2.getText());
+                parametre.put("X2",FxListeExo1.getText());
+                
+                parametre.put("M3",textFJrs3.getText());
+                parametre.put("X3",FxListeExo1.getText());
+                
+                parametre.put("M4",textFJrs4.getText());
+                parametre.put("X4",FxListeExo1.getText());
+                
+                parametre.put("M5",textFJrs5.getText());
+                parametre.put("X5",FxListeExo1.getText());
+                
+                parametre.put("M6",textFJrs6.getText());
+                parametre.put("X6",FxListeExo1.getText());
+                
+                parametre.put("M7",textFJrs7.getText()); 
+                parametre.put("X7",FxListeExo1.getText());
+                
+                
+
+            
+                jsprPrint= JasperFillManager.fillReport(jpsr, parametre,Data);
+
+     
+    }
+    
+    
     @FXML
     private void Retour(MouseEvent event) {
 
