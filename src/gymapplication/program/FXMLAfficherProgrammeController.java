@@ -32,6 +32,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -110,6 +111,8 @@ public class FXMLAfficherProgrammeController implements Initializable {
 
     @FXML
     private JFXTextArea FxListeExo2;
+    
+    private String Nombre="";
     @FXML
     private Button btnClose;
     JRDataSource datasource;
@@ -127,7 +130,7 @@ public class FXMLAfficherProgrammeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-        System.out.println("gymapplication.program.:" + currentProgramme.currentIdProgramme);
+        initaliseChamps();
         ConnectionDB();
         try {
             uploadTableProgramme();
@@ -137,6 +140,23 @@ public class FXMLAfficherProgrammeController implements Initializable {
 
     }
 
+    
+    private void initaliseChamps(){
+        textFJrs1.setText("Repos");
+        textFJrs2.setText("Repos");
+        textFJrs6.setText("Repos");
+        textFJrs5.setText("Repos");
+        textFJrs4.setText("Repos");
+        textFJrs3.setText("Repos");
+        textFJrs7.setText("Repos");
+        FxListeExo1.setText("Repos");
+        FxListeExo7.setText("Repos");
+        FxListeExo6.setText("Repos");
+        FxListeExo5.setText("Repos");
+        FxListeExo4.setText("Repos");
+        FxListeExo3.setText("Repos");
+        FxListeExo2.setText("Repos");
+    }
     public void ConnectionDB() {
 
         conn = DBConnection.EtablirConnection();
@@ -146,11 +166,12 @@ public class FXMLAfficherProgrammeController implements Initializable {
         
             ListeProgramme Programme;
             String currentText;
-            String sql = "select Nom_Programme from Programme where idProgramme=' " + currentProgramme.currentIdProgramme + "'";
+            String sql = "select Nom_Programme,Nombre_Jours from Programme where idProgramme=' " + currentProgramme.currentIdProgramme + "'";
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             if (rs.next()) {
                 nomProg.setText(rs.getString(1));
+                Nombre=rs.getString(2);
                 pst.close();
                 rs.close();
             }
@@ -160,6 +181,7 @@ public class FXMLAfficherProgrammeController implements Initializable {
             rs = pst.executeQuery();
             if (rs.next()) {
                 textFJrs1.setText(rs.getString(1));
+                FxListeExo1.setText("");
                 pst.close();
                 rs.close();
 
@@ -167,6 +189,7 @@ public class FXMLAfficherProgrammeController implements Initializable {
                 pst = conn.prepareStatement(sql);
                 rs = pst.executeQuery();
                 while (rs.next()) {
+                    
                     currentText = FxListeExo1.getText();
                     FxListeExo1.setText(currentText + "Exo: " + rs.getString(1) + ", " + rs.getString(3) + " Series," + " " + rs.getString(2) + " Rep \n");
                 }
@@ -179,6 +202,7 @@ public class FXMLAfficherProgrammeController implements Initializable {
             rs = pst.executeQuery();
             if (rs.next()) {
                 textFJrs2.setText(rs.getString(1));
+                FxListeExo2.setText("");
                 pst.close();
                 rs.close();
 
@@ -199,6 +223,7 @@ public class FXMLAfficherProgrammeController implements Initializable {
             rs = pst.executeQuery();
             if (rs.next()) {
                 textFJrs3.setText(rs.getString(1));
+                FxListeExo3.setText("");
                 pst.close();
                 rs.close();
 
@@ -219,6 +244,7 @@ public class FXMLAfficherProgrammeController implements Initializable {
             rs = pst.executeQuery();
             if (rs.next()) {
                 textFJrs4.setText(rs.getString(1));
+                FxListeExo4.setText("");
                 pst.close();
                 rs.close();
 
@@ -240,6 +266,7 @@ public class FXMLAfficherProgrammeController implements Initializable {
 
             if (rs.next()) {
                 textFJrs5.setText(rs.getString(1));
+                FxListeExo5.setText("");
                 pst.close();
                 rs.close();
 
@@ -260,6 +287,7 @@ public class FXMLAfficherProgrammeController implements Initializable {
             rs = pst.executeQuery();
             if (rs.next()) {
                 textFJrs6.setText(rs.getString(1));
+                FxListeExo6.setText("");
                 pst.close();
                 rs.close();
 
@@ -279,6 +307,7 @@ public class FXMLAfficherProgrammeController implements Initializable {
             rs = pst.executeQuery();
             if (rs.next()) {
                 textFJrs7.setText(rs.getString(1));
+                FxListeExo7.setText("");
                 pst.close();
                 rs.close();
 
@@ -323,6 +352,13 @@ public class FXMLAfficherProgrammeController implements Initializable {
             try {
                 SelectionnerProgramme();
                 JasperExportManager.exportReportToPdfFile(jsprPrint,f.getPath()+".pdf");
+                
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Sucess");
+                    alert.setHeaderText("Sucess :   ");
+                    alert.setContentText("Votre Programme a été enregistré avec succès vous le trouverez dans ce chemain :  "+f.getPath());
+                    alert.showAndWait();
+                    
             } catch (JRException ex) {
                 Logger.getLogger(FXMLProgrammesController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -333,32 +369,34 @@ public class FXMLAfficherProgrammeController implements Initializable {
         
     private void SelectionnerProgramme() throws JRException {
 
-                jpsr= JasperCompileManager.compileReport("E:/degdeg/DEGDEG/NetBeansProjects/GYMApplication/src/gymapplication/FicheProgramme.jrxml");
+                jpsr= JasperCompileManager.compileReport("E:/degdeg/DEGDEG/NetBeansProjects/GYMApplication/src/gymapplication/Imprime.jrxml");
                 JRDataSource Data=new JREmptyDataSource();
                      
                 Map<String,Object> parametre=new HashMap<String, Object>();
                 
                 parametre.put("NOM",nomProg.getText());
+                parametre.put("NOMBRE",Nombre);
+                
                 parametre.put("M1" ,textFJrs1.getText());
                 parametre.put("X1" , FxListeExo1.getText());
                 
                 parametre.put("M2",textFJrs2.getText());
-                parametre.put("X2",FxListeExo1.getText());
+                parametre.put("X2",FxListeExo2.getText());
                 
                 parametre.put("M3",textFJrs3.getText());
-                parametre.put("X3",FxListeExo1.getText());
+                parametre.put("X3",FxListeExo3.getText());
                 
                 parametre.put("M4",textFJrs4.getText());
-                parametre.put("X4",FxListeExo1.getText());
+                parametre.put("X4",FxListeExo4.getText());
                 
                 parametre.put("M5",textFJrs5.getText());
-                parametre.put("X5",FxListeExo1.getText());
+                parametre.put("X5",FxListeExo5.getText());
                 
                 parametre.put("M6",textFJrs6.getText());
-                parametre.put("X6",FxListeExo1.getText());
+                parametre.put("X6",FxListeExo6.getText());
                 
                 parametre.put("M7",textFJrs7.getText()); 
-                parametre.put("X7",FxListeExo1.getText());
+                parametre.put("X7",FxListeExo7.getText());
                 
                 
 

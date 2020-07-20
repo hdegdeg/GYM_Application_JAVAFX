@@ -1,12 +1,12 @@
 .background{
-    -fx-background-image: url('../Image/CoverAbonnement.jpg');
-    -fx-background-repeat: no-repeat;
-    -fx-background-size: cover;
+    -fx-background-image: url('../Image/CoverLogin.jpg');
+    
+    -fx-background-size: contain;
     -fx-background-radius:10;
     -fx-border-style:solid;
-    -fx-border-width: 2px;
-    -fx-border-radius:10;
-    -fx-effect:  dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-border-width: 4px;
+    -fx-border-radius:40;
+   
 
     
 }
@@ -33,7 +33,7 @@
  *                                                                             *
  ******************************************************************************/
 #close{
-    -fx-border-color: transparent;
+    -fx-border-color: red;
     -fx-background-color: transparent;
     -fx-font-size: 20px;
     -fx-font-weight:700;
@@ -88,8 +88,8 @@
 .hyperlink{
     -fx-text-fill: blue;
 }
-AnchorPane{
-    /*    -fx-background-color:white;*/
+#AnchorPane{
+       -fx-background-color:transparent;
 
 }
 
@@ -105,7 +105,7 @@ AnchorPane{
 #closebutton{
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-font-size: 15px; 
+    -fx-font-size: 5px; 
     -fx-padding: 0px;
     -fx-background-image: url("../Image/close_red.png");
     -fx-background-repeat: stretch;
@@ -126,7 +126,7 @@ AnchorPane{
     -fx-background-color: none;
 }
 #btnClose{
-    -fx-background-image: url("../Image/close_new.png");
+    -fx-background-color: transparent;
     -fx-background-repeat: stretch;
     -fx-background-size: cover;
     -fx-background-position: center center;
