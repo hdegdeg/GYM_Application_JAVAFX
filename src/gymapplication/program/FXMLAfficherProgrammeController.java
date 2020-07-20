@@ -14,6 +14,7 @@ import gymapplication.accueil.FXMLAccueilController;
 import static gymapplication.accueil.FXMLAccueilController.stageProgramme;
 import static gymapplication.program.FXMLProgrammesController.currentIdProgramme;
 import static gymapplication.program.FXMLProgrammesController.s2;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -35,7 +36,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
+
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -346,7 +347,7 @@ public class FXMLAfficherProgrammeController implements Initializable {
          }
          
              @FXML
-    void ImprimerProgramme(MouseEvent event) {
+    void ImprimerProgramme() {
                File f=save();
 
             try {
@@ -408,7 +409,7 @@ public class FXMLAfficherProgrammeController implements Initializable {
     
     
     @FXML
-    private void Retour(MouseEvent event) {
+    private void Retour() {
 
         try {
 
@@ -425,7 +426,7 @@ public class FXMLAfficherProgrammeController implements Initializable {
     }
 
     @FXML
-    private void Valider(MouseEvent event) {
+    private void Valider() {
     }
 
     @FXML

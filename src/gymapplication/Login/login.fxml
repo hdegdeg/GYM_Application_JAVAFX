@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -22,21 +25,87 @@
          <children>
             <HBox alignment="CENTER" prefHeight="535.0" prefWidth="760.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="511.0" prefWidth="671.0">
+                  <VBox alignment="CENTER" prefHeight="514.0" prefWidth="678.0">
                      <children>
                         <AnchorPane id="AnchorPane" fx:id="apDesignPane" prefHeight="393.0" prefWidth="671.0">
                            <children>
-                              <Label layoutX="-6.0" layoutY="-2.0" opacity="0.5" prefHeight="401.0" prefWidth="684.0" style="-fx-background-color: white; -fx-background-radius: 30;" styleClass="LabelAccueil" />
-                              <Label layoutX="70.0" layoutY="15.0" prefHeight="75.0" prefWidth="249.0" text="DG Software ">
-                                 <font>
-                                    <Font name="Monotype Corsiva" size="48.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="101.0" layoutY="78.0" prefHeight="26.0" prefWidth="181.0" text="Be Modern to Be Happy" textAlignment="CENTER" textFill="#12a107">
-                                 <font>
-                                    <Font name="Monotype Corsiva" size="20.0" />
-                                 </font>
-                              </Label>
+                              <Label layoutX="-6.0" layoutY="-2.0" opacity="0.5" prefHeight="437.0" prefWidth="684.0" style="-fx-background-color: white; -fx-background-radius: 30;" styleClass="LabelAccueil" />
+                              <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="437.0" prefWidth="376.0" spacing="10.0">
+                                 <children>
+                                    <Label prefHeight="75.0" prefWidth="249.0" text="DG Software ">
+                                       <font>
+                                          <Font name="Monotype Corsiva" size="48.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="26.0" prefWidth="181.0" text="Be Modern to Be Happy" textAlignment="CENTER" textFill="#12a107">
+                                       <font>
+                                          <Font name="Monotype Corsiva" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Text fill="#0a0000" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Merci d'avoir choisi notre equipe" wrappingWidth="359.9999786019325">
+                                       <font>
+                                          <Font name="Arial" size="24.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact:" wrappingWidth="103.00000858306885">
+                                       <font>
+                                          <Font name="Arial Bold" size="24.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="30.0" />
+                                       </VBox.margin>
+                                    </Text>
+                                    <GridPane prefHeight="134.0" prefWidth="270.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints fillWidth="false" hgrow="ALWAYS" maxWidth="166.0" minWidth="10.0" prefWidth="82.0" />
+                                          <ColumnConstraints fillWidth="false" hgrow="ALWAYS" maxWidth="243.0" minWidth="10.0" prefWidth="188.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="62.0" minHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="38.0" minHeight="3.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label text="dgsoftware1334@gmail.com" textFill="BLUE" GridPane.columnIndex="1" />
+                                          <Label text="Email:" textFill="#12a107">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Tel:" textFill="#12a107" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="0558 80 53 27/ 0668 50 20 50" textFill="BLUE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label text="Address:" textFill="#12a107" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="Bordj Bou Arreridj / Tlemcen" textFill="BLUE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                          <Label text="Address:" textFill="#12a107" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label prefHeight="22.0" prefWidth="187.0" text="www.facebook.com/DGSoftware" textFill="BLUE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="25.0" />
+                                       </VBox.margin>
+                                    </GridPane>
+                                    <ImageView fitHeight="99.0" fitWidth="146.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../Image/My_Facebook_Code.png" />
+                                       </image>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" />
+                                       </VBox.margin>
+                                    </ImageView>
+                                 </children>
+                              </VBox>
                               <AnchorPane id="signAnchor" layoutX="381.0" layoutY="52.0" prefHeight="280.0" prefWidth="282.0">
                                  <children>
                                     <GridPane layoutX="5.0" layoutY="83.0" prefHeight="97.0" prefWidth="281.0" vgap="10.0">
@@ -66,54 +135,13 @@
                                     <Button layoutX="96.0" layoutY="203.0" mnemonicParsing="false" onAction="#logIn" text="Log In" />
                                  </children>
                               </AnchorPane>
-                              <Text fill="#0a0000" fontSmoothingType="LCD" layoutX="15.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Merci d'avoir choisi notre equipe" wrappingWidth="359.9999786019325">
-                                 <font>
-                                    <Font name="Arial" size="24.0" />
-                                 </font>
-                              </Text>
-                              <Text fontSmoothingType="LCD" layoutX="140.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact:" wrappingWidth="103.00000858306885">
-                                 <font>
-                                    <Font name="Arial Bold" size="24.0" />
-                                 </font>
-                              </Text>
-                              <GridPane layoutX="59.0" layoutY="257.0" prefHeight="75.0" prefWidth="272.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="10.0" prefWidth="68.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="167.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="62.0" minHeight="0.0" prefHeight="36.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="38.0" minHeight="3.0" prefHeight="29.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <Label text="dgsoftware1334@gmail.com" textFill="BLUE" GridPane.columnIndex="1" />
-                                    <Label text="Email:" textFill="#12a107">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label text="Tel:" textFill="#12a107" GridPane.rowIndex="1">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label text="0558 80 53 27/ 0668 50 20 50" textFill="BLUE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label text="Address:" textFill="#12a107" GridPane.rowIndex="2">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label text="Bordj Bou Arreridj / Tlemcen" textFill="BLUE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                 </children>
-                              </GridPane>
                            </children>
                         </AnchorPane>
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <Label opacity="0.2" prefHeight="35.0" prefWidth="678.0" style="-fx-background-color: black;" textAlignment="JUSTIFY" textFill="WHITE" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" />
+            <Label layoutX="10.0" opacity="0.2" prefHeight="26.0" prefWidth="781.0" style="-fx-background-color: black;" textAlignment="JUSTIFY" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             <Label layoutX="361.0" layoutY="571.0" text="Version 1.0" textFill="WHITE" AnchorPane.bottomAnchor="7.0">
                <font>
                   <Font name="Arial" size="18.0" />
@@ -125,6 +153,6 @@
             <URL value="@../../style/button.css" />
          </stylesheets>
       </AnchorPane>
-      <Button id="btnClose" layoutX="767.0" layoutY="-6.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="44.0" stylesheets="@../../style/button.css" />
+      <Button id="btnClose" layoutX="767.0" layoutY="-6.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="42.0" prefWidth="44.0" stylesheets="@../../style/button.css" />
    </children>
 </Group>
