@@ -119,9 +119,9 @@ public class ListCondidatController implements Initializable {
            CurrentCondidatStatic.setNomProgramme(CurrentCondidat.getNomProgramme());
     }
     
-       private void uploadTableCondidatWithOutProgram() throws SQLException {
+    private void uploadTableCondidatWithOutProgram() throws SQLException {
            listC.clear();
-        String sql = "select Condidat.idCondidat,Nom_Prenom,Age,Tele,Sexe from Condidat where idProg= 1" ;
+        String sql = "select Condidat.idCondidat,Nom_Prenom,Age,Tele,Sexe,idProg from Condidat where idProg not in (select idProg from Condidat,Programme where Condidat.idProg= Programme.idProgramme)" ;
       
         tableCondidat.getItems().clear();
         pst = conn.prepareStatement(sql);
@@ -133,7 +133,7 @@ public class ListCondidatController implements Initializable {
             condidat.setAge(rs.getString(3));
             condidat.setTel(rs.getString(4));
             condidat.setSexe(rs.getString(5));
-            condidat.setNomProgramme("Aucun Programme");
+            condidat.setNomProgramme(rs.getString(6));
             listC.add(condidat);
             tableCondidat.setItems(listC);
         }
@@ -219,9 +219,8 @@ public class ListCondidatController implements Initializable {
         }
     }
 
-                @FXML
-      public void RechercheCondidat() throws SQLException
-    {
+    @FXML
+     public void RechercheCondidat() throws SQLException{
 
         
         if(fxRechercher==null || fxRechercher.getText().equals(""))
@@ -238,8 +237,10 @@ public class ListCondidatController implements Initializable {
     
 
     @FXML
-      public void RechercheCondidatWithOutProgram() throws SQLException{
-        String sql="select Condidat.idCondidat,Nom_Prenom,Age,Tele,Sexe from Condidat where (Condidat.idProg= 1) and (Condidat.idCondidat like '%"+fxRechercher.getText().toLowerCase()+"%' OR lower(Condidat.Nom_Prenom) LIKE '"+fxRechercher.getText().toLowerCase()+"%' OR Condidat.Tele LIKE '%"+fxRechercher.getText().toLowerCase()+"%')";
+     public void RechercheCondidatWithOutProgram() throws SQLException{
+          String ConditionSQL="(select idProg from Condidat,Programme where Condidat.idProg= Programme.idProgramme)";
+       
+          String sql="select Condidat.idCondidat,Nom_Prenom,Age,Tele,Sexe from Condidat where (Condidat.idProg not in "+ConditionSQL+") and (Condidat.idCondidat like '%"+fxRechercher.getText().toLowerCase()+"%' OR lower(Condidat.Nom_Prenom) LIKE '"+fxRechercher.getText().toLowerCase()+"%' OR Condidat.Tele LIKE '%"+fxRechercher.getText().toLowerCase()+"%')";
             
         try {
             pst=conn.prepareStatement(sql);
@@ -269,8 +270,7 @@ public class ListCondidatController implements Initializable {
     
       
     @FXML
-      public void RechercheCondidatWithProgram() throws SQLException
-    {
+      public void RechercheCondidatWithProgram() throws SQLException{
         String sql="select Condidat.idCondidat,Nom_Prenom,Age,Tele,Sexe,Programme.Nom_Programme from Condidat,Programme where (Condidat.idProg= Programme.idProgramme) and (Condidat.idCondidat like '%"+fxRechercher.getText().toLowerCase()+"%' OR lower(Condidat.Nom_Prenom) LIKE '"+fxRechercher.getText().toLowerCase()+"%' OR Condidat.Tele LIKE '%"+fxRechercher.getText().toLowerCase()+"%')";        
         try {
             pst=conn.prepareStatement(sql);

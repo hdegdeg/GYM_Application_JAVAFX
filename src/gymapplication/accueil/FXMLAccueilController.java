@@ -201,7 +201,7 @@ public class FXMLAccueilController implements Initializable {
 
     }
     
-         public File save() {              
+    public File save() {              
 
               FileChooser fileChooser=new FileChooser();
                   fileChooser.setInitialDirectory(new File("C:\\"));
@@ -221,7 +221,7 @@ public class FXMLAccueilController implements Initializable {
          
          
          
-        public File Import() {              
+    public File Import() {              
 
               FileChooser fileChooser=new FileChooser();
                   fileChooser.setInitialDirectory(new File("C:\\"));
@@ -240,8 +240,8 @@ public class FXMLAccueilController implements Initializable {
          }
          
          
-     @FXML
-     public void ExportDonnee(){
+    @FXML
+    public void ExportDonnee(){
            File f=save();
                   
 
@@ -458,9 +458,8 @@ public class FXMLAccueilController implements Initializable {
             }
             }
      
-            @FXML
-         public void ImportDonneeCondidat()
-         {
+    @FXML
+    public void ImportDonneeCondidat(){
              
                File f=Import();
                
@@ -495,6 +494,187 @@ public class FXMLAccueilController implements Initializable {
                     ps.setString(6,row.getCell(5).getStringCellValue());
                    
                     
+                    ps.execute();
+                }
+                
+                wb.close();
+                fileIn.close();
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            
+         }
+    
+    
+    @FXML
+    public void ImportDonneeAbonnement(){
+
+               File f=Import();
+               
+               String sql = "insert into Abonnement values(?,?,?,?,?,?,?)";
+            try {
+                ps=conn.prepareStatement(sql);
+                
+                
+                FileInputStream fileIn = new FileInputStream(new File(f.getPath()));
+               XSSFWorkbook wb=new XSSFWorkbook(fileIn);
+                XSSFSheet   sheet= wb.getSheetAt(0);
+                Row row;
+                
+                for(int i=0;i<=sheet.getLastRowNum();i++)
+                {
+                    row=sheet.getRow(i);
+                                     
+                    ps.setObject(1,row.getCell(0).getStringCellValue());
+                    
+                    ps.setString(2,row.getCell(1).getStringCellValue());
+                    
+                    ps.setString(3,row.getCell(2).getStringCellValue());
+                    
+                    ps.setString(4,row.getCell(3).getStringCellValue());
+                    
+                    
+                    ps.setString(5,row.getCell(4).getStringCellValue());
+                   
+                   
+                    ps.setString(6,row.getCell(5).getStringCellValue());
+                   
+                    ps.setString(7,row.getCell(6).getStringCellValue());
+                    
+                    ps.execute();
+                }
+                
+                wb.close();
+                fileIn.close();
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+ 
+         }
+         
+    @FXML
+    public void ImportDonneeProgramme(){
+
+               File f=Import();
+               
+               String sql = "insert into Programme (idProgramme,Nom_Programme,Nombre_Jours) values(?,?,?)";
+            try {
+                ps=conn.prepareStatement(sql);
+                
+                
+                FileInputStream fileIn = new FileInputStream(new File(f.getPath()));
+               XSSFWorkbook wb=new XSSFWorkbook(fileIn);
+                XSSFSheet   sheet= wb.getSheetAt(0);
+                Row row;
+                
+                for(int i=0;i<=sheet.getLastRowNum();i++)
+                {
+                    row=sheet.getRow(i);
+                                     
+                    ps.setObject(1,row.getCell(0).getStringCellValue());
+                    
+                    ps.setString(2,row.getCell(1).getStringCellValue());
+                    
+                    ps.setString(3,row.getCell(2).getStringCellValue());
+
+                    ps.execute();
+                }
+                
+                wb.close();
+                fileIn.close();
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            
+         }
+    
+    
+     @FXML
+         public void ImportDonneeJour(){
+
+               File f=Import();
+               
+               String sql = "insert into Jour (NomJ,idProgramme,Muscles) values(?,?,?)";
+            try {
+                ps=conn.prepareStatement(sql);
+                
+                
+                FileInputStream fileIn = new FileInputStream(new File(f.getPath()));
+               XSSFWorkbook wb=new XSSFWorkbook(fileIn);
+                XSSFSheet   sheet= wb.getSheetAt(0);
+                Row row;
+                
+                for(int i=0;i<=sheet.getLastRowNum();i++)
+                {
+                    row=sheet.getRow(i);
+                                     
+                    ps.setObject(1,row.getCell(0).getStringCellValue());
+                    
+                    ps.setString(2,row.getCell(1).getStringCellValue());
+                    
+                    ps.setString(3,row.getCell(2).getStringCellValue());
+
+                    ps.execute();
+                }
+                
+                wb.close();
+                fileIn.close();
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            
+         }
+         
+          @FXML
+         public void ImportDonneeExercice(){
+
+               File f=Import();
+               
+               String sql = "insert into Exercice (idExercice,Nom_Exo,Nombre_Repetition,Nombre_Series,idJour,idProgramme) values(?,?,?,?,?,?)";
+
+            try {
+                ps=conn.prepareStatement(sql);
+                
+                
+                FileInputStream fileIn = new FileInputStream(new File(f.getPath()));
+               XSSFWorkbook wb=new XSSFWorkbook(fileIn);
+                XSSFSheet   sheet= wb.getSheetAt(0);
+                Row row;
+                
+                for(int i=0;i<=sheet.getLastRowNum();i++)
+                {
+                    row=sheet.getRow(i);
+                                     
+                    ps.setObject(1,row.getCell(0).getStringCellValue());
+                    
+                    ps.setString(2,row.getCell(1).getStringCellValue());
+                    
+                    ps.setString(3,row.getCell(2).getStringCellValue());
+                    
+                    ps.setString(4,row.getCell(3).getStringCellValue());
                     ps.execute();
                 }
                 

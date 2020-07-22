@@ -31,6 +31,10 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#ExportDonnee" text="Sauvgarder tous les donnees" />
                   <MenuItem mnemonicParsing="false" onAction="#ImportDonneeCondidat" text="Importer Condidat From Excel" />
+                  <MenuItem mnemonicParsing="false" onAction="#ImportDonneeAbonnement" text="Importer Abonnement From Excel" />
+                  <MenuItem mnemonicParsing="false" onAction="#ImportDonneeProgramme" text="Importer Programme From Excel" />
+                  <MenuItem mnemonicParsing="false" onAction="#ImportDonneeJour" text="Importer Jour From Excel" />
+                  <MenuItem mnemonicParsing="false" onAction="#ImportDonneeExercice" text="Importer Exercice From Excel" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
