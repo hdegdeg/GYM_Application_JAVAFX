@@ -8,7 +8,11 @@ package gymapplication.creationAdmin;
 
 import gymapplication.DBConnection;
 import static gymapplication.Login.loginController.createStage;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,6 +48,8 @@ public class CreateUserController implements Initializable {
     @FXML
     private TextField fullName;
     @FXML
+    private TextField MacAddress;    
+    @FXML
     private PasswordField tPassword;
     @FXML
     private PasswordField rtPassword;
@@ -57,6 +63,9 @@ public class CreateUserController implements Initializable {
    private Button btnClose;
     @FXML
     private TextField cin;
+    
+    
+
     
          @FXML
     private void pfKeyTyped(KeyEvent event) {
@@ -78,13 +87,14 @@ public class CreateUserController implements Initializable {
             String pass = tPassword.getText();
            
             if(isValidCondition()){
-                String sql ="insert into Login values(?,?,?,?,?)";
+                String sql ="insert into Login values(?,?,?,?,?,?)";
                 ps = conn.prepareStatement(sql);
                 ps.setString(1, cin);
                 ps.setString(2, user);
                 ps.setString(3, pass);
                 ps.setString(4, "admin");
                 ps.setString(5, full);
+                ps.setString(6, MacAddress.getText());
                 ps.executeUpdate();
                 ps.close();
                 //addMagasin();
@@ -149,6 +159,7 @@ public class CreateUserController implements Initializable {
         if (userName.getText().trim().isEmpty()
                 || fullName.getText().trim().isEmpty()
                 || cin.getText().trim().isEmpty()
+                ||MacAddress.getText().trim().isEmpty()
                 || tPassword.getText().isEmpty()
                 || rtPassword.getText().isEmpty()) {
 

@@ -10,7 +10,11 @@ package gymapplication.Login;
 import gymapplication.DBConnection;
 import gymapplication.GYMApplication;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -54,10 +58,14 @@ public class loginController implements Initializable {
     private PasswordField userPassword;
     @FXML
     private AnchorPane apDesignPane;
+    
+    public static String TypeUser;
+    
+    String MacAddress;
 
     @FXML
-    private void logIn() throws ParseException {
-
+    private void logIn() throws ParseException, UnknownHostException, SocketException {
+            getMacAddress();
         if (userPassword.getText().equals("") || userName.getText().equals("")) {
 
             errorPassword(0);
@@ -65,15 +73,34 @@ public class loginController implements Initializable {
         } else if (!userPassword.getText().equals("") && !userName.getText().equals("")) {
 
             try {
-                String sql = "select * from Login where User = ? and Password = ?";
+                String sql = "select User,Password,MacAddress,etat from Login where User = ? and Password = ?";
 
                 ps = conn.prepareStatement(sql);
                 ps.setString(1, userName.getText());
                 ps.setString(2, userPassword.getText());
 
                 rs = ps.executeQuery();
+  
                 while (rs.next()) {
-                    newStage();
+                     if(getMacAddress().equals(rs.getString(3))){
+                         TypeUser=rs.getString(4);
+                         newStage();
+                     }
+                     else {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Erreur ");
+                            alert.setHeaderText("Droit d'utilisation   ");
+                            
+                            alert.setContentText("Vous n'avez pas le droit pour utiliser ce produit !!! \n "+
+                            "S'il vous plait contacter le responsable: \n \n "+
+                            "Tel:0558 80 53 27 // 0668 50 20 50 \n "+   
+                            "Gmail: dgsoftware1334@gmail.com \n "+
+                            "Facebook: www.facebook.com/DGSoftware "     
+                            );
+                           
+                            alert.showAndWait();
+                     }
+                    
                     ps.close();
                     rs.close();
 
@@ -95,6 +122,21 @@ public class loginController implements Initializable {
 
     }
 
+    private String getMacAddress() throws UnknownHostException, SocketException{
+        InetAddress address = InetAddress.getLocalHost();
+        
+        NetworkInterface ni =NetworkInterface.getByInetAddress(address);
+        byte[] mac= ni.getHardwareAddress();
+        
+        final StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < mac.length; i++) {
+        sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));        
+        }
+        
+        MacAddress=sb.toString();
+            
+        return MacAddress;
+    }
     private void errorPassword(int tmp) {
         if (tmp == 1) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -189,6 +231,7 @@ public class loginController implements Initializable {
         stage.initStyle(StageStyle.TRANSPARENT);
 
         conn = DBConnection.EtablirConnection();
+        
     }
 
 }

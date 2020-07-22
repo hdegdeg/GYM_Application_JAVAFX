@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -26,40 +27,53 @@
                <children>
                   <AnchorPane maxHeight="405.0" maxWidth="1000.0" minHeight="200.0" minWidth="350.0" prefHeight="405.0" prefWidth="458.0">
                      <children>
-                        <TextField fx:id="userName" layoutX="95.0" layoutY="127.0" prefHeight="31.0" prefWidth="270.0" promptText="Pseudo">
-                           <tooltip>
-                              <Tooltip text="User Name will need to Login" />
-                           </tooltip>
-                        </TextField>
-                        <TextField fx:id="fullName" layoutX="95.0" layoutY="173.0" prefHeight="31.0" prefWidth="270.0" promptText="Nom Complet" />
-                        <PasswordField fx:id="tPassword" layoutX="95.0" layoutY="221.0" prefHeight="31.0" prefWidth="269.0" promptText="Tapez Mot de pass" />
-                        <PasswordField fx:id="rtPassword" layoutX="95.0" layoutY="268.0" onKeyReleased="#pfKeyTyped" prefHeight="31.0" prefWidth="269.0" promptText="Retapez le mot de passe" />
-                        <TextField fx:id="cin" layoutX="95.0" layoutY="82.0" prefHeight="31.0" prefWidth="270.0" promptText="CIN">
-                           <tooltip>
-                              <Tooltip text="User Name will need to Login" />
-                           </tooltip>
-                        </TextField>
-                        <Button layoutX="183.0" layoutY="370.0" mnemonicParsing="false" onAction="#signUP" text="Signup" />
-                        <Text fill="WHITE" layoutX="149.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enregistrement">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Text>
-                        <Label fx:id="match" layoutX="387.0" layoutY="275.0">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="userExist" layoutX="287.0" layoutY="46.0">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="isEmpty" layoutX="90.0" layoutY="315.0" textFill="RED">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
+                        <VBox alignment="TOP_CENTER" layoutX="132.0" layoutY="14.0" prefHeight="387.0" prefWidth="239.0" spacing="15.0">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Enregistrement">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <HBox prefHeight="13.0" prefWidth="239.0">
+                                 <children>
+                                    <TextField fx:id="cin" prefHeight="31.0" prefWidth="270.0" promptText="CIN">
+                                       <tooltip>
+                                          <Tooltip text="User Name will need to Login" />
+                                       </tooltip>
+                                    </TextField>
+                                    <Label fx:id="userExist">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="userName" prefHeight="31.0" prefWidth="270.0" promptText="Pseudo">
+                                 <tooltip>
+                                    <Tooltip text="User Name will need to Login" />
+                                 </tooltip>
+                              </TextField>
+                              <TextField fx:id="fullName" prefHeight="31.0" prefWidth="270.0" promptText="Nom Complet" />
+                              <TextField fx:id="MacAddress" promptText="Address Mac " />
+                              <PasswordField fx:id="tPassword" prefHeight="31.0" prefWidth="269.0" promptText="Tapez Mot de pass" />
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                 <children>
+                                    <PasswordField fx:id="rtPassword" onKeyReleased="#pfKeyTyped" prefHeight="31.0" prefWidth="269.0" promptText="Retapez le mot de passe" />
+                                    <Label fx:id="match">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <Button mnemonicParsing="false" onAction="#signUP" text="Signup" />
+                              <Label fx:id="isEmpty" textFill="RED">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
                </children>

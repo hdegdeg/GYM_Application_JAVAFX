@@ -7,7 +7,11 @@ package gymapplication.creationUtilisateurNonAdmin;
 
 import gymapplication.DBConnection;
 import static gymapplication.Login.loginController.createStage;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -54,7 +58,7 @@ public class CreateUserNonAdminController implements Initializable {
     private Button btnClose;
     @FXML
     private TextField cin;
-
+    String MacAddress;
     
        @FXML
     private void pfKeyTyped(KeyEvent event) {
@@ -67,9 +71,24 @@ public class CreateUserNonAdminController implements Initializable {
         }
     }
     
-
+    
+        private String getMacAddress() throws UnknownHostException, SocketException{
+        InetAddress address = InetAddress.getLocalHost();
+        
+        NetworkInterface ni =NetworkInterface.getByInetAddress(address);
+        byte[] mac= ni.getHardwareAddress();
+        
+        final StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < mac.length; i++) {
+        sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));        
+        }
+        
+        MacAddress=sb.toString();
+            
+        return MacAddress;
+    }
   @FXML
-    private void signUP(){
+    private void signUP() throws UnknownHostException, SocketException{
         try {
             String cin = this.cin.getText();
             String user = userName.getText();
@@ -77,13 +96,14 @@ public class CreateUserNonAdminController implements Initializable {
             String pass = tPassword.getText();
            
             if(isValidCondition()){
-                String sql ="insert into Login values(?,?,?,?,?)";
+                String sql ="insert into Login values(?,?,?,?,?,?)";
                 ps = conn.prepareStatement(sql);
                 ps.setString(1, cin);
                 ps.setString(2, user);
                 ps.setString(3, pass);
                 ps.setString(4, "nonAdmin");
                 ps.setString(5, full);
+                ps.setString(6,getMacAddress());
                 ps.executeUpdate();
                 ps.close();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
