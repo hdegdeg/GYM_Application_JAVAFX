@@ -478,7 +478,7 @@ public class FXMLAccueilController implements Initializable {
                 {
                     row=sheet.getRow(i);
                     
-                    System.out.println("**************"+row.getCell(0).getStringCellValue());
+                    System.out.println("**************"+row.getCell(0).getStringCellValue()+row.getCell(1).getStringCellValue()+row.getCell(2).getStringCellValue()+row.getCell(3).getStringCellValue()+row.getCell(4).getStringCellValue()+row.getCell(5).getStringCellValue());
                  
                     ps.setObject(1,row.getCell(0).getStringCellValue());
                     
