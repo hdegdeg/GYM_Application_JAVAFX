@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Group xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gymapplication.InfosUser.FXMLUpdateUserController">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="15.0" prefHeight="476.0" prefWidth="407.0" style="-fx-border-color: black; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-color: white;">
+         <children>
+            <VBox alignment="TOP_CENTER" layoutX="101.0" layoutY="21.0" prefHeight="512.0" prefWidth="244.0" spacing="15.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Données Personnel" wrappingWidth="243.625">
+                     <font>
+                        <Font name="Bell MT Bold" size="28.0" />
+                     </font>
+                  </Text>
+                  <Label prefHeight="17.0" prefWidth="258.0" text="Numero utilisateur">
+                     <font>
+                        <Font name="Bell MT Bold" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefHeight="33.0" prefWidth="267.0">
+                     <children>
+                        <TextField fx:id="cin" editable="false" prefHeight="33.0" prefWidth="322.0" promptText="CIN">
+                           <tooltip>
+                              <Tooltip text="User Name will need to Login" />
+                           </tooltip>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                        <Label fx:id="userExist">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="-15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Label prefHeight="17.0" prefWidth="258.0" text="Pseudo utilisateur">
+                     <font>
+                        <Font name="Bell MT Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="userName" prefHeight="31.0" prefWidth="270.0" promptText="Pseudo">
+                     <tooltip>
+                        <Tooltip text="User Name will need to Login" />
+                     </tooltip>
+                     <VBox.margin>
+                        <Insets top="-15.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label prefHeight="17.0" prefWidth="258.0" text="Gmail">
+                     <font>
+                        <Font name="Bell MT Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="fullName" prefHeight="31.0" prefWidth="270.0" promptText="Nom Complet">
+                     <VBox.margin>
+                        <Insets top="-15.0" />
+                     </VBox.margin></TextField>
+                  <Label prefHeight="17.0" prefWidth="258.0" text="Licence Produit">
+                     <font>
+                        <Font name="Bell MT Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="MacAddress" editable="false" prefHeight="33.0" prefWidth="261.0" promptText="Address Mac ">
+                     <VBox.margin>
+                        <Insets top="-15.0" />
+                     </VBox.margin></TextField>
+                  <Label prefHeight="17.0" prefWidth="258.0" text="Mot de Passe">
+                     <font>
+                        <Font name="Bell MT Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="tPassword" prefHeight="33.0" prefWidth="218.0" promptText="Tapez Mot de pass">
+                     <VBox.margin>
+                        <Insets top="-15.0" />
+                     </VBox.margin></PasswordField>
+                  <Label prefHeight="17.0" prefWidth="258.0" text="Confermation Mot de Passe">
+                     <font>
+                        <Font name="Bell MT Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="rtPassword" onKeyReleased="#pfKeyTyped" prefHeight="33.0" prefWidth="252.0" promptText="Retapez le mot de passe">
+                     <VBox.margin>
+                        <Insets top="-15.0" />
+                     </VBox.margin>
+                  </PasswordField>
+                  <HBox prefHeight="33.0" prefWidth="259.0" spacing="5.0" />
+                  <Button mnemonicParsing="false" onAction="#signUP" text="Signup" />
+                  <Label fx:id="isEmpty" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Label fx:id="match" layoutX="354.0" layoutY="486.0" prefHeight="33.0" prefWidth="85.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+         <stylesheets>
+            <URL value="@../../style/mainStyle.css" />
+            <URL value="@../../style/button.css" />
+         </stylesheets>
+      </AnchorPane>
+      <Button fx:id="btnClose" layoutX="422.0" layoutY="-10.0" mnemonicParsing="false" onAction="#quit" prefHeight="52.0" prefWidth="30.0">
+         <stylesheets>
+            <URL value="@../../style/mainStyle.css" />
+            <URL value="@../../style/button.css" />
+         </stylesheets>
+      </Button>
+   </children>
+</Group>

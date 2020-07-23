@@ -124,8 +124,14 @@ public class FXMLSupprimerAbonnementController implements Initializable {
             
              InterfaceRounouvellement.s2.close();
              InterfaceAbonnement.stageAbonnement.close();
-             InterfaceAbonnement.Abonnement(event);
-            
+  
+                   Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Sucess");
+                    alert.setHeaderText("Sucess :   ");
+                    alert.setContentText("L'Abonnement du condidat :" + "  '" + tfNom.getText() + "' " + "a été bien supprimer");
+                    alert.showAndWait();
+                    
+                    quit();
         } catch (SQLException ex) {
             Logger.getLogger(FXMLSupprimerAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
         }

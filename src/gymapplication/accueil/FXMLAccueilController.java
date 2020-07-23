@@ -63,6 +63,7 @@ public class FXMLAccueilController implements Initializable {
     public static Stage stageExpiration = new Stage();
     public static Stage stageAbonnement = new Stage();
     public static Stage stageStatistique = new Stage();
+    public static Stage modificationUser = new Stage();
     public Scene sceneProgramme;
     @FXML
     public   AnchorPane AnchorPane;
@@ -111,7 +112,7 @@ public class FXMLAccueilController implements Initializable {
     }
 
     @FXML
-    public void Abonnement(MouseEvent event) throws IOException {
+    public void Abonnement() throws IOException {
         AnchorPane.setOpacity(0.4);
         AnchorPane.setDisable(true);
 
@@ -184,7 +185,7 @@ public class FXMLAccueilController implements Initializable {
     }
 
     
-       @FXML
+    @FXML
     private void Statistique(MouseEvent event) throws IOException {
         AnchorPane.setOpacity(0.4);
         AnchorPane.setDisable(true);
@@ -201,6 +202,22 @@ public class FXMLAccueilController implements Initializable {
 
     }
     
+    @FXML
+    private void ModificationInfoUser() throws IOException {
+        AnchorPane.setOpacity(0.4);
+        AnchorPane.setDisable(true);
+
+        Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/InfosUser/FXMLUpdateUser.fxml"));
+        Scene scene = new Scene(root);
+
+        scene.setFill(new Color(0, 0, 0, 0));
+        modificationUser.setScene(scene);
+        modificationUser.show();
+
+        AnchorPane.setDisable(false);
+        AnchorPane.setOpacity(1);
+
+    }
     public File save() {              
 
               FileChooser fileChooser=new FileChooser();
@@ -606,8 +623,8 @@ public class FXMLAccueilController implements Initializable {
          }
     
     
-     @FXML
-         public void ImportDonneeJour(){
+    @FXML
+    public void ImportDonneeJour(){
 
                File f=Import();
                
@@ -648,8 +665,8 @@ public class FXMLAccueilController implements Initializable {
             
          }
          
-          @FXML
-         public void ImportDonneeExercice(){
+    @FXML
+    public void ImportDonneeExercice(){
 
                File f=Import();
                
@@ -738,6 +755,7 @@ public class FXMLAccueilController implements Initializable {
         stageProgramme.initStyle(StageStyle.TRANSPARENT);
         stageCondidat.initModality(Modality.APPLICATION_MODAL);
         stageCondidat.initStyle(StageStyle.TRANSPARENT);
+        modificationUser.initStyle(StageStyle.TRANSPARENT);
         conn = DBConnection.EtablirConnection();
         testAdminOrNot();
         try {

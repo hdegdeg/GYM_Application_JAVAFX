@@ -41,6 +41,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -99,7 +100,8 @@ public class FXMLModifierAbonnementController implements Initializable {
     public Button btnModifier;
     @FXML
     private TextField tfPrix;
-  
+    FXMLAccueilController Accueil = new FXMLAccueilController();
+    
     @FXML
     private void quit() {
         Labonnement.setIdAbonnement2(null);
@@ -114,6 +116,20 @@ public class FXMLModifierAbonnementController implements Initializable {
         stage.close();
     }
 
+       private void actualiser() throws IOException{
+        quit();
+        Accueil.rootAbonnement = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLAbonnement.fxml"));
+        Scene scene = new Scene(Accueil.rootAbonnement);
+        Accueil.stageAbonnement.close();
+        scene.setFill(new Color(0, 0, 0, 0));
+        Accueil.stageAbonnement.setScene(scene);
+        Accueil.stageAbonnement.show();
+
+
+
+    }
+    
+    
     @FXML
     private void Valider(MouseEvent event) throws IOException {
          
@@ -122,7 +138,16 @@ public class FXMLModifierAbonnementController implements Initializable {
             abonnement();
             InterfaceRounouvellement.s2.close();
             InterfaceAbonnement.stageAbonnement.close();
-          InterfaceAbonnement.Abonnement(event);
+         
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Sucess");
+                    alert.setHeaderText("Sucess :   ");
+                    alert.setContentText("L'Abonnement du condidat :" + "  '" + tfNom.getText() + "' " + "a été bien Modifier");
+                    alert.showAndWait();
+                    
+                   actualiser(); 
+                    
         } catch (SQLException ex) {
             Logger.getLogger(FXMLModifierAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
         }

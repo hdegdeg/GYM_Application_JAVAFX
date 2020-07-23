@@ -432,52 +432,6 @@ public class FXMLProgrammesController implements Initializable {
         rs.close();
     }
         
-        /*
-    @FXML
-    private void SelectionnerProgramme() {
-           ListeProgramme currentProgramme=(ListeProgramme)TableProg.getSelectionModel().getSelectedItem();
-           currentIdProgramme=currentProgramme.getIdprog();
-           
-            try {
-                jpsr= JasperCompileManager.compileReport("E:\\degdeg\\DEGDEG\\NetBeansProjects\\GYMApplication\\src\\gymapplication\\FicheProgramme.jrxml");
-                JRDataSource datasource=new JREmptyDataSource();
-                     
-                Map<String,Object> parametre=new HashMap<String, Object>();
-                
-                parametre.put("J1", ORDCons1.getNomMalade());
-                parametre.put("J2" , ORDCons1.getPrenomMalade());
-                parametre.put("J3",ORDCons1.getMedicaments());
-                parametre.put("J4",ORDCons1.getDateCons());
-                parametre.put("J5",Age);
-                parametre.put("J6",Tel);
-                parametre.put("J7", ORDCons1.getNomMalade());
-                
-                
-                parametre.put("M1" , ORDCons1.getPrenomMalade());
-                parametre.put("M2",ORDCons1.getMedicaments());
-                parametre.put("M3",ORDCons1.getDateCons());
-                parametre.put("M4",Age);
-                parametre.put("M5",Tel);
-                parametre.put("M6",Age);
-                parametre.put("M7",Tel); 
-                
-                
-                parametre.put("X1" , ORDCons1.getPrenomMalade());
-                parametre.put("X2",ORDCons1.getMedicaments());
-                parametre.put("X3",ORDCons1.getDateCons());
-                parametre.put("X4",Age);
-                parametre.put("X5",Tel);
-                parametre.put("X6",Age);
-                parametre.put("X7",Tel);                
-                
-            
-                jsprPrint= JasperFillManager.fillReport(jpsr, parametre,datasource);
-
-            } catch (JRException ex) {
-                Logger.getLogger(FXMLGestionDesMaladesController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }
-    */
     
      @Override
     public void initialize(URL url, ResourceBundle rb) {

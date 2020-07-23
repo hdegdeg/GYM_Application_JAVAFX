@@ -303,9 +303,9 @@ public class ListCondidatController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //stageAjouter.initModality(Modality.APPLICATION_MODAL);
-        //stageAjouter.initStyle(StageStyle.TRANSPARENT);    
+        stageAjouter.initStyle(StageStyle.TRANSPARENT);    
         //stageModification.initModality(Modality.APPLICATION_MODAL);
-       // stageModification.initStyle(StageStyle.TRANSPARENT);
+        stageModification.initStyle(StageStyle.TRANSPARENT);
         listC = FXCollections.observableArrayList();
         initTable();
         conn = DBConnection.EtablirConnection();

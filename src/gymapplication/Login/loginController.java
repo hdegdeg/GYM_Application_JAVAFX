@@ -60,6 +60,7 @@ public class loginController implements Initializable {
     private AnchorPane apDesignPane;
     
     public static String TypeUser;
+    public static String CurrentIdUser;
     
     String MacAddress;
 
@@ -73,17 +74,17 @@ public class loginController implements Initializable {
         } else if (!userPassword.getText().equals("") && !userName.getText().equals("")) {
 
             try {
-                String sql = "select User,Password,MacAddress,etat from Login where User = ? and Password = ?";
+                String sql = "select idUser,User,Password,MacAddress,etat from Login where User = ? and Password = ?";
 
                 ps = conn.prepareStatement(sql);
                 ps.setString(1, userName.getText());
                 ps.setString(2, userPassword.getText());
 
                 rs = ps.executeQuery();
-  
                 while (rs.next()) {
-                     if(getMacAddress().equals(rs.getString(3))){
-                         TypeUser=rs.getString(4);
+                     if(getMacAddress().equals(rs.getString(4))){
+                         TypeUser=rs.getString(5);
+                         CurrentIdUser=rs.getString(1);
                          newStage();
                      }
                      else {

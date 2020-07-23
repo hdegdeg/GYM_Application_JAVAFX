@@ -19,6 +19,7 @@ import gymapplication.program.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import static gymapplication.Abonnement.FXMLAbonnementController.s2;
 import static gymapplication.Abonnement.FXMLNouvelleAbonnementController.s3;
 import gymapplication.Abonnement.list.StaticListAbonnement;
 import gymapplication.DBConnection;
@@ -87,13 +88,15 @@ public class FXMLConfermationRounouvellementControlle implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        stageRounouvellement.initModality(Modality.APPLICATION_MODAL);
+        //stageRounouvellement.initModality(Modality.APPLICATION_MODAL);
+       
         stageRounouvellement.initStyle(StageStyle.TRANSPARENT);
         conn = DBConnection.EtablirConnection();
     }
 
     @FXML
     void quit() {
+        //s2.close();
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
 
@@ -103,8 +106,9 @@ public class FXMLConfermationRounouvellementControlle implements Initializable {
    
    
     public void ConfermationRounouvellement(){
+        
     try {
-
+            
              Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLNouvelleAbonnement.fxml"));
              Scene scene1 = new Scene(root2);
              scene1.setFill(new Color(0, 0, 0, 0));
@@ -130,8 +134,9 @@ public class FXMLConfermationRounouvellementControlle implements Initializable {
             rs = pst.executeQuery();
 
             if (rs.next()) { 
-                quit();
+                
                 ConfermationRounouvellement();
+                quit();
             }
             
             else {

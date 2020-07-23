@@ -40,6 +40,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -99,7 +100,7 @@ public class FXMLNouvelleAbonnementController extends Thread implements Initiali
     private Label lblDateDebut;
     @FXML
     public Button btnModifier;
-
+    FXMLAccueilController Accueil = new FXMLAccueilController();
     /**
      * Initializes the controller class.
      */
@@ -109,13 +110,25 @@ public class FXMLNouvelleAbonnementController extends Thread implements Initiali
         Lcondidat.setNom(null);
         Lcondidat.setAge(null);
         Lcondidat.setTel(null);
-        
+       
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
     }
 
     
-    
+       private void actualiser() throws IOException{
+        quit();
+    /*    Accueil.rootAbonnement = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLAbonnement.fxml"));
+        Scene scene = new Scene(Accueil.rootAbonnement);
+        Accueil.stageAbonnement.close();
+        scene.setFill(new Color(0, 0, 0, 0));
+        Accueil.stageAbonnement.setScene(scene);
+        Accueil.stageAbonnement.show();
+*/
+
+
+    }
+           
     @FXML
     private void Valider(MouseEvent event) throws IOException {
          
@@ -128,10 +141,14 @@ public class FXMLNouvelleAbonnementController extends Thread implements Initiali
         try {
             abonnement();
 
-             InterfaceRounouvellement.s2.close();
-             InterfaceAbonnement.stageAbonnement.close();
-             InterfaceAbonnement.Abonnement(event);
-
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("Sucess");
+              alert.setHeaderText("Sucess :   ");
+              alert.setContentText("L'Abonnement du condidat :" + "  '" + tfNom.getText() + "' " + "a été bien Crée");
+              alert.showAndWait();
+                    
+                    
+             actualiser();
 
         } catch (SQLException ex) {
             Logger.getLogger(FXMLNouvelleAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
@@ -146,7 +163,14 @@ public class FXMLNouvelleAbonnementController extends Thread implements Initiali
         tfNumTel.setText(Lcondidat.getTel());
     }
     
-    
+    private void cleanCondidat(){
+        Lcondidat.setCin(null);
+        Lcondidat.setNom(null);
+        Lcondidat.setAge(null);
+        Lcondidat.setTel(null);
+        Lcondidat.setSexe(null);
+        Lcondidat.setNomProgramme(null);
+    }
     @FXML
     private void AjouteCondidat(ActionEvent event) {
         try {
@@ -267,7 +291,7 @@ public class FXMLNouvelleAbonnementController extends Thread implements Initiali
                     alert.setHeaderText("Erreur :   ");
                     alert.setContentText("Il y a un ou plusieurs champs vide ");
                     alert.showAndWait();
-                   
+                   cleanCondidat();
             pst.close();
         } else {
             typeAbonnement = comboType.getValue().toString();
@@ -282,6 +306,7 @@ public class FXMLNouvelleAbonnementController extends Thread implements Initiali
             pst.setString(7, tfCIN.getText());
             pst.executeUpdate();
             pst.close();
+            cleanCondidat();
         }
     }
 

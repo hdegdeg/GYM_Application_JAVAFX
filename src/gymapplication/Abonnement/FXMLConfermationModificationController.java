@@ -107,7 +107,7 @@ public class FXMLConfermationModificationController implements Initializable {
 
              Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLModifierAbonnement.fxml"));
              Scene scene1 = new Scene(root2);
-
+             scene1.setFill(new Color(0, 0, 0, 0));
              stageRounouvellement.setScene(scene1);
              stageRounouvellement.show();
 

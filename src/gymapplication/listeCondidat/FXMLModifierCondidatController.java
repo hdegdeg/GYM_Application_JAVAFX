@@ -142,16 +142,11 @@ public class FXMLModifierCondidatController implements Initializable {
     void Programme( ) throws SQLException{
 
         try {
-
             Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/accueil/ajouteCondidat/FXMLProgrammesCondidat.fxml"));
             Scene scene1 = new Scene(root);
           
             stageProgramme.setScene(scene1);
             stageProgramme.showAndWait();
-            
-            
-
-           
              
         } catch (IOException ex) {
             Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);

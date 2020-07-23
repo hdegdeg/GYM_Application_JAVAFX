@@ -34,6 +34,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -263,7 +264,7 @@ public class FXMLAjouterProgrammeController implements Initializable {
 
                 Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
                 Scene scene1 = new Scene(root1);
-                //GYMApplication.mainStage.hide();
+                scene1.setFill(new Color(0, 0, 0, 0));
                 stageExercice.setScene(scene1);
                 stageExercice.show();
 
@@ -291,7 +292,7 @@ public class FXMLAjouterProgrammeController implements Initializable {
 
                 Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
                 Scene scene1 = new Scene(root1);
-                //GYMApplication.mainStage.hide();
+                scene1.setFill(new Color(0, 0, 0, 0));
                 stageExercice.setScene(scene1);
                 stageExercice.show();
 
@@ -319,7 +320,7 @@ public class FXMLAjouterProgrammeController implements Initializable {
 
                 Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
                 Scene scene1 = new Scene(root1);
-                //GYMApplication.mainStage.hide();
+                scene1.setFill(new Color(0, 0, 0, 0));
                 stageExercice.setScene(scene1);
                 stageExercice.show();
 
@@ -347,7 +348,7 @@ public class FXMLAjouterProgrammeController implements Initializable {
 
                 Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
                 Scene scene1 = new Scene(root1);
-                //GYMApplication.mainStage.hide();
+                scene1.setFill(new Color(0, 0, 0, 0));
                 stageExercice.setScene(scene1);
                 stageExercice.show();
 
@@ -375,7 +376,7 @@ public class FXMLAjouterProgrammeController implements Initializable {
 
                 Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
                 Scene scene1 = new Scene(root1);
-                //GYMApplication.mainStage.hide();
+                scene1.setFill(new Color(0, 0, 0, 0));
                 stageExercice.setScene(scene1);
                 stageExercice.show();
 
@@ -403,7 +404,7 @@ public class FXMLAjouterProgrammeController implements Initializable {
 
                 Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
                 Scene scene1 = new Scene(root1);
-                //GYMApplication.mainStage.hide();
+                scene1.setFill(new Color(0, 0, 0, 0));
                 stageExercice.setScene(scene1);
                 stageExercice.show();
 
@@ -431,7 +432,7 @@ public class FXMLAjouterProgrammeController implements Initializable {
 
                 Parent root1 = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLAjouteExercices.fxml"));
                 Scene scene1 = new Scene(root1);
-                //GYMApplication.mainStage.hide();
+                scene1.setFill(new Color(0, 0, 0, 0));
                 stageExercice.setScene(scene1);
                 stageExercice.show();
 
@@ -467,6 +468,7 @@ public class FXMLAjouterProgrammeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        stageExercice.initStyle(StageStyle.TRANSPARENT);
         initThread();
         conn = DBConnection.EtablirConnection();
 
