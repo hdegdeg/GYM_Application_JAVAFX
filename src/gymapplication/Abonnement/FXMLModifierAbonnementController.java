@@ -136,6 +136,7 @@ public class FXMLModifierAbonnementController implements Initializable {
     
         try {
             abonnement();
+            insertBenefice();
             InterfaceRounouvellement.s2.close();
             InterfaceAbonnement.stageAbonnement.close();
          
@@ -262,6 +263,18 @@ public class FXMLModifierAbonnementController implements Initializable {
         return true;
     }
 
+    
+        private void insertBenefice() throws SQLException{
+            int totalPrix= Integer.parseInt(tfPrix.getText()) * Integer.parseInt(tfNbrMois.getText()) ;
+            String sql = "insert into Benefice (Date_Debut,Prix) values(?,?)";
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, dateDebut.getValue().toString());
+            pst.setString(2, totalPrix+"");
+            
+            pst.executeUpdate();
+            pst.close();
+    }
+        
     private void abonnement() throws SQLException {
         Object testDateDebut=dateDebut.getValue();
         if (comboAbonnement.getValue().toString().equals("non-abonnée") || comboType.getValue().toString().equals("")) {

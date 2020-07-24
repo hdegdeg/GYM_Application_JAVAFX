@@ -140,7 +140,7 @@ public class FXMLNouvelleAbonnementController extends Thread implements Initiali
         
         try {
             abonnement();
-
+            insertBenefice();
               Alert alert = new Alert(Alert.AlertType.INFORMATION);
               alert.setTitle("Sucess");
               alert.setHeaderText("Sucess :   ");
@@ -171,6 +171,7 @@ public class FXMLNouvelleAbonnementController extends Thread implements Initiali
         Lcondidat.setSexe(null);
         Lcondidat.setNomProgramme(null);
     }
+    
     @FXML
     private void AjouteCondidat(ActionEvent event) {
         try {
@@ -306,9 +307,23 @@ public class FXMLNouvelleAbonnementController extends Thread implements Initiali
             pst.setString(7, tfCIN.getText());
             pst.executeUpdate();
             pst.close();
+            
+            
             cleanCondidat();
         }
     }
+    
+        private void insertBenefice() throws SQLException{
+            int totalPrix= Integer.parseInt(tfPrix.getText()) * Integer.parseInt(tfNbrMois.getText()) ;
+            String sql = "insert into Benefice (Date_Debut,Prix) values(?,?)";
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, dateDebut.getValue().toString());
+            pst.setString(2, totalPrix+"");
+            
+            pst.executeUpdate();
+            pst.close();
+    }
+        
 
     @FXML
     private void AjouteProgramme(ActionEvent event) {

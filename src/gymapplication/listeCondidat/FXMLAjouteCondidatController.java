@@ -271,6 +271,19 @@ public class FXMLAjouteCondidatController implements Initializable {
         return true;
     }
 
+    
+        private void insertBenefice() throws SQLException{
+            int totalPrix= Integer.parseInt(tfPrix.getText()) * Integer.parseInt(tfNbrMois.getText()) ;
+            String sql = "insert into Benefice (Date_Debut,Prix) values(?,?)";
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, dateDebut.getValue().toString());
+            pst.setString(2, totalPrix+"");
+            
+            pst.executeUpdate();
+            pst.close();
+    }
+        
+        
     private void abonnement() throws SQLException {
         if (comboAbonnement.getValue().toString().equals("non-abonnée")) {
 
@@ -286,6 +299,8 @@ public class FXMLAjouteCondidatController implements Initializable {
             pst.setString(7, tfCIN.getText());
             pst.executeUpdate();
             pst.close();
+            
+            insertBenefice();
         }
     }
 

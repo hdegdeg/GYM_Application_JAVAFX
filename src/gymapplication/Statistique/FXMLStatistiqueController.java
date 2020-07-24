@@ -113,7 +113,7 @@ public class FXMLStatistiqueController implements Initializable {
         else
         {
        
-         String sql="select count(idAbonnement) from Abonnement where  Date_Debut Like '%-01-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
+         String sql="select count(idAbonnement) from Benefice where  Date_Debut Like '%-01-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
         
         try {
             pst=con.prepareStatement(sql);
@@ -122,14 +122,14 @@ public class FXMLStatistiqueController implements Initializable {
             {  setl.getData().add(new XYChart.Data("Janvier",  Integer.parseInt(rs.getString(1)))); }
             
             
-            sql="select count(idAbonnement) from Abonnement where  Date_Debut LIKE '%-02-%' and  Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
+            sql="select count(idAbonnement) from Benefice where  Date_Debut LIKE '%-02-%' and  Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
             {  setl.getData().add(new XYChart.Data("Février",  Integer.parseInt(rs.getString(1)))); }
            
              
-            sql="select count(idAbonnement) from Abonnement where  Date_Debut Like '%-03-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
+            sql="select count(idAbonnement) from Benefice where  Date_Debut Like '%-03-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
           
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
@@ -137,14 +137,14 @@ public class FXMLStatistiqueController implements Initializable {
             {  setl.getData().add(new XYChart.Data("Mars",  Integer.parseInt(rs.getString(1)))); }
            
              
-            sql="select count(idAbonnement) from Abonnement where  Date_Debut Like '%-04-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
+            sql="select count(idAbonnement) from Benefice where  Date_Debut Like '%-04-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
             {  setl.getData().add(new XYChart.Data("Avril",  Integer.parseInt(rs.getString(1)))); }
            
              
-            sql="select count(idAbonnement) from Abonnement where  Date_Debut Like '%-05-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
+            sql="select count(idAbonnement) from Benefice where  Date_Debut Like '%-05-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
@@ -152,7 +152,7 @@ public class FXMLStatistiqueController implements Initializable {
            
             
              
-            sql="select count(idAbonnement) from Abonnement where  Date_Debut Like '%-6-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
+            sql="select count(idAbonnement) from Benefice where  Date_Debut Like '%-6-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
@@ -160,7 +160,7 @@ public class FXMLStatistiqueController implements Initializable {
            
             
              
-            sql="select count(idAbonnement) from Abonnement where  Date_Debut Like '%-07-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
+            sql="select count(idAbonnement) from Benefice where  Date_Debut Like '%-07-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
@@ -168,14 +168,14 @@ public class FXMLStatistiqueController implements Initializable {
            
             
              
-            sql="select count(idAbonnement) from Abonnement where  Date_Debut Like '%-08-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
+            sql="select count(idAbonnement) from Benefice where  Date_Debut Like '%-08-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
             {  setl.getData().add(new XYChart.Data("Aout",  Integer.parseInt(rs.getString(1)))); }
            
              
-            sql="select count(idAbonnement) from Abonnement where  Date_Debut Like '%-09-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
+            sql="select count(idAbonnement) from Benefice where  Date_Debut Like '%-09-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
@@ -184,7 +184,7 @@ public class FXMLStatistiqueController implements Initializable {
             
             
              
-            sql="select count(idAbonnement) from Abonnement where  Date_Debut Like '%-10-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
+            sql="select count(idAbonnement) from Benefice where  Date_Debut Like '%-10-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
@@ -193,14 +193,14 @@ public class FXMLStatistiqueController implements Initializable {
             
           
              
-            sql="select count(idAbonnement) from Abonnement where  Date_Debut Like '%-11-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
+            sql="select count(idAbonnement) from Benefice where  Date_Debut Like '%-11-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
             {  setl.getData().add(new XYChart.Data("Novembre",  Integer.parseInt(rs.getString(1)))); }
            
              
-            sql="select count(idAbonnement) from Abonnement where  Date_Debut Like '%-12-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
+            sql="select count(idAbonnement) from Benefice where  Date_Debut Like '%-12-%' and Date_Debut LIKE '%"+fxidAnne.getText()+"-%'";
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
@@ -208,46 +208,46 @@ public class FXMLStatistiqueController implements Initializable {
            
 
             
-             sql=  "select count(idAbonnement) from Abonnement where  Date_Debut Like '%-"+formatterJOUR.format(LocalDate.now())+"'  and  Date_Debut LIKE '%-"+formatterMOIS.format(LocalDate.now())+"-%' and Date_Debut LIKE '%"+formatterANS.format(LocalDate.now())+"-%'";
+             sql=  "select count(idAbonnement) from Benefice where  Date_Debut Like '%-"+formatterJOUR.format(LocalDate.now())+"'  and  Date_Debut LIKE '%-"+formatterMOIS.format(LocalDate.now())+"-%' and Date_Debut LIKE '%"+formatterANS.format(LocalDate.now())+"-%'";
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
             {  fxidNombreJour.setText(rs.getString(1)); }
                                     System.out.println("recheerch");
 
-            sql=  "select SUM(Prix)  from Abonnement where  Date_Debut Like '%-"+formatterJOUR.format(LocalDate.now())+"' and  Date_Debut LIKE '%-"+formatterMOIS.format(LocalDate.now())+"-%' and Date_Debut LIKE '%"+formatterANS.format(LocalDate.now())+"-%'";
+            sql=  "select SUM(Prix)  from Benefice where  Date_Debut Like '%-"+formatterJOUR.format(LocalDate.now())+"' and  Date_Debut LIKE '%-"+formatterMOIS.format(LocalDate.now())+"-%' and Date_Debut LIKE '%"+formatterANS.format(LocalDate.now())+"-%'";
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
             {  fxidBenificeJour.setText(rs.getString(1)); }
             
               
-            sql="select count(idAbonnement) from Abonnement where  Date_Debut Like '%-"+formatterMOIS.format(LocalDate.now())+"-%' and Date_Debut LIKE '%"+formatterANS.format(LocalDate.now())+"-%'";
+            sql="select count(idAbonnement) from Benefice where  Date_Debut Like '%-"+formatterMOIS.format(LocalDate.now())+"-%' and Date_Debut LIKE '%"+formatterANS.format(LocalDate.now())+"-%'";
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
             {  fxidNombreMois.setText(rs.getString(1)); }
            
             
-                sql="select SUM(Prix) from Abonnement where  Date_Debut Like '%-"+formatterMOIS.format(LocalDate.now())+"-%' and Date_Debut LIKE '%"+formatterANS.format(LocalDate.now())+"-%'";
+                sql="select SUM(Prix) from Benefice where  Date_Debut Like '%-"+formatterMOIS.format(LocalDate.now())+"-%' and Date_Debut LIKE '%"+formatterANS.format(LocalDate.now())+"-%'";
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
             {  fxidBenificeMois.setText(rs.getString(1)); }
             
-            sql="select count(idAbonnement) from Abonnement where  Date_Debut Like '%"+formatterANS.format(LocalDate.now())+"-%'";       
+            sql="select count(idAbonnement) from Benefice where  Date_Debut Like '%"+formatterANS.format(LocalDate.now())+"-%'";       
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
             {  fxidTotalesCons.setText(rs.getString(1)); }
             
-            sql="select count(idAbonnement) from Abonnement where  Date_Debut Like '%"+formatterANS.format(LocalDate.now())+"-%'";        
+            sql="select count(idAbonnement) from Benefice where  Date_Debut Like '%"+formatterANS.format(LocalDate.now())+"-%'";        
             pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
             {  fxidTotalesCons.setText(rs.getString(1)); }
             
-             sql="select SUM(Prix) from Abonnement where  Date_Debut Like '%"+formatterANS.format(LocalDate.now())+"-%'";    
+             sql="select SUM(Prix) from Benefice where  Date_Debut Like '%"+formatterANS.format(LocalDate.now())+"-%'";    
              pst=con.prepareStatement(sql);
             rs=pst.executeQuery();
             while(rs.next())
