@@ -54,6 +54,8 @@ public class CreateUserController implements Initializable {
     @FXML
     private PasswordField rtPassword;
     @FXML
+    private TextField gmail;
+    @FXML
     private Label match;
    @FXML
    private Label userExist;
@@ -87,7 +89,7 @@ public class CreateUserController implements Initializable {
             String pass = tPassword.getText();
            
             if(isValidCondition()){
-                String sql ="insert into Login values(?,?,?,?,?,?)";
+                String sql ="insert into Login values(?,?,?,?,?,?,?)";
                 ps = conn.prepareStatement(sql);
                 ps.setString(1, cin);
                 ps.setString(2, user);
@@ -95,6 +97,7 @@ public class CreateUserController implements Initializable {
                 ps.setString(4, "admin");
                 ps.setString(5, full);
                 ps.setString(6, MacAddress.getText());
+                ps.setString(7,gmail.getText());
                 ps.executeUpdate();
                 ps.close();
                 //addMagasin();

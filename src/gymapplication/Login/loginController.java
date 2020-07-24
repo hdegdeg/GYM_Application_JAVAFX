@@ -7,8 +7,12 @@ package gymapplication.Login;
 
 //import BDConnection.ConnectionSQLITE;
 //import gestionDeStock.main;
+
+import com.sun.mail.util.logging.MailHandler;
 import gymapplication.DBConnection;
 import gymapplication.GYMApplication;
+import static gymapplication.accueil.FXMLAccueilController.stageAbonnement;
+import javax.mail.PasswordAuthentication;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -20,6 +24,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.Date;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,6 +43,12 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 
 public class loginController implements Initializable {
@@ -138,6 +150,23 @@ public class loginController implements Initializable {
             
         return MacAddress;
     }
+    
+
+        @FXML
+    public void ForgetPassword() throws IOException {
+
+
+        Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/Login/FXMLPerteMotdePasse.fxml"));
+        Scene scene = new Scene(root);
+
+        scene.setFill(new Color(0, 0, 0, 0));
+        stageAbonnement.setScene(scene);
+        stageAbonnement.showAndWait();
+
+
+
+    }
+    
     private void errorPassword(int tmp) {
         if (tmp == 1) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

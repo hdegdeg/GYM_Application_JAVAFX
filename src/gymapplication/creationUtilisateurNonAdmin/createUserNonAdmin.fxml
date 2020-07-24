@@ -32,15 +32,15 @@
                            </tooltip>
                         </TextField>
                         <TextField fx:id="fullName" layoutX="102.0" layoutY="162.0" prefHeight="31.0" prefWidth="270.0" promptText="Nom Complet" />
-                        <PasswordField fx:id="tPassword" layoutX="102.0" layoutY="210.0" prefHeight="31.0" prefWidth="269.0" promptText="Tapez Mot de pass" />
-                        <PasswordField fx:id="rtPassword" layoutX="102.0" layoutY="257.0" onKeyReleased="#pfKeyTyped" prefHeight="31.0" prefWidth="269.0" promptText="Retapez le mot de passe" />
-                        <Button layoutX="191.0" layoutY="318.0" mnemonicParsing="false" onAction="#signUP" text="Signup" />
+                        <PasswordField fx:id="tPassword" layoutX="102.0" layoutY="249.0" prefHeight="31.0" prefWidth="269.0" promptText="Tapez Mot de pass" />
+                        <PasswordField fx:id="rtPassword" layoutX="102.0" layoutY="293.0" onKeyReleased="#pfKeyTyped" prefHeight="31.0" prefWidth="269.0" promptText="Retapez le mot de passe" />
+                        <Button layoutX="177.0" layoutY="344.0" mnemonicParsing="false" onAction="#signUP" text="Signup" />
                         <Text fill="WHITE" layoutX="149.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enregistrement">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Text>
-                        <Label fx:id="match" layoutX="384.0" layoutY="264.0">
+                        <Label fx:id="match" layoutX="384.0" layoutY="303.0" prefHeight="20.0" prefWidth="10.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -55,13 +55,14 @@
                               <Tooltip text="User Name will need to Login" />
                            </tooltip>
                         </TextField>
+                        <TextField fx:id="gmail" layoutX="101.0" layoutY="206.0" prefHeight="31.0" prefWidth="270.0" promptText="Gmail" />
                      </children>
                   </AnchorPane>
                </children>
             </HBox>
          </center>
       </BorderPane>
-      <Label fx:id="isEmpty" layoutX="225.0" layoutY="329.0" textFill="RED">
+      <Label fx:id="isEmpty" layoutX="224.0" layoutY="383.0" prefHeight="28.0" prefWidth="19.0" textFill="RED">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
