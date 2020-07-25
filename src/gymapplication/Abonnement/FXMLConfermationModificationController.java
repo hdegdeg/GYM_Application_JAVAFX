@@ -19,7 +19,6 @@ import gymapplication.program.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import static gymapplication.Abonnement.FXMLAbonnementController.s2;
 import gymapplication.Abonnement.list.StaticListAbonnement;
 import gymapplication.DBConnection;
 import gymapplication.accueil.FXMLAccueilController;
@@ -74,7 +73,7 @@ public class FXMLConfermationModificationController implements Initializable {
     StaticListAbonnement CurrentAbonnement= new  StaticListAbonnement();
     FXMLAccueilController InterfaceProgramme = new FXMLAccueilController();
     FXMLAccueilController Accueil = new FXMLAccueilController();
-    private static Stage stageRounouvellement = new Stage();
+    private Stage stageRounouvellement = new Stage();
 
 
     @FXML

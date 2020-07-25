@@ -14,8 +14,6 @@ import gymapplication.DBConnection;
 import gymapplication.Programme.list.ListeExercice;
 import gymapplication.Programme.list.ListeJours;
 import gymapplication.accueil.FXMLAccueilController;
-import static gymapplication.accueil.FXMLAccueilController.stageCondidat;
-import static gymapplication.accueil.FXMLAccueilController.stageProgramme;
 import gymapplication.listeCondidat.list.ListCondidatStatic;
 import java.io.IOException;
 import java.net.URL;
@@ -55,7 +53,7 @@ public class FXMLConfermationSuppressionController implements Initializable {
     Connection conn;
     PreparedStatement pst = null;
     ResultSet rs = null;
-   
+
     @FXML
     private JFXTextField Nom_utilisateur;
 
@@ -65,14 +63,16 @@ public class FXMLConfermationSuppressionController implements Initializable {
     @FXML
     private Button btnClose;
 
-    StaticListAbonnement CurrentAbonnement= new  StaticListAbonnement();
+    Stage stage = new Stage();
+
+    StaticListAbonnement CurrentAbonnement = new StaticListAbonnement();
     FXMLAccueilController InterfaceProgramme = new FXMLAccueilController();
     FXMLAccueilController Accueil = new FXMLAccueilController();
 
     @FXML
     private void SupprimerAbonnement() {
         try {
-            String sql = "delete  from Abonnement  where idAbonnement='" + CurrentAbonnement.getIdAbonnement2()+ "'";
+            String sql = "delete  from Abonnement  where idAbonnement='" + CurrentAbonnement.getIdAbonnement2() + "'";
             pst = conn.prepareStatement(sql);
             pst.executeUpdate();
             pst.close();
@@ -91,13 +91,7 @@ public class FXMLConfermationSuppressionController implements Initializable {
         stage.close();
     }
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-
-        conn = DBConnection.EtablirConnection();
-    }
+   
 
     @FXML
     void quit() {
@@ -106,36 +100,33 @@ public class FXMLConfermationSuppressionController implements Initializable {
 
     }
 
-   private void actualiser() throws IOException{
+    private void actualiser() throws IOException {
         quit();
         Accueil.rootAbonnement = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLAbonnement.fxml"));
         Scene scene = new Scene(Accueil.rootAbonnement);
-        Accueil.stageAbonnement.close();
+        Accueil.staticstageAbonnement.close();
         scene.setFill(new Color(0, 0, 0, 0));
-        Accueil.stageAbonnement.setScene(scene);
-        Accueil.stageAbonnement.show();
-
-
+        stage.setScene(scene);
+        stage.showAndWait();
 
     }
-   
-   
-    private void ConfermationSuppression() throws SQLException, IOException{
-         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Attention");
-            alert.setHeaderText("Risque de Suppression des Données  !!!");
-            alert.setContentText("Cette action va supprimer l'Abonnement N°(( " + CurrentAbonnement.getIdAbonnement2() + "))");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() != ButtonType.OK) {} 
-            else {
-                Valider();
-                actualiser();
 
-                pst.close();
-                rs.close();
-            }
+    private void ConfermationSuppression() throws SQLException, IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Attention");
+        alert.setHeaderText("Risque de Suppression des Données  !!!");
+        alert.setContentText("Cette action va supprimer l'Abonnement N°(( " + CurrentAbonnement.getIdAbonnement2() + "))");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() != ButtonType.OK) {
+        } else {
+            Valider();
+            actualiser();
+
+            pst.close();
+            rs.close();
+        }
     }
-    
+
     @FXML
     void Confermer(MouseEvent event) throws SQLException, IOException {
 
@@ -148,9 +139,9 @@ public class FXMLConfermationSuppressionController implements Initializable {
             pst.setString(2, mot_passe.getText());
             rs = pst.executeQuery();
 
-            if (rs.next()) { ConfermationSuppression();}
-            
-            else {
+            if (rs.next()) {
+                ConfermationSuppression();
+            } else {
 
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur");
@@ -166,6 +157,13 @@ public class FXMLConfermationSuppressionController implements Initializable {
         pst.close();
         rs.close();
 
+    }
+     @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        conn = DBConnection.EtablirConnection();
     }
 
 }

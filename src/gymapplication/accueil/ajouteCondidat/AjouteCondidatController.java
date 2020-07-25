@@ -7,8 +7,6 @@ package gymapplication.accueil.ajouteCondidat;
 
 import gymapplication.DBConnection;
 import gymapplication.accueil.FXMLAccueilController;
-import static gymapplication.accueil.FXMLAccueilController.stageCondidat;
-import static gymapplication.accueil.FXMLAccueilController.stageProgramme;
 import gymapplication.listeCondidat.ListCondidatController;
 import java.io.IOException;
 import java.net.URL;
@@ -40,7 +38,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -60,7 +60,7 @@ public class AjouteCondidatController implements Initializable {
     @FXML
     private TextField tfAge;
     @FXML
-    private TextField tfNumTel; 
+    private TextField tfNumTel;
     @FXML
     private ComboBox<String> comboSexe;
     @FXML
@@ -91,60 +91,62 @@ public class AjouteCondidatController implements Initializable {
     private Label lblType;
     @FXML
     private Label lblDateDebut;
-   // @FXML
-   // public Button btnModifier;
+
+    Stage stage = new Stage();
+    // @FXML
+    // public Button btnModifier;
 
     /**
      * Initializes the controller class.
      */
-    ListCondidatController InterfaceListCondidat=new ListCondidatController();
+    ListCondidatController InterfaceListCondidat = new ListCondidatController();
     FXMLProgrammesCondidatController ProgrammeSelectionner = new FXMLProgrammesCondidatController();
-    
+
     FXMLAccueilController Accueil = new FXMLAccueilController();
+
     @FXML
     private void quit() {
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
     }
 
-    
-     @FXML
-    void Programme( ) {
+    @FXML
+    void Programme() {
 
         try {
 
-            
             Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/accueil/ajouteCondidat/FXMLProgrammesCondidat.fxml"));
             Scene scene1 = new Scene(root);
             scene1.setFill(new Color(0, 0, 0, 0));
-            stageProgramme.setScene(scene1);
-            stageProgramme.show();
+            stage.setScene(scene1);
+            stage.show();
             //stage.showAndWait();
-            
+
         } catch (IOException ex) {
             Logger.getLogger(FXMLAccueilController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-    
-    private void testExistProgramme(){
-        if( ProgrammeSelectionner.currentIdProgramme==null || ProgrammeSelectionner.currentIdProgramme.equals(""))
-        {ProgrammeSelectionner.currentIdProgramme="1";}
+
+    private void testExistProgramme() {
+        if (ProgrammeSelectionner.currentIdProgramme == null || ProgrammeSelectionner.currentIdProgramme.equals("")) {
+            ProgrammeSelectionner.currentIdProgramme = "1";
+        }
     }
-    
-    private void actualiser() throws IOException{
+
+    private void actualiser() throws IOException {
         quit();
         // InterfaceListCondidat.stage.close();
-            
+
     }
-    
+
     @FXML
     private void AjouteCondidat(ActionEvent event) throws IOException {
         try {
             if (isValidCondition()) {
                 if (isnewData()) {
                     testExistProgramme();
-                    
+
                     String sql = "insert into Condidat values(?,?,?,?,?,?)";
                     pst = conn.prepareStatement(sql);
                     pst.setString(1, tfCIN.getText());
@@ -156,9 +158,8 @@ public class AjouteCondidatController implements Initializable {
                     pst.executeUpdate();
                     pst.close();
                     abonnement();
-                    ProgrammeSelectionner.currentIdProgramme="1";
-                    
-                    
+                    ProgrammeSelectionner.currentIdProgramme = "1";
+
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Sucess");
                     alert.setHeaderText("Sucess :   ");
@@ -215,8 +216,8 @@ public class AjouteCondidatController implements Initializable {
                 || tfNom.getText().trim().isEmpty()
                 || tfAge.getText().trim().isEmpty()
                 || tfNumTel.getText().trim().isEmpty()
-                ||  tfPrix.getText().trim().isEmpty()
-                ||(comboSexe.getSelectionModel().isEmpty() && comboSexe.getPromptText().isEmpty())
+                || tfPrix.getText().trim().isEmpty()
+                || (comboSexe.getSelectionModel().isEmpty() && comboSexe.getPromptText().isEmpty())
                 || (comboAbonnement.getSelectionModel().isEmpty() && comboAbonnement.getPromptText().isEmpty())) {
 
             System.out.println("il y a un ou plusieur champs vide");
@@ -258,19 +259,17 @@ public class AjouteCondidatController implements Initializable {
         return true;
     }
 
-    
-        
-        private void insertBenefice() throws SQLException{
-            int totalPrix= Integer.parseInt(tfPrix.getText()) * Integer.parseInt(tfNbrMois.getText()) ;
-            String sql = "insert into Benefice (Date_Debut,Prix) values(?,?)";
-            pst = conn.prepareStatement(sql);
-            pst.setString(1, dateDebut.getValue().toString());
-            pst.setString(2, totalPrix+"");
-            
-            pst.executeUpdate();
-            pst.close();
+    private void insertBenefice() throws SQLException {
+        int totalPrix = Integer.parseInt(tfPrix.getText()) * Integer.parseInt(tfNbrMois.getText());
+        String sql = "insert into Benefice (Date_Debut,Prix) values(?,?)";
+        pst = conn.prepareStatement(sql);
+        pst.setString(1, dateDebut.getValue().toString());
+        pst.setString(2, totalPrix + "");
+
+        pst.executeUpdate();
+        pst.close();
     }
-        
+
     private void abonnement() throws SQLException {
         if (comboAbonnement.getValue().toString().equals("non-abonnée")) {
 
@@ -286,7 +285,7 @@ public class AjouteCondidatController implements Initializable {
             pst.setString(7, tfCIN.getText());
             pst.executeUpdate();
             pst.close();
-            
+
             insertBenefice();
         }
     }
@@ -347,11 +346,12 @@ public class AjouteCondidatController implements Initializable {
         }
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.TRANSPARENT);
         comboAbonnement.getItems().addAll("abonnée", "non-abonnée");
-        comboType.getItems().addAll("Gym", "Natation", "Cardio", "Zomba", "Street","Crossfit");
+        comboType.getItems().addAll("Gym", "Natation", "Cardio", "Zomba", "Street", "Crossfit");
         comboSexe.getItems().addAll("Homme", "Femme");
         dateDebut.setValue(LocalDate.now());
         tfNbrMois.setText("01");
@@ -363,7 +363,5 @@ public class AjouteCondidatController implements Initializable {
         }
         conn = DBConnection.EtablirConnection();
     }
-    
-    
 
 }

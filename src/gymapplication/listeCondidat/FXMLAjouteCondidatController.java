@@ -8,10 +8,7 @@ package gymapplication.listeCondidat;
 import gymapplication.accueil.ajouteCondidat.*;
 import gymapplication.DBConnection;
 import gymapplication.accueil.FXMLAccueilController;
-import static gymapplication.accueil.FXMLAccueilController.stageCondidat;
-import static gymapplication.accueil.FXMLAccueilController.stageProgramme;
 import gymapplication.listeCondidat.ListCondidatController;
-import static gymapplication.listeCondidat.ListCondidatController.stageAjouter;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -42,7 +39,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -93,6 +92,8 @@ public class FXMLAjouteCondidatController implements Initializable {
     private Label lblType;
     @FXML
     private Label lblDateDebut;
+    
+     Stage stage = new Stage();
    // @FXML
    // public Button btnModifier;
 
@@ -105,8 +106,8 @@ public class FXMLAjouteCondidatController implements Initializable {
     FXMLAccueilController Accueil = new FXMLAccueilController();
     @FXML
     private void quit() {
-        ListCondidatController.stageAjouter.hide();
-        ListCondidatController.stageAjouter.close();
+        ListCondidatController.staticstageAjouter.hide();
+        ListCondidatController.staticstageAjouter.close();
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
     }
@@ -121,8 +122,8 @@ public class FXMLAjouteCondidatController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/gymapplication/accueil/ajouteCondidat/FXMLProgrammesCondidat.fxml"));
             Scene scene1 = new Scene(root);
             scene1.setFill(new Color(0, 0, 0, 0));
-            stageProgramme.setScene(scene1);
-            stageProgramme.show();
+            stage.setScene(scene1);
+            stage.show();
             //stage.showAndWait();
             
         } catch (IOException ex) {
@@ -142,10 +143,10 @@ public class FXMLAjouteCondidatController implements Initializable {
             
         Accueil.rootCondidat = FXMLLoader.load(getClass().getResource("/gymapplication/listeCondidat/listCondidat.fxml"));
         Scene scene = new Scene(Accueil.rootCondidat);
-        Accueil.stageCondidat.close();
+        Accueil.staticstageCondidat.close();
         scene.setFill(new Color(0, 0, 0, 0));
-        Accueil.stageCondidat.setScene(scene);
-        Accueil.stageCondidat.show();
+        stage.setScene(scene);
+        stage.show();
 
 
 
@@ -363,6 +364,8 @@ public class FXMLAjouteCondidatController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.TRANSPARENT);
         comboAbonnement.getItems().addAll("abonnée", "non-abonnée");
         comboType.getItems().addAll("Gym", "Natation", "Cardio", "Zomba", "Street","Crossfit");
         comboSexe.getItems().addAll("Homme", "Femme");

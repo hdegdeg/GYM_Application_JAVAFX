@@ -53,7 +53,8 @@ public class FXMLAbonnementController implements Initializable {
     
     public ObservableList <ListAbonnement> Abonnement;
   
-    public static Stage s2 = new Stage();
+    private  Stage s2 = new Stage();
+    public static Stage stageforPublic = new Stage();
     
     @FXML
     private TableView<ListAbonnement> fxTbAbonnement;
@@ -201,6 +202,7 @@ public class FXMLAbonnementController implements Initializable {
              Scene scene1 = new Scene(root2);
 
             s2.setScene(scene1);
+            stageforPublic = s2;
             s2.show();
 
     }   catch (IOException ex) {

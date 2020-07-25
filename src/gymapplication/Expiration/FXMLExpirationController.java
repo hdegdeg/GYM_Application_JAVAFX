@@ -31,7 +31,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import gymapplication.Abonnement.list.ListAbonnement;
 import gymapplication.Abonnement.list.StaticListAbonnement;
-import static gymapplication.accueil.FXMLAccueilController.stageAbonnement;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -39,6 +38,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.StageStyle;
 /**
  * FXML Controller class
  *
@@ -73,7 +74,8 @@ public class FXMLExpirationController implements Initializable {
     @FXML
     private TextField fxRechercher;
 
-    public static Stage stageRounouvellement = new Stage();
+    private Stage stageRounouvellement = new Stage();
+    public static Stage staticstageRounouvellement = new Stage();
      listDate Labonnement= new  listDate();
     
     StaticListDate StaticLabonnement = new StaticListDate();
@@ -202,6 +204,7 @@ public class FXMLExpirationController implements Initializable {
 
         scene.setFill(new Color(0, 0, 0, 0));
         stageRounouvellement.setScene(scene);
+        staticstageRounouvellement = stageRounouvellement;
         stageRounouvellement.showAndWait();
 
 
@@ -212,6 +215,8 @@ public class FXMLExpirationController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         stageRounouvellement.initModality(Modality.APPLICATION_MODAL);
+        stageRounouvellement.initStyle(StageStyle.TRANSPARENT);
         try {
             ConnectionDB();
         } catch (ParseException ex) {

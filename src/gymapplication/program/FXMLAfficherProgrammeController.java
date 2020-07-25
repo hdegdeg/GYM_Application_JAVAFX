@@ -11,7 +11,6 @@ import com.jfoenix.controls.JFXTextField;
 import gymapplication.DBConnection;
 import gymapplication.Programme.list.ListeProgramme;
 import gymapplication.accueil.FXMLAccueilController;
-import static gymapplication.accueil.FXMLAccueilController.stageProgramme;
 import static gymapplication.program.FXMLProgrammesController.currentIdProgramme;
 import static gymapplication.program.FXMLProgrammesController.s2;
 import java.awt.event.MouseEvent;
@@ -417,8 +416,8 @@ public class FXMLAfficherProgrammeController implements Initializable {
             Scene scene1 = new Scene(InterfaceProgramme.rootProgramme);
             scene1.setFill(new Color(0, 0, 0, 0));
 
-            stageProgramme.setScene(scene1);
-            stageProgramme.show();
+            FXMLAccueilController.staticStageProgram.setScene(scene1);
+            FXMLAccueilController.staticStageProgram.show();
 
         } catch (IOException ex) {
             System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");

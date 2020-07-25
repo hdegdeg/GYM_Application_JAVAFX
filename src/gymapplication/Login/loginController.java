@@ -11,7 +11,6 @@ package gymapplication.Login;
 import com.sun.mail.util.logging.MailHandler;
 import gymapplication.DBConnection;
 import gymapplication.GYMApplication;
-import static gymapplication.accueil.FXMLAccueilController.stageAbonnement;
 import javax.mail.PasswordAuthentication;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -60,6 +59,7 @@ public class loginController implements Initializable {
     private PreparedStatement ps = null;
     private ResultSet rs = null;
     private Stage stage = new Stage();
+    private Stage stage2 = new Stage();
 
     public static AnchorPane anchor2;
     @FXML
@@ -160,8 +160,8 @@ public class loginController implements Initializable {
         Scene scene = new Scene(root);
 
         scene.setFill(new Color(0, 0, 0, 0));
-        stageAbonnement.setScene(scene);
-        stageAbonnement.showAndWait();
+        stage2.setScene(scene);
+        stage2.showAndWait();
 
 
 
@@ -257,6 +257,8 @@ public class loginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        stage2.initModality(Modality.APPLICATION_MODAL);
+        stage2.initStyle(StageStyle.TRANSPARENT);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.TRANSPARENT);
 

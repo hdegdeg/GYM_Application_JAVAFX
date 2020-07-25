@@ -16,8 +16,6 @@ import gymapplication.DBConnection;
 import gymapplication.Programme.list.ListeExercice;
 import gymapplication.Programme.list.ListeJours;
 import gymapplication.accueil.FXMLAccueilController;
-import static gymapplication.accueil.FXMLAccueilController.stageCondidat;
-import static gymapplication.accueil.FXMLAccueilController.stageProgramme;
 import gymapplication.listeCondidat.list.ListCondidatStatic;
 import java.io.IOException;
 import java.net.URL;

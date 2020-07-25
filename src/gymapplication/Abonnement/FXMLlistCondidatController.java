@@ -5,13 +5,13 @@
  */
 package gymapplication.Abonnement;
 
+import static gymapplication.Abonnement.FXMLConfermationRounouvellementControlle.stage1;
 import gymapplication.listeCondidat.*;
 import gymapplication.DBConnection;
 //import gymapplication.FXMLDocumentController;
 import gymapplication.accueil.ajouteCondidat.AjouteCondidatController;
 import gymapplication.listeCondidat.list.ListCondidat;
 import gymapplication.listeCondidat.list.ListCondidatStatic;
-import static gymapplication.Abonnement.FXMLAbonnementController.s2;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -51,11 +51,11 @@ public class FXMLlistCondidatController implements Initializable {
     PreparedStatement pst = null;
     ResultSet rs = null;
 
-    ListCondidat Lcondidat= new  ListCondidat();
-    
+    ListCondidat Lcondidat = new ListCondidat();
+
     ListCondidatStatic StaticLcondidat = new ListCondidatStatic();
-    
-    FXMLConfermationRounouvellementControlle Abonnement= new FXMLConfermationRounouvellementControlle();
+
+    FXMLConfermationRounouvellementControlle Abonnement = new FXMLConfermationRounouvellementControlle();
     private ObservableList<ListCondidat> listC;
 
     @FXML
@@ -88,7 +88,7 @@ public class FXMLlistCondidatController implements Initializable {
     }
 
     private void uploadTableCondidat() throws SQLException {
-          String sql = "select Condidat.idCondidat,Nom_Prenom,Age,Tele from Condidat ";
+        String sql = "select Condidat.idCondidat,Nom_Prenom,Age,Tele from Condidat ";
 
         tableCondidat.getItems().clear();
         pst = conn.prepareStatement(sql);
@@ -108,66 +108,80 @@ public class FXMLlistCondidatController implements Initializable {
         rs.close();
     }
 
-               @FXML
-      public void RechercheCondidat() throws SQLException
-    {
+    @FXML
+    public void RechercheCondidat() throws SQLException {
 
-        
-        if(fxRechercher==null || fxRechercher.getText().equals(""))
-        {
-        uploadTableCondidat();
-        }else{
-        listC.clear();
-        String sql="select Condidat.idCondidat,Nom_Prenom,Age,Tele from Condidat where (Condidat.idCondidat like '%"+fxRechercher.getText().toLowerCase()+"%' OR lower(Condidat.Nom_Prenom) LIKE '"+fxRechercher.getText().toLowerCase()+"%' OR Condidat.Tele LIKE '%"+fxRechercher.getText().toLowerCase()+"%')";
-            
-        try {
-            pst=conn.prepareStatement(sql);
-            rs=pst.executeQuery();
-            
-            while(rs.next())
-            {
-            ListCondidat condidat = new ListCondidat();
-            condidat.setCin(rs.getString(1));
-            condidat.setNom(rs.getString(2));
-            condidat.setAge(rs.getString(3));
-            condidat.setTel(rs.getString(4));
+        if (fxRechercher == null || fxRechercher.getText().equals("")) {
+            uploadTableCondidat();
+        } else {
+            listC.clear();
+            String sql = "select Condidat.idCondidat,Nom_Prenom,Age,Tele from Condidat where (Condidat.idCondidat like '%" + fxRechercher.getText().toLowerCase() + "%' OR lower(Condidat.Nom_Prenom) LIKE '" + fxRechercher.getText().toLowerCase() + "%' OR Condidat.Tele LIKE '%" + fxRechercher.getText().toLowerCase() + "%')";
 
-            listC.add(condidat);
-            tableCondidat.setItems(listC);
+            try {
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+
+                while (rs.next()) {
+                    ListCondidat condidat = new ListCondidat();
+                    condidat.setCin(rs.getString(1));
+                    condidat.setNom(rs.getString(2));
+                    condidat.setAge(rs.getString(3));
+                    condidat.setTel(rs.getString(4));
+
+                    listC.add(condidat);
+                    tableCondidat.setItems(listC);
+                }
+                pst.close();
+                rs.close();
+
+            } catch (SQLException ex) {
+                Logger.getLogger(ListCondidatController.class.getName()).log(Level.SEVERE, null, ex);
             }
-             pst.close();
-           rs.close();
-          
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(ListCondidatController.class.getName()).log(Level.SEVERE, null, ex);
+
         }
-    
-  
-        }
-    } 
+    }
 
     @FXML
-    private void modifierCondidat(MouseEvent event) {
-        
-           Lcondidat=(ListCondidat)tableCondidat.getSelectionModel().getSelectedItem();
-           
-           FXMLNouvelleAbonnementController.s3.close();
-          
-          StaticLcondidat.setCin(Lcondidat.getCin());
-         StaticLcondidat.setNom(Lcondidat.getNom());
-         StaticLcondidat.setAge(Lcondidat.getAge());
-         StaticLcondidat.setTel(Lcondidat.getTel());
+    private void modifierCondidat(MouseEvent event) throws IOException {
 
-         s2.close();
-         Abonnement.ConfermationRounouvellement();
+//           Lcondidat=(ListCondidat)tableCondidat.getSelectionModel().getSelectedItem();
+//           
+//           FXMLNouvelleAbonnementController.s3.close();
+//          
+//          StaticLcondidat.setCin(Lcondidat.getCin());
+//         StaticLcondidat.setNom(Lcondidat.getNom());
+//         StaticLcondidat.setAge(Lcondidat.getAge());
+//         StaticLcondidat.setTel(Lcondidat.getTel());
+//
+//         s2.close();
+//         Abonnement.ConfermationRounouvellement();
+        Lcondidat = (ListCondidat) tableCondidat.getSelectionModel().getSelectedItem();
+        FXMLAbonnementController.stageforPublic.close();
+        stage1.close();
+        FXMLNouvelleAbonnementController.s3.close();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/gymapplication/Abonnement/FXMLNouvelleAbonnement.fxml"));
+
+        fxmlLoader.load();
+        Parent parent = fxmlLoader.getRoot();
+        Scene scene = new Scene(parent);
+        scene.setFill(new Color(0, 0, 0, 0));
+        FXMLNouvelleAbonnementController StaticLcondidat = fxmlLoader.getController();
+        StaticLcondidat.tfCIN.setText(Lcondidat.getCin());
+        StaticLcondidat.tfNom.setText(Lcondidat.getNom());
+        StaticLcondidat.tfAge.setText(Lcondidat.getAge());
+        StaticLcondidat.tfNumTel.setText(Lcondidat.getTel());
+
+        //  produitController.dateEXP.setVisible(false);
+//          produitController.dateLabel.setVisible(false);
+        Stage nStage = new Stage();
+        nStage.setScene(scene);
+        nStage.initModality(Modality.APPLICATION_MODAL);
+        nStage.initStyle(StageStyle.TRANSPARENT);
+        nStage.showAndWait();
 
     }
 
-
-
-    
-      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

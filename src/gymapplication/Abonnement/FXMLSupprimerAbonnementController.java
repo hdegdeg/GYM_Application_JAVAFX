@@ -122,8 +122,8 @@ public class FXMLSupprimerAbonnementController implements Initializable {
         try {
             abonnement();
             
-             InterfaceRounouvellement.s2.close();
-             InterfaceAbonnement.stageAbonnement.close();
+             FXMLAbonnementController.stageforPublic.close();
+             InterfaceAbonnement.staticstageAbonnement.close();
   
                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Sucess");

@@ -65,11 +65,11 @@ public class FXMLNouvelleAbonnementController extends Thread implements Initiali
     @FXML
     public Label lblCaption;
     @FXML
-    private TextField tfNom;
+    public TextField tfNom;
     @FXML
-    private TextField tfAge;
+    public TextField tfAge;
     @FXML
-    private TextField tfNumTel;
+    public TextField tfNumTel;
     @FXML
     private TextField tfPrix;
     @FXML
@@ -83,7 +83,7 @@ public class FXMLNouvelleAbonnementController extends Thread implements Initiali
     @FXML
     private Button btnClose;
     @FXML
-    private TextField tfCIN;
+    public TextField tfCIN;
     @FXML
     private Label isEmpty;
     @FXML

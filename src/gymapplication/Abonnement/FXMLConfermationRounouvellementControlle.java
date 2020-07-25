@@ -13,13 +13,12 @@ import cabinetmedical1.FXMLDocumentController;
 import static cabinetmedical1.FXMLDocumentController.stage;
 import static cabinetmedical1.malades.FXMLGestionDesMaladesController.s1;
 
-*/
+ */
 import gymapplication.program.*;
 import gymapplication.program.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import static gymapplication.Abonnement.FXMLAbonnementController.s2;
 import static gymapplication.Abonnement.FXMLNouvelleAbonnementController.s3;
 import gymapplication.Abonnement.list.StaticListAbonnement;
 import gymapplication.DBConnection;
@@ -62,7 +61,7 @@ public class FXMLConfermationRounouvellementControlle implements Initializable {
     Connection conn;
     PreparedStatement pst = null;
     ResultSet rs = null;
-   
+
     @FXML
     private JFXTextField Nom_utilisateur;
 
@@ -72,11 +71,11 @@ public class FXMLConfermationRounouvellementControlle implements Initializable {
     @FXML
     private Button btnClose;
 
-    StaticListAbonnement CurrentAbonnement= new  StaticListAbonnement();
+    StaticListAbonnement CurrentAbonnement = new StaticListAbonnement();
     FXMLAccueilController InterfaceProgramme = new FXMLAccueilController();
     FXMLAccueilController Accueil = new FXMLAccueilController();
-    private static Stage stageRounouvellement = new Stage();
-
+    private Stage stageRounouvellement = new Stage();
+    public static Stage stage1 = new Stage();
 
     @FXML
     void Valider() {
@@ -84,12 +83,11 @@ public class FXMLConfermationRounouvellementControlle implements Initializable {
         stage.close();
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        //stageRounouvellement.initModality(Modality.APPLICATION_MODAL);
-       
+        stageRounouvellement.initModality(Modality.APPLICATION_MODAL);
+
         stageRounouvellement.initStyle(StageStyle.TRANSPARENT);
         conn = DBConnection.EtablirConnection();
     }
@@ -102,25 +100,23 @@ public class FXMLConfermationRounouvellementControlle implements Initializable {
 
     }
 
+    public void ConfermationRounouvellement() {
 
-   
-   
-    public void ConfermationRounouvellement(){
-        
-    try {
-            
-             Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLNouvelleAbonnement.fxml"));
-             Scene scene1 = new Scene(root2);
-             scene1.setFill(new Color(0, 0, 0, 0));
-             stageRounouvellement.setScene(scene1);
-             stageRounouvellement.show();
+        try {
+
+            Parent root2 = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLNouvelleAbonnement.fxml"));
+            Scene scene1 = new Scene(root2);
+            scene1.setFill(new Color(0, 0, 0, 0));
+            stageRounouvellement.setScene(scene1);
+            stage1 = stageRounouvellement;
+            stageRounouvellement.show();
 
         } catch (IOException ex) {
             Logger.getLogger(FXMLAbonnementController.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
+
     }
-    
+
     @FXML
     void Confermer(MouseEvent event) throws SQLException, IOException {
 
@@ -133,13 +129,11 @@ public class FXMLConfermationRounouvellementControlle implements Initializable {
             pst.setString(2, mot_passe.getText());
             rs = pst.executeQuery();
 
-            if (rs.next()) { 
-                
+            if (rs.next()) {
+
                 ConfermationRounouvellement();
                 quit();
-            }
-            
-            else {
+            } else {
 
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur");

@@ -21,7 +21,6 @@ import gymapplication.DBConnection;
 import gymapplication.Programme.list.ListeExercice;
 import gymapplication.Programme.list.ListeJours;
 import gymapplication.accueil.FXMLAccueilController;
-import static gymapplication.accueil.FXMLAccueilController.stageProgramme;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -139,8 +138,8 @@ public class FXMLConfermationSuppressionController implements Initializable {
             InterfaceProgramme.rootProgramme = FXMLLoader.load(getClass().getResource("/gymapplication/program/FXMLProgrammes.fxml"));
             Scene scene1 = new Scene(InterfaceProgramme.rootProgramme);
 
-            stageProgramme.setScene(scene1);
-            stageProgramme.show();
+            FXMLAccueilController.staticStageProgram.setScene(scene1);
+            FXMLAccueilController.staticStageProgram.show();
 
         } catch (IOException ex) {
             System.out.println("gymapplication.program.FXMLAjouterProgrammeController.Retour()");

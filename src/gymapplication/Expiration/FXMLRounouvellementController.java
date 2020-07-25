@@ -113,8 +113,8 @@ public class FXMLRounouvellementController implements Initializable {
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
         
-      InterfaceExpiration.stageRounouvellement.close();
-      InterfaceAbonnement.stageExpiration.close();
+      InterfaceExpiration.staticstageRounouvellement.close();
+      InterfaceAbonnement.staticstageExpiration.close();
     }
 
     @FXML

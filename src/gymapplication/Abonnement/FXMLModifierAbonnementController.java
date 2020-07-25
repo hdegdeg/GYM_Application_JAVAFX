@@ -42,7 +42,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -100,6 +102,9 @@ public class FXMLModifierAbonnementController implements Initializable {
     public Button btnModifier;
     @FXML
     private TextField tfPrix;
+    
+    private Stage stage = new Stage();
+    
     FXMLAccueilController Accueil = new FXMLAccueilController();
     
     @FXML
@@ -120,10 +125,10 @@ public class FXMLModifierAbonnementController implements Initializable {
         quit();
         Accueil.rootAbonnement = FXMLLoader.load(getClass().getResource("/gymapplication/Abonnement/FXMLAbonnement.fxml"));
         Scene scene = new Scene(Accueil.rootAbonnement);
-        Accueil.stageAbonnement.close();
+        Accueil.staticstageAbonnement.close();
         scene.setFill(new Color(0, 0, 0, 0));
-        Accueil.stageAbonnement.setScene(scene);
-        Accueil.stageAbonnement.show();
+        stage.setScene(scene);
+        stage.showAndWait();
 
 
 
@@ -137,8 +142,7 @@ public class FXMLModifierAbonnementController implements Initializable {
         try {
             abonnement();
             insertBenefice();
-            InterfaceRounouvellement.s2.close();
-            InterfaceAbonnement.stageAbonnement.close();
+            InterfaceAbonnement.staticstageAbonnement.close();
          
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -411,6 +415,9 @@ public class FXMLModifierAbonnementController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        
         comboAbonnement.getItems().addAll("abonnée", "non-abonnée");
         comboAbonnement.setValue("abonnée");
         
