@@ -77,7 +77,7 @@ public class loginController implements Initializable {
     public static String TypeUser;
     public static String CurrentIdUser;
     
-//    String MacAddress;
+    String MacAddress;
     static String format = "%02X"; // To get 2 char output.
     String addressMAC = "";
 
@@ -102,7 +102,7 @@ public class loginController implements Initializable {
 
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                     if (addressMAC.trim().equals("12:A5:89:8C:5D:4F80:A5:89:8C:5D:4E22:A5:89:8C:5D:4F80:A5:89:8C:5D:4F9C:5C:8E:03:15:9C")) {
+                     if (addressMAC.trim().equals("34-DE-1A-63-84-40")) {
                          TypeUser=rs.getString(4);
                          CurrentIdUser=rs.getString(1);
                          newStage();
@@ -143,62 +143,63 @@ public class loginController implements Initializable {
 
     }
     //////////////////////////////// this is gharbi abdelillah new update for the @MAC ////////////////////////
-     private static String[] getPhysicalAddress() throws Exception {
-        try {
-            // DHCP Enabled - InterfaceMetric
-            Set<String> macs = new LinkedHashSet<String>();
-
-            Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
-            while (nis.hasMoreElements()) {
-                NetworkInterface ni = nis.nextElement();
-                byte mac[] = ni.getHardwareAddress(); // Physical Address (MAC - Medium Access Control)
-                if (mac != null) {
-                    final StringBuilder macAddress = new StringBuilder();
-                    for (int i = 0; i < mac.length; i++) {
-                        macAddress.append(String.format("%s" + format, (i == 0) ? "" : ":", mac[i]));
-                        //macAddress.append(String.format(format+"%s", mac[i], (i < mac.length - 1) ? ":" : ""));
-                    }
-                    System.out.println(macAddress.toString());
-                    macs.add(macAddress.toString());
-                }
-            }
-            return macs.toArray(new String[0]);
-        } catch (Exception ex) {
-            System.err.println("Exception:: " + ex.getMessage());
-            ex.printStackTrace();
-        }
-        return new String[0];
-    }
+//     private static String[] getPhysicalAddress() throws Exception {
+//        try {
+//            // DHCP Enabled - InterfaceMetric
+//            Set<String> macs = new LinkedHashSet<String>();
+//
+//            Enumeration<NetworkInterface> nis = NetworkInterface.getNetworkInterfaces();
+//            System.out.println(" nis = "+nis.toString());
+//            while (nis.hasMoreElements()) {
+//                NetworkInterface ni = nis.nextElement();
+//                byte mac[] = ni.getHardwareAddress(); // Physical Address (MAC - Medium Access Control)
+//                if (mac != null) {
+//                    final StringBuilder macAddress = new StringBuilder();
+//                    for (int i = 0; i < mac.length; i++) {
+////                        macAddress.append(String.format("%s" + format, (i == 0) ? "" : ":", mac[i]));
+//                       macAddress.append(String.format(format+"%s", mac[i], (i < mac.length - 1) ? ":" : ""));
+//                    }
+//                    System.out.println(macAddress.toString());
+//                    macs.add(macAddress.toString());
+//                }
+//            }
+//            return macs.toArray(new String[0]);
+//        } catch (Exception ex) {
+//            System.err.println("Exception:: " + ex.getMessage());
+//            ex.printStackTrace();
+//        }
+//        return new String[0];
+//    }
     private void getMAC() throws Exception {
         InetAddress localHost = InetAddress.getLocalHost();
         System.out.println("Host/System Name : " + localHost.getHostName());
         System.out.println("Host IP Address  : " + localHost.getHostAddress());
 
-        String macs2[] = getPhysicalAddress();
-
-        for (String mac : macs2) {
-            addressMAC = addressMAC + "" + mac;
-
-        }
+        String macs2 = getMacAddress();
+        addressMAC = macs2;
+//        for (String mac : macs2) {
+//            addressMAC = addressMAC + "" + mac;
+//
+//        }
     }
 
 
-//    private String getMacAddress() throws UnknownHostException, SocketException{
-//        InetAddress address = InetAddress.getLocalHost();
-//        
-//        NetworkInterface ni =NetworkInterface.getByInetAddress(address);
-//        byte[] mac= ni.getHardwareAddress();
-//        
-//        final StringBuilder sb = new StringBuilder();
-//        for (int i = 0; i < mac.length; i++) {
-//        sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));        
-//        }
-//        
-//        MacAddress=sb.toString();
-//            
-//        return MacAddress;
-//    }
-//    
+    private String getMacAddress() throws UnknownHostException, SocketException{
+        InetAddress address = InetAddress.getLocalHost();
+        
+        NetworkInterface ni =NetworkInterface.getByInetAddress(address);
+        byte[] mac= ni.getHardwareAddress();
+        
+        final StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < mac.length; i++) {
+        sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));        
+        }
+        
+        MacAddress=sb.toString();
+            
+        return MacAddress;
+    }
+    
 
         @FXML
     public void ForgetPassword() throws IOException {
