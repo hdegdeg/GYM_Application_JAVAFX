@@ -37,7 +37,7 @@
                                               <CategoryAxis fx:id="fxidcategorie" label="Mois" side="BOTTOM" />
                                             </xAxis>
                                             <yAxis>
-                                              <NumberAxis fx:id="fxidNumber" label="NombesMalades" side="LEFT" />
+                                              <NumberAxis fx:id="fxidNumber" label="Nombes" side="LEFT" />
                                             </yAxis>
                                           </StackedBarChart>
                                        </children>

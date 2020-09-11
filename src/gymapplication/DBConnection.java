@@ -19,11 +19,13 @@ public class DBConnection {
     
     public static Connection EtablirConnection()
     {
+        String db_string = "C:\\DGSoft\\GYM_Data_Base.sqlite";
+//        String db_string = "GYM_Data_Base.sqlite";
         
         try {
             Class.forName("org.sqlite.JDBC");
             Connection con=null;
-            con=DriverManager.getConnection("jdbc:sqlite:GYM_Data_Base.sqlite");
+            con=DriverManager.getConnection("jdbc:sqlite:"+db_string);
             
             System.out.println("gymapplication.DBConnection.Success");
             return con;
