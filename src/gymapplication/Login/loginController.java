@@ -102,7 +102,9 @@ public class loginController implements Initializable {
 
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                     if (addressMAC.trim().equals("34-DE-1A-63-84-40")) {
+                    //80-A5-89-8C-5D-4F
+                    //34-DE-1A-63-84-40 degdeg
+                     if (addressMAC.trim().equals("80-A5-89-8C-5D-4F")) {
                          TypeUser=rs.getString(4);
                          CurrentIdUser=rs.getString(1);
                          newStage();
